@@ -13,9 +13,16 @@ private:
     Manager manager;
 
 public:
+    static void header();
+    static void clear();
+    static void inputWait();
+
     void init();
+    bool loadData();
 
     void mainMenu();
+
+
 };
 
 
