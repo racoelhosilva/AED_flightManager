@@ -14,20 +14,30 @@ private:
 
 public:
     static void header();
+    static void footer();
     static void clear();
     static void outputWait();
 
     void init();
+    void exitMenu();
     bool loadData();
 
     static void printOptions(const std::vector<std::string> &options);
     bool validOption(unsigned long size, const std::string &choice);
+    int readOption(int i);
     void printSelected(const string &s);
+    std::string readAirline();
+    std::string readAirportCode();
+    std::string readCity();
+    std::string readCountry();
+    std::string readCoordinates();
 
     void mainMenu();
 
+    void statisticsMenu();
+    void airlineStatisticsMenu();
 
-    int readOption(int i);
+
 };
 
 

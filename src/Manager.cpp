@@ -83,3 +83,13 @@ bool Manager::extractFlights(std::string fname) {
     } while (getline(input, line));
     return true;
 }
+
+bool Manager::validateAirport(const std::string &code) {return true;}
+bool Manager::validateCountry(const std::string &country) {return true;}
+bool Manager::validateAirline(const std::string &airline) {return true;}
+
+
+void Manager::listAllAirlines() {}
+void Manager::listAirlinesAirport(string airport) {}
+void Manager::listAirlinesCountry(string country) {}
+void Manager::airlineInfo(string airline) {}
