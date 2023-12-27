@@ -16,6 +16,7 @@ void Interface::clear() {
 }
 
 void Interface::outputWait() {
+    cin.ignore();
     cin.clear();
     cout << "                            \033[2m< Press \033[0m\033[1mENTER\033[0m\033[2m to Continue >\033[0m";
     cin.ignore();
@@ -82,7 +83,7 @@ int Interface::readOption(int max) {
 }
 
 bool Interface::validOption(unsigned long size, const std::string &choice) {
-    return choice.size() == 1 && "0" <= choice && choice < to_string(size-1);
+    return choice.size() == 1 && "0" <= choice && choice <= to_string(size-2);
 }
 
 
@@ -106,6 +107,24 @@ std::string Interface::readAirportCode() {
     return choice;
 }
 
+std::string Interface::readCity() {
+    string choice;
+    do {
+        std::cout << "  City: ";
+        cin.clear();
+        std::cin >> choice;
+    } while (!manager.validateCountry(choice));
+    return choice;
+}
+
+std::string Interface::readCityOptional() {
+    string choice;
+    std::cout << "  City (Optional): ";
+    cin.clear();
+    std::cin >> choice;
+    return choice;
+}
+
 std::string Interface::readCountry() {
     string choice;
     do {
@@ -114,6 +133,25 @@ std::string Interface::readCountry() {
         std::cin >> choice;
     } while (!manager.validateCountry(choice));
     return choice;
+}
+
+bool stringIsNumeric(const string &s){
+    for (const char &c : s){
+        if (!isdigit(c)){
+            return false;
+        }
+    }
+    return true;
+}
+
+int Interface::readNumber() {
+    string choice;
+    do {
+        std::cout << "  Number: ";
+        cin.clear();
+        std::cin >> choice;
+    } while (!stringIsNumeric(choice));
+    return stoi(choice);
 }
 
 void Interface::mainMenu() {
@@ -165,6 +203,7 @@ void Interface::statisticsMenu() {
             airlineStatisticsMenu();
             break;
         case 2:
+            airportStatisticsMenu();
             break;
         case 3:
             break;
@@ -177,9 +216,9 @@ void Interface::statisticsMenu() {
         case 7:
             break;
         case 0:
-            mainMenu();
-            break;
+            return;
     }
+    statisticsMenu();
 }
 
 void Interface::airlineStatisticsMenu() {
@@ -200,25 +239,224 @@ void Interface::airlineStatisticsMenu() {
     switch (choice) {
         case 1:
             manager.listAllAirlines();
+            outputWait();
             break;
         case 2: {
             string airportCode = readAirportCode();
             manager.listAirlinesAirport(airportCode);
+            outputWait();
             break;
         }
         case 3: {
             string country = readCountry();
             manager.listAirlinesCountry(country);
+            outputWait();
             break;
         }
         case 4: {
             string airline = readAirline();
             manager.airlineInfo(airline);
+            outputWait();
             break;
         }
         case 0:
-            mainMenu();
-            break;
+            return;
     }
     airlineStatisticsMenu();
+}
+
+void Interface::airportStatisticsMenu() {
+    clear();
+    header();
+    std::vector<std::string> options =
+            {"Back",
+             "List all Airports",
+             "Total Number of Airports",
+             "Airports in a Country/City",
+             "N Airports with Most Airlines",
+             "N Airports with Most Flights",
+             "Airport Information",
+             "Choose type of Airport Statistics:"};
+    printOptions(options);
+
+    int choice = readOption(int(options.size()));
+
+    printSelected(options[choice]);
+    switch (choice) {
+        case 1:
+            manager.listAllAirports();
+            outputWait();
+            break;
+        case 2:
+            manager.numberAirports();
+            outputWait();
+            break;
+        case 3: {
+            string country = readCountry();
+            string city = readCityOptional();
+            manager.listAirportsCountry(country, city);
+            outputWait();
+            break;
+        }
+        case 4: {
+            int n = readNumber();
+            manager.listAirportsMostAirlines(n);
+            outputWait();
+            break;
+        }
+        case 5: {
+            int n = readNumber();
+            manager.listAirportsMostFlights(n);
+            outputWait();
+            break;
+        }
+        case 6: {
+            airportInformationMenu();
+            break;
+        }
+        case 0:
+            return;
+    }
+    airportStatisticsMenu();
+}
+
+void Interface::airportInformationMenu(){
+    clear();
+    header();
+    std::vector<std::string> options =
+            {"Back",
+             "Airport Information",
+             "Airline List",
+             "Flight List",
+             "Reachable Airports",
+             "Reachable Airports with N Layovers",
+             "Reachable Cities",
+             "Reachable Cities with N Layovers",
+             "Reachable Countries",
+             "Reachable Countries with N Layovers",
+             "Choose type of Airport Information:"};
+    printOptions(options);
+
+    int choice = readOption(int(options.size()));
+
+    printSelected(options[choice]);
+    switch (choice) {
+        case 1: {
+            string airport = readAirportCode();
+            manager.airportInfo(airport);
+            outputWait();
+            break;
+        }
+        case 2: {
+            string airport = readAirportCode();
+            manager.listAirlinesAirport(airport);
+            outputWait();
+            break;
+        }
+        case 3: {
+            string airport = readAirportCode();
+            manager.listAirportFlights(airport);
+            outputWait();
+            break;
+        }
+        case 4: {
+            string airport = readAirportCode();
+            manager.reachableAirports(airport, 1);
+            outputWait();
+            break;
+        }
+        case 5: {
+            string airport = readAirportCode();
+            int n = readNumber();
+            manager.reachableAirports(airport, n);
+            outputWait();
+            break;
+        }
+        case 6: {
+            string airport = readAirportCode();
+            manager.reachableCities(airport, 1);
+            outputWait();
+            break;
+        }
+        case 7: {
+            string airport = readAirportCode();
+            int n = readNumber();
+            manager.reachableCities(airport, n);
+            outputWait();
+            break;
+        }
+        case 8: {
+            string airport = readAirportCode();
+            manager.reachableCountries(airport, 1);
+            outputWait();
+            break;
+        }
+        case 9: {
+            string airport = readAirportCode();
+            int n = readNumber();
+            manager.reachableCountries(airport, n);
+            outputWait();
+            break;
+        }
+        case 0:
+            return;
+    }
+    airportInformationMenu();
+}
+
+void Interface::flightStatisticsMenu() {
+    clear();
+    header();
+    std::vector<std::string> options =
+            {"Back",
+             "List all Flights",
+             "Number of Flights",
+             "Flights by Airline",
+             "Number of Flights by Airline",
+             "Flights by Country/City",
+             "Number of Flights by Country/City",
+             "Choose type of Flight Statistics:"};
+    printOptions(options);
+
+    int choice = readOption(int(options.size()));
+
+    printSelected(options[choice]);
+    switch (choice) {
+        case 1:
+            manager.listAllFlights();
+            outputWait();
+            break;
+        case 2:
+            manager.numberFlights();
+            outputWait();
+            break;
+        case 3: {
+            string airline = readAirline();
+            manager.listFlightsAirline(airline);
+            outputWait();
+            break;
+        }
+        case 4: {
+            string airline = readAirline();
+            manager.numberFlightsAirline(airline);
+            outputWait();
+            break;
+        }
+        case 5: {
+            string country = readCountry();
+            string city = readCityOptional();
+            manager.listFlightsCountryCity(country, city);
+            outputWait();
+            break;
+        }
+        case 6: {
+            string country = readCountry();
+            string city = readCityOptional();
+            manager.numberFlightsCountryCity(country, city);
+            break;
+        }
+        case 0:
+            return;
+    }
+    flightStatisticsMenu();
 }

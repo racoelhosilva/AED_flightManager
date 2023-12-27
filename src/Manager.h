@@ -26,11 +26,31 @@ class Manager {
         bool validateAirport(const std::string &code);
         bool validateCountry(const std::string &country);
 
-
         void listAllAirlines();
+        void numberAirlines();
         void listAirlinesAirport(string airport);
         void listAirlinesCountry(string country);
         void airlineInfo(string airline);
+
+        void listAllAirports();
+        void numberAirports();
+        void listAirportsCountry(string country, string city = "");
+        void listAirportsMostAirlines(int n);
+        void listAirportsMostFlights(int n);
+        void airportInfo(string airport);
+        void listAirportFlights(string airport);
+        void reachableAirports(string airport, int n=1);
+        void reachableCities(string airport, int n=1);
+        void reachableCountries(string airport, int n=1);
+
+        void listAllFlights();
+        void numberFlights();
+        void listFlightsAirline(string airline);
+        void numberFlightsAirline(string airline);
+        void listFlightsCountryCity(string country, string city = "");
+        void numberFlightsCountryCity(string country, string city = "");
+
+
 };
 
 
