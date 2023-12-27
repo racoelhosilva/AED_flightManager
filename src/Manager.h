@@ -12,7 +12,7 @@
 
 struct AirlineHash {
     int operator() (const Airline &airline) const {
-        return std::hash<std::string>()(airline.getCode()) ;
+        return std::hash<std::string>()(airline.getCode());
     }
 
     bool operator() (const Airline &airline1, const Airline &airline2) const {
@@ -20,19 +20,28 @@ struct AirlineHash {
     }
 };
 
+struct AirportHash {
+    int operator() (const Airport &airport) const {
+        return std::hash<std::string>()(airport.getCode());
+    }
+
+    bool operator() (const Airport &airport1, const Airport &airport2) const {
+        return airport1 == airport2;
+    }
+};
 class Manager {
     private:
         bool op;
-        std::list<Airport> airports;
         Graph<Airport> flightNet;
         unordered_set<Airline, AirlineHash, AirlineHash> airlines;
+        unordered_set<Airport, AirportHash, AirportHash> airports;
 
     public:
         Manager() {op = true;}
         bool extractAirports(std::string fname);
         bool extractAirlines(std::string fname);
         bool extractFlights(std::string fname);
-        std::list<Airport> getAirports() const {return airports;}
+        unordered_set<Airport, AirportHash, AirportHash>  getAirports() const {return airports;}
         unordered_set<Airline, AirlineHash, AirlineHash> getAirlines() const {return airlines;}
         Graph<Airport> getFlightNet() const {return flightNet;}
 };

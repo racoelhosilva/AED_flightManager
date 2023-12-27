@@ -15,4 +15,10 @@ void Interface::mainMenu() {
     for (const Airline& element : manager.getAirlines()) {
         cout << element.getCode() << "," << element.getName() << endl;
     }
+    cout << manager.getAirlines().size();
+
+    /* for (const Airport& element : manager.getAirports()) {
+        cout << element.getCode() << "," << element.getName() << endl;
+    }
+    cout << manager.getAirports().size(); */
 }

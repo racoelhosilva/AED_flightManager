@@ -20,7 +20,7 @@ bool Manager::extractAirports(std::string fname) {
         lineInput >> lat >> new char >> lgt >> new char;
 
         Airport airport = Airport(code, name, city, country, lat, lgt);
-        airports.push_back(airport);
+        airports.insert(airport);
         flightNet.addVertex(airport);
     } while (getline(input, line));
     return true;
@@ -63,7 +63,7 @@ bool Manager::extractFlights(std::string fname) {
         getline(lineInput, code1, ',');
         getline(lineInput, code2, ',');
         getline(lineInput, airlineCode, '\r');Airport airport1, airport2;
-        for (Airport& a : airports) {
+        for (const Airport& a : airports) {
             if (a.getCode() == code1) {
                 airport1 = a;
             } else if (a.getCode() == code2) {
