@@ -6,8 +6,16 @@
 #define AED2324_PRJ2_G15_INTERFACE_H
 
 
-class Interface {
+#include "Manager.h"
 
+class Interface {
+private:
+    Manager manager;
+
+public:
+    void init();
+
+    void mainMenu();
 };
 
 

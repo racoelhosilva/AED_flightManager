@@ -4,7 +4,7 @@ project(AED2324_PRJ2_G15)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(AED2324_PRJ2_G15
-        src/main.cpp
+        main.cpp
         src/Graph.h
         src/Interface.cpp
         src/Interface.h
@@ -14,5 +14,4 @@ add_executable(AED2324_PRJ2_G15
         src/Airport.h
         src/Airline.cpp
         src/Airline.h
-
 )
