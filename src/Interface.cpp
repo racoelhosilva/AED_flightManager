@@ -1,7 +1,3 @@
-//
-// Created by rodrigo on 12/27/23.
-//
-
 #include <iostream>
 #include "Interface.h"
 
@@ -11,5 +7,8 @@ void Interface::init() {
 }
 
 void Interface::mainMenu() {
+    manager.extractAirports("../data/airports.csv");
+    manager.extractAirlines("../data/airlines.csv");
+    manager.extractFlights("../data/flights.csv");
     std::cout << "It's working!" << std::endl;
 }
