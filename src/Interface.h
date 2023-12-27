@@ -27,7 +27,7 @@ public:
     void mainMenu();
 
 
-
+    int readOption(int i);
 };
 
 

@@ -62,6 +62,16 @@ void Interface::printSelected(const std::string &s) {
     std::cout << "     \033[1m>  \033[33m" << s << "\033[0m selected\n\n";
 }
 
+int Interface::readOption(int max) {
+    string choice;
+    do {
+        std::cout << "  Option: ";
+        cin.clear();
+        std::cin >> choice;
+    } while (!validOption(max, choice));
+    return stoi(choice);
+}
+
 void Interface::mainMenu() {
     clear();
     header();
@@ -72,15 +82,10 @@ void Interface::mainMenu() {
              "Choose your operation:"};
     printOptions(options);
 
-    string choice;
-    do {
-        std::cout << "  Option: ";
-        cin.clear();
-        std::cin >> choice;
-    } while (!validOption(int(options.size()), choice));
+    int choice = readOption(int(options.size()));
 
-    printSelected(options[stoi(choice)]);
-    switch (stoi(choice)) {
+    printSelected(options[choice]);
+    switch (choice) {
         case 1:
             break;
         case 2:
