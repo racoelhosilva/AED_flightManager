@@ -188,8 +188,7 @@ void Interface::statisticsMenu() {
              "Airlines",
              "Airports",
              "Flights",
-             "Cities",
-             "Countries",
+             "Countries/Cities",
              "Articulation Points",
              "Graph Diameter",
              "Choose type of Statistics:"};
@@ -206,14 +205,16 @@ void Interface::statisticsMenu() {
             airportStatisticsMenu();
             break;
         case 3:
+            flightStatisticsMenu();
             break;
         case 4:
+            locationStatisticsMenu();
             break;
         case 5:
+            manager.articulationPoints();
             break;
         case 6:
-            break;
-        case 7:
+            manager.diameter();
             break;
         case 0:
             return;
@@ -294,7 +295,7 @@ void Interface::airportStatisticsMenu() {
         case 3: {
             string country = readCountry();
             string city = readCityOptional();
-            manager.listAirportsCountry(country, city);
+            manager.listAirportsCountryCity(country, city);
             outputWait();
             break;
         }
@@ -459,4 +460,65 @@ void Interface::flightStatisticsMenu() {
             return;
     }
     flightStatisticsMenu();
+}
+
+void Interface::locationStatisticsMenu() {
+    clear();
+    header();
+    std::vector<std::string> options =
+            {"Back",
+             "Airlines in Country",
+             "Countries with most Airlines",
+             "Airports in Country",
+             "Countries with most Airports",
+             "Airports in City",
+             "Cities with most Airports",
+             "Choose type of Location Statistics:"};
+    printOptions(options);
+
+    int choice = readOption(int(options.size()));
+
+    printSelected(options[choice]);
+    switch (choice) {
+        case 1: {
+            string country = readCountry();
+            manager.listAirlinesCountry(country);
+            outputWait();
+            break;
+        }
+        case 2: {
+            int n = readNumber();
+            manager.listCountriesMostAirlines(n);
+            outputWait();
+            break;
+        }
+        case 3: {
+            string country = readCountry();
+            manager.listAirportsCountryCity(country);
+            outputWait();
+            break;
+        }
+        case 4: {
+            int n = readNumber();
+            manager.listCountriesMostAirports(n);
+            outputWait();
+            break;
+        }
+        case 5: {
+            string country = readCountry();
+            string city = readCity();
+            manager.listAirportsCountryCity(country, city);
+            outputWait();
+            break;
+        }
+        case 6: {
+            int n = readNumber();
+            manager.listCitiesMostAirports(n);
+            outputWait();
+            break;
+        }
+        case 0:
+            return;
+    }
+    locationStatisticsMenu();
 }

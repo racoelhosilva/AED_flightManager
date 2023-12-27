@@ -34,7 +34,7 @@ class Manager {
 
         void listAllAirports();
         void numberAirports();
-        void listAirportsCountry(string country, string city = "");
+        void listAirportsCountryCity(string country, string city = "");
         void listAirportsMostAirlines(int n);
         void listAirportsMostFlights(int n);
         void airportInfo(string airport);
@@ -50,7 +50,12 @@ class Manager {
         void listFlightsCountryCity(string country, string city = "");
         void numberFlightsCountryCity(string country, string city = "");
 
+        void listCountriesMostAirlines(int n);
+        void listCountriesMostAirports(int n);
+        void listCitiesMostAirports(int n);
 
+        void articulationPoints();
+        void diameter();
 };
 
 

@@ -40,6 +40,8 @@ public:
     void airportStatisticsMenu();
     void airportInformationMenu();
     void flightStatisticsMenu();
+    void locationStatisticsMenu();
+
 
 };
 

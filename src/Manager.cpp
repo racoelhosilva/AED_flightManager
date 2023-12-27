@@ -105,3 +105,17 @@ void Manager::listAirportFlights(string airport){}
 void Manager::reachableAirports(string airport, int n){}
 void Manager::reachableCities(string airport, int n){}
 void Manager::reachableCountries(string airport, int n){}
+
+void Manager::listAllFlights() {}
+void Manager::numberFlights(){}
+void Manager::listFlightsAirline(string airline){}
+void Manager::numberFlightsAirline(string airline){}
+void Manager::listFlightsCountryCity(string country, string city){}
+void Manager::numberFlightsCountryCity(string country, string city){}
+
+void Manager::listCountriesMostAirlines(int n){}
+void Manager::listCountriesMostAirports(int n){}
+void Manager::listCitiesMostAirports(int n){}
+
+void Manager::articulationPoints(){}
+void Manager::diameter(){}
