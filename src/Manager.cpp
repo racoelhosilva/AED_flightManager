@@ -44,7 +44,7 @@ bool Manager::extractAirlines(std::string fname) {
 
 
         Airline airline = Airline(code, name, callsign, country);
-        airlines.push_back(airline);
+        airlines.insert(airline);
     } while (getline(input, line));
     return true;
 }
@@ -72,7 +72,7 @@ bool Manager::extractFlights(std::string fname) {
         }
         if (airport1.getCode() == "noCode" || airport2.getCode() == "noCode") return false;
         Airline airline;
-        for (Airline& a : airlines) {
+        for (const Airline& a : airlines) {
             if (a.getCode() == airlineCode) {
                 airline = a;
                 break;

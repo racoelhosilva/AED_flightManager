@@ -10,5 +10,9 @@ void Interface::mainMenu() {
     manager.extractAirports("../data/airports.csv");
     manager.extractAirlines("../data/airlines.csv");
     manager.extractFlights("../data/flights.csv");
-    std::cout << "It's working!" << std::endl;
+
+    // examples for testing
+    for (const Airline& element : manager.getAirlines()) {
+        cout << element.getCode() << "," << element.getName() << endl;
+    }
 }
