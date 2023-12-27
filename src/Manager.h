@@ -25,6 +25,7 @@ class Manager {
         bool validateAirline(const std::string &airline);
         bool validateAirport(const std::string &code);
         bool validateCountry(const std::string &country);
+        bool validateCity(const string &airline);
 
         void listAllAirlines();
         void numberAirlines();
@@ -56,6 +57,7 @@ class Manager {
 
         void articulationPoints();
         void diameter();
+
 };
 
 

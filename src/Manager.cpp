@@ -87,6 +87,7 @@ bool Manager::extractFlights(std::string fname) {
 bool Manager::validateAirport(const std::string &code) {return true;}
 bool Manager::validateCountry(const std::string &country) {return true;}
 bool Manager::validateAirline(const std::string &airline) {return true;}
+bool Manager::validateCity(const std::string &airline) {return true;}
 
 
 void Manager::listAllAirlines() {}
@@ -97,7 +98,7 @@ void Manager::airlineInfo(string airline) {}
 
 void Manager::listAllAirports() {}
 void Manager::numberAirports() {}
-void Manager::listAirportsCountry(string country, string city){}
+void Manager::listAirportsCountryCity(std::string country, std::string city) {}
 void Manager::listAirportsMostAirlines(int n){}
 void Manager::listAirportsMostFlights(int n){}
 void Manager::airportInfo(string airport){}
