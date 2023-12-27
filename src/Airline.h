@@ -10,11 +10,12 @@ class Airline {
         std::string callsign;
         std::string country;
     public:
+        Airline() {code = "noCode";}
         Airline(std::string code_, std::string name_, std::string callsign_, std::string country_) : code(code_), name(name_), callsign(callsign_), country(country_) {}
-        std::string getCode() {return code;}
-        std::string getName() {return name;}
-        std::string getCallsign() {return callsign;}
-        std::string getCountry() {return country;}
+        std::string getCode() const {return code;}
+        std::string getName() const {return name;}
+        std::string getCallsign() const {return callsign;}
+        std::string getCountry() const {return country;}
 };
 
 
