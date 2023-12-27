@@ -1,0 +1,35 @@
+#+title: Features
+
+* Features to Implement
+
++ Read the Data
++ User Menu
+
++ Total number of airports
++ Total number of flights
++ (Total number of airlines)
+
++ Number of flights out an airport and from how many airlines
++ Number of flights per city/airline
+
++ Number of different countries that an airport/city flies to
++ Number of destinations (airports, cities or countries) from a given airport
++ Number of reachable destinations (airports, cities or countries) from a given airport with max X stops
+
++ Maximum number of stops between 2 airports (return the source and dest) [Diameter of the graph]
+
++ Top k airports with greatest air traffic capacity (greatest number of flights)
+
++ Identify the airport articulation points
+
++ Best flight option (shortest path between two airports)
+  - Source and Destination can be given as:
+  + Airport code or name
+  + City name
+  + Geographical coordinates (consider the closest one, or the closest set if more than one)
+
++ Best flight option with filters:
+  + airport filters
+  + airline filters
+
++ Documentation
