@@ -24,8 +24,9 @@ class Manager {
 
         bool validateAirline(const std::string &airline);
         bool validateAirport(const std::string &code);
+        bool validateAirportName(const std::string &name);
         bool validateCountry(const std::string &country);
-        bool validateCity(const string &airline);
+        bool validateCity(const string &city);
 
         void listAllAirlines();
         void numberAirlines();
@@ -58,6 +59,10 @@ class Manager {
         void articulationPoints();
         void diameter();
 
+        std::string getAirportCode(const std::string &name);
+        vector<string> getAirportsCountryCity(string country, string city);
+        vector<string> getAirportsCoordinates(pair<double, double> coords);
+        void bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string> *airportFlters, vector<string> *airlineFilters);
 };
 
 

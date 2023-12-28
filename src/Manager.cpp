@@ -85,6 +85,7 @@ bool Manager::extractFlights(std::string fname) {
 }
 
 bool Manager::validateAirport(const std::string &code) {return true;}
+bool Manager::validateAirportName(const std::string &name) {return true;}
 bool Manager::validateCountry(const std::string &country) {return true;}
 bool Manager::validateAirline(const std::string &airline) {return true;}
 bool Manager::validateCity(const std::string &airline) {return true;}
@@ -120,3 +121,8 @@ void Manager::listCitiesMostAirports(int n){}
 
 void Manager::articulationPoints(){}
 void Manager::diameter(){}
+
+std::string Manager::getAirportCode(const std::string &name) {return "";}
+vector<string> Manager::getAirportsCountryCity(string country, string city) {return vector<string>();}
+vector<string> Manager::getAirportsCoordinates(pair<double, double> coords) {return vector<string>();}
+void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string> *airportFlters, vector<string> *airlineFilters) {}

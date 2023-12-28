@@ -107,13 +107,23 @@ std::string Interface::readAirportCode() {
     return choice;
 }
 
+std::string Interface::readAirportName() {
+    string choice;
+    do {
+        std::cout << "  Airport Name: ";
+        cin.clear();
+        std::cin >> choice;
+    } while (!manager.validateAirportName(choice));
+    return choice;
+}
+
 std::string Interface::readCity() {
     string choice;
     do {
         std::cout << "  City: ";
         cin.clear();
         std::cin >> choice;
-    } while (!manager.validateCountry(choice));
+    } while (!manager.validateCity(choice));
     return choice;
 }
 
@@ -134,6 +144,23 @@ std::string Interface::readCountry() {
     } while (!manager.validateCountry(choice));
     return choice;
 }
+
+pair<double, double> Interface::readCoordinates() {
+    double latitude;
+    do {
+        std::cout << "  Latitude: ";
+        cin.clear();
+        std::cin >> latitude;
+    } while (cin.fail() || latitude < -90 || latitude > 90);
+    double longitude;
+    do {
+        std::cout << "  Longitude: ";
+        cin.clear();
+        std::cin >> longitude;
+    } while (cin.fail() || latitude < -180 || latitude > 180);
+    return {latitude, longitude};
+}
+
 
 bool stringIsNumeric(const string &s){
     for (const char &c : s){
@@ -228,6 +255,7 @@ void Interface::airlineStatisticsMenu() {
     std::vector<std::string> options =
             {"Back",
              "List all Airlines",
+             "Number of Airlines",
              "Airlines in Airport",
              "Airlines in Country",
              "Airline Information",
@@ -242,19 +270,23 @@ void Interface::airlineStatisticsMenu() {
             manager.listAllAirlines();
             outputWait();
             break;
-        case 2: {
+        case 2:
+            manager.numberAirlines();
+            outputWait();
+            break;
+        case 3: {
             string airportCode = readAirportCode();
             manager.listAirlinesAirport(airportCode);
             outputWait();
             break;
         }
-        case 3: {
+        case 4: {
             string country = readCountry();
             manager.listAirlinesCountry(country);
             outputWait();
             break;
         }
-        case 4: {
+        case 5: {
             string airline = readAirline();
             manager.airlineInfo(airline);
             outputWait();
@@ -521,4 +553,117 @@ void Interface::locationStatisticsMenu() {
             return;
     }
     locationStatisticsMenu();
+}
+
+void Interface::flightSourceMenu() {
+    clear();
+    header();
+
+    std::vector<std::string> options =
+            {"Back",
+             "Airport Code",
+             "Airport Name",
+             "Country/City",
+             "Geographical Coordinates",
+             "Choose the Source:"};
+    printOptions(options);
+
+    int choice = readOption(int(options.size()));
+
+    printSelected(options[choice]);
+
+    sourceCodes.clear();
+    switch (choice) {
+        case 1:
+            sourceCodes.push_back(readAirportCode());
+            break;
+        case 2:
+            sourceCodes.push_back(manager.getAirportCode(readAirportName()));
+            break;
+        case 3:
+            sourceCodes = manager.getAirportsCountryCity(readCountry(), readCity());
+            break;
+        case 4:
+            sourceCodes = manager.getAirportsCoordinates(readCoordinates());
+            break;
+        case 0:
+            return;
+    }
+    flightDestinationMenu();
+    flightSourceMenu();
+}
+
+void Interface::flightDestinationMenu() {
+    clear();
+    header();
+
+    std::vector<std::string> options =
+            {"Back",
+             "Airport Code",
+             "Airport Name",
+             "Country/City",
+             "Geographical Coordinates",
+             "Choose the Destination:"};
+    printOptions(options);
+
+    int choice = readOption(int(options.size()));
+
+    printSelected(options[choice]);
+
+    destinationCodes.clear();
+    switch (choice) {
+        case 1:
+            destinationCodes.push_back(readAirportCode());
+            break;
+        case 2:
+            destinationCodes.push_back(manager.getAirportCode(readAirportName()));
+            break;
+        case 3:
+            destinationCodes = manager.getAirportsCountryCity(readCountry(), readCity());
+            break;
+        case 4:
+            destinationCodes = manager.getAirportsCoordinates(readCoordinates());
+            break;
+        case 0:
+            return;
+    }
+    flightFilterMenu();
+    flightDestinationMenu();
+}
+
+void Interface::flightFilterMenu() {
+    clear();
+    header();
+
+    std::vector<std::string> options =
+            {"Back",
+             "No Filters",
+             "Airline Filters",
+             "Airport Filters",
+             "Process Operation",
+             "Choose the Filters:"};
+    printOptions(options);
+
+    int choice = readOption(int(options.size()));
+
+    printSelected(options[choice]);
+    switch (choice) {
+        case 1:
+            airportFilters.clear();
+            airlineFilters.clear();
+            manager.bestFlightOption(&sourceCodes, &destinationCodes, &airportFilters, &airlineFilters);
+            break;
+        case 2:
+            airlineFilters.push_back(readAirline());
+            break;
+        case 3:
+            airportFilters.push_back(readAirportCode());
+            break;
+        case 4:
+            manager.bestFlightOption(&sourceCodes, &destinationCodes, &airportFilters, &airlineFilters);
+            break;
+        case 0:
+            return;
+    }
+    flightFilterMenu();
 }
