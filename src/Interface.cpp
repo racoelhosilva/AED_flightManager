@@ -199,6 +199,7 @@ void Interface::mainMenu() {
             statisticsMenu();
             break;
         case 2:
+            flightSourceMenu();
             break;
         case 0:
             exitMenu();
@@ -239,9 +240,11 @@ void Interface::statisticsMenu() {
             break;
         case 5:
             manager.articulationPoints();
+            outputWait();
             break;
         case 6:
             manager.diameter();
+            outputWait();
             break;
         case 0:
             return;
@@ -486,6 +489,7 @@ void Interface::flightStatisticsMenu() {
             string country = readCountry();
             string city = readCityOptional();
             manager.numberFlightsCountryCity(country, city);
+            outputWait();
             break;
         }
         case 0:
@@ -589,14 +593,12 @@ void Interface::flightSourceMenu() {
         case 0:
             return;
     }
+    std::cout << "\n";
     flightDestinationMenu();
     flightSourceMenu();
 }
 
 void Interface::flightDestinationMenu() {
-    clear();
-    header();
-
     std::vector<std::string> options =
             {"Back",
              "Airport Code",
@@ -625,22 +627,22 @@ void Interface::flightDestinationMenu() {
             destinationCodes = manager.getAirportsCoordinates(readCoordinates());
             break;
         case 0:
+            clear();
+            header();
             return;
     }
+    std::cout << "\n";
     flightFilterMenu();
     flightDestinationMenu();
 }
 
 void Interface::flightFilterMenu() {
-    clear();
-    header();
-
     std::vector<std::string> options =
             {"Back",
-             "No Filters",
+             "Process Operation",
              "Airline Filters",
              "Airport Filters",
-             "Process Operation",
+             "Clear Filters",
              "Choose the Filters:"};
     printOptions(options);
 
@@ -649,9 +651,8 @@ void Interface::flightFilterMenu() {
     printSelected(options[choice]);
     switch (choice) {
         case 1:
-            airportFilters.clear();
-            airlineFilters.clear();
             manager.bestFlightOption(&sourceCodes, &destinationCodes, &airportFilters, &airlineFilters);
+            outputWait();
             break;
         case 2:
             airlineFilters.push_back(readAirline());
@@ -660,10 +661,14 @@ void Interface::flightFilterMenu() {
             airportFilters.push_back(readAirportCode());
             break;
         case 4:
-            manager.bestFlightOption(&sourceCodes, &destinationCodes, &airportFilters, &airlineFilters);
+            airportFilters.clear();
+            airlineFilters.clear();
             break;
         case 0:
+            clear();
+            header();
             return;
     }
+    cout << "\n";
     flightFilterMenu();
 }
