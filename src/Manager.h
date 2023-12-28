@@ -31,19 +31,54 @@ struct AirportHash {
 };
 class Manager {
     private:
-        bool op;
         Graph<Airport> flightNet;
         unordered_set<Airline, AirlineHash, AirlineHash> airlines;
         unordered_set<Airport, AirportHash, AirportHash> airports;
 
     public:
-        Manager() {op = true;}
         bool extractAirports(std::string fname);
         bool extractAirlines(std::string fname);
         bool extractFlights(std::string fname);
         unordered_set<Airport, AirportHash, AirportHash>  getAirports() const {return airports;}
         unordered_set<Airline, AirlineHash, AirlineHash> getAirlines() const {return airlines;}
         Graph<Airport> getFlightNet() const {return flightNet;}
+
+        bool validateAirline(const std::string &airline);
+        bool validateAirport(const std::string &code);
+        bool validateCountry(const std::string &country);
+        bool validateCity(const string &airline);
+
+        void listAllAirlines();
+        void numberAirlines();
+        void listAirlinesAirport(string airport);
+        void listAirlinesCountry(string country);
+        void airlineInfo(string airline);
+
+        void listAllAirports();
+        void numberAirports();
+        void listAirportsCountryCity(string country, string city = "");
+        void listAirportsMostAirlines(int n);
+        void listAirportsMostFlights(int n);
+        void airportInfo(string airport);
+        void listAirportFlights(string airport);
+        void reachableAirports(string airport, int n=1);
+        void reachableCities(string airport, int n=1);
+        void reachableCountries(string airport, int n=1);
+
+        void listAllFlights();
+        void numberFlights();
+        void listFlightsAirline(string airline);
+        void numberFlightsAirline(string airline);
+        void listFlightsCountryCity(string country, string city = "");
+        void numberFlightsCountryCity(string country, string city = "");
+
+        void listCountriesMostAirlines(int n);
+        void listCountriesMostAirports(int n);
+        void listCitiesMostAirports(int n);
+
+        void articulationPoints();
+        void diameter();
+
 };
 
 

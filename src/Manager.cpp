@@ -83,3 +83,40 @@ bool Manager::extractFlights(std::string fname) {
     } while (getline(input, line));
     return true;
 }
+
+bool Manager::validateAirport(const std::string &code) {return true;}
+bool Manager::validateCountry(const std::string &country) {return true;}
+bool Manager::validateAirline(const std::string &airline) {return true;}
+bool Manager::validateCity(const std::string &airline) {return true;}
+
+
+void Manager::listAllAirlines() {}
+void Manager::numberAirlines() {}
+void Manager::listAirlinesAirport(string airport) {}
+void Manager::listAirlinesCountry(string country) {}
+void Manager::airlineInfo(string airline) {}
+
+void Manager::listAllAirports() {}
+void Manager::numberAirports() {}
+void Manager::listAirportsCountryCity(std::string country, std::string city) {}
+void Manager::listAirportsMostAirlines(int n){}
+void Manager::listAirportsMostFlights(int n){}
+void Manager::airportInfo(string airport){}
+void Manager::listAirportFlights(string airport){}
+void Manager::reachableAirports(string airport, int n){}
+void Manager::reachableCities(string airport, int n){}
+void Manager::reachableCountries(string airport, int n){}
+
+void Manager::listAllFlights() {}
+void Manager::numberFlights(){}
+void Manager::listFlightsAirline(string airline){}
+void Manager::numberFlightsAirline(string airline){}
+void Manager::listFlightsCountryCity(string country, string city){}
+void Manager::numberFlightsCountryCity(string country, string city){}
+
+void Manager::listCountriesMostAirlines(int n){}
+void Manager::listCountriesMostAirports(int n){}
+void Manager::listCitiesMostAirports(int n){}
+
+void Manager::articulationPoints(){}
+void Manager::diameter(){}
