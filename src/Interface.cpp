@@ -653,6 +653,8 @@ void Interface::flightFilterMenu() {
         case 1:
             manager.bestFlightOption(&sourceCodes, &destinationCodes, &airportFilters, &airlineFilters);
             outputWait();
+            clear();
+            header();
             break;
         case 2:
             airlineFilters.push_back(readAirline());
