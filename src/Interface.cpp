@@ -75,7 +75,7 @@ void Interface::printSelected(const std::string &s) {
 int Interface::readOption(int max) {
     string choice;
     do {
-        std::cout << "  Option: ";
+        std::cout << FAINT << "  Option" << RESET << ": ";
         cin.clear();
         std::cin >> choice;
         cin.ignore();
@@ -91,7 +91,7 @@ bool Interface::validOption(unsigned long size, const std::string &choice) {
 std::string Interface::readAirline() {
     string choice;
     do {
-        std::cout << "  Airline Code: ";
+        std::cout << FAINT << "  Airline Code" << RESET << ": ";
         cin.clear();
         getline(cin, choice, '\n');
     } while (!manager.validateAirline(choice));
@@ -101,7 +101,7 @@ std::string Interface::readAirline() {
 std::string Interface::readAirportCode() {
     string choice;
     do {
-        std::cout << "  Airport Code: ";
+        std::cout << FAINT << "  Airport Code" << RESET << ": ";
         cin.clear();
         getline(cin, choice, '\n');
     } while (!manager.validateAirport(choice));
@@ -111,7 +111,7 @@ std::string Interface::readAirportCode() {
 std::string Interface::readAirportName() {
     string choice;
     do {
-        std::cout << "  Airport Name: ";
+        std::cout << FAINT << "  Airport Name" << RESET << ": ";
         cin.clear();
         getline(cin, choice, '\n');
     } while (!manager.validateAirportName(choice));
@@ -121,7 +121,7 @@ std::string Interface::readAirportName() {
 std::string Interface::readCity() {
     string choice;
     do {
-        std::cout << "  City: ";
+        std::cout << FAINT << "  City" << RESET << ": ";
         cin.clear();
         getline(cin, choice, '\n');
     } while (!manager.validateCity(choice));
@@ -130,7 +130,7 @@ std::string Interface::readCity() {
 
 std::string Interface::readCityOptional() {
     string choice;
-    std::cout << "  City (Optional): ";
+    std::cout << FAINT << "  City (Optional)" << RESET << ": ";
     cin.clear();
     getline(cin, choice, '\n');
     return choice;
@@ -139,7 +139,7 @@ std::string Interface::readCityOptional() {
 std::string Interface::readCountry() {
     string choice;
     do {
-        std::cout << "  Country: ";
+        std::cout << FAINT << "  Country" << RESET << ": ";
         cin.clear();
         getline(cin, choice, '\n');
     } while (!manager.validateCountry(choice));
@@ -149,13 +149,13 @@ std::string Interface::readCountry() {
 pair<double, double> Interface::readCoordinates() {
     double latitude;
     do {
-        std::cout << "  Latitude: ";
+        std::cout << FAINT << "  Latitude:" << RESET << ": ";
         cin.clear();
         std::cin >> latitude;
     } while (cin.fail() || latitude < -90 || latitude > 90);
     double longitude;
     do {
-        std::cout << "  Longitude: ";
+        std::cout << FAINT << "  Longitude:" << RESET << ": ";
         cin.clear();
         std::cin >> longitude;
     } while (cin.fail() || latitude < -180 || latitude > 180);
@@ -175,7 +175,7 @@ bool stringIsNumeric(const string &s){
 int Interface::readNumber() {
     string choice;
     do {
-        std::cout << "  Number: ";
+        std::cout << FAINT << "  Number:" << RESET << ": ";
         cin.clear();
         getline(cin, choice, '\n');
     } while (!stringIsNumeric(choice));
