@@ -89,6 +89,8 @@ class Manager {
         vector<string> getAirportsCountryCity(string country, string city);
         vector<string> getAirportsCoordinates(pair<double, double> coords);
         void bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string> *airportFlters, vector<string> *airlineFilters);
+        vector<string> minStopsBetweenAirports(const Airport &source, const Airport &destination, vector<string> *airportFilters, vector<string>* airlineFilters);
+        void minStopsBFS(Vertex<Airport>* source, Vertex<Airport>* dest, vector<string> *airportFilters, vector<string>* airlineFilters);
 };
 
 

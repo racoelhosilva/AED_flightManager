@@ -170,4 +170,83 @@ vector<string> Manager::getAirportsCoordinates(pair<double, double> coords) {
     return res;
 }
 void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string> *airportFilters, vector<string> *airlineFilters) {
+    auto It = sources->begin();
+    while (It != sources->end()) {
+        if (find(airportFilters->begin(), airportFilters->end(), *It) != airportFilters->end() || find(airportFilters->begin(), airportFilters->end(), airportNameToCode[*It]) != airportFilters->end())
+            It = sources->erase(It);
+        else {
+            It++;
+        }
+    }
+    It = destinations->begin();
+    while (It != destinations->end()) {
+        if (find(airportFilters->begin(), airportFilters->end(), *It) != airportFilters->end() || find(airportFilters->begin(), airportFilters->end(), airportNameToCode[*It]) != airportFilters->end())
+            It = destinations->erase(It);
+        else {
+            It++;
+        }
+    }
+
+    int minDist = INT_MAX;
+    vector<string> minStops;
+
+    for (const string &src : *sources) {
+        Airport source = *airports.find(Airport(src));
+        for (const string &dest : *destinations) {
+            Airport destination = *airports.find(Airport(dest));
+            vector<string> stops = minStopsBetweenAirports(source, destination, airportFilters, airlineFilters);
+            if (stops.size() < minDist) {
+                minDist = stops.size();
+                minStops = stops;
+            }
+        }
+    }
+
+    cout << minStops[0];
+    if (minStops.size() == 1) return;
+    for (int i = 1; i < minStops.size(); i++) {
+        cout << " <----- " << minStops[i];
+    }
+    cout << endl;
+}
+
+vector<string> Manager::minStopsBetweenAirports(const Airport &source, const Airport &destination, vector<string> *airportFilters, vector<string>* airlineFilters) {
+    vector<string> res;
+
+    for (Vertex<Airport>* airport : flightNet.getVertexSet()) {
+        airport->setVisited(false);
+        airport->setPrevious(nullptr);
+        airport->setSteps(INT_MAX);
+    }
+
+    Vertex<Airport>* src = flightNet.findVertex(source);
+    Vertex<Airport>* dest = flightNet.findVertex(destination);
+    src->setVisited(true);
+    src->setSteps(0);
+    minStopsBFS(src, dest, airportFilters, airlineFilters);
+
+    while (dest != src) {
+        res.push_back(dest->getInfo().getCode());
+        dest = dest->getPrevious();
+    }
+    res.push_back(src->getInfo().getCode());
+    return res;
+}
+
+void Manager::minStopsBFS(Vertex<Airport>* source, Vertex<Airport>* dest, vector<string> *airportFilters, vector<string>* airlineFilters) {
+    source->setVisited(true);
+    for (const Edge<Airport> &flight : source->getAdj()) {
+        if (find(airlineFilters->begin(), airlineFilters->end(), flight.getWeight().getCode()) == airlineFilters->end() && !flight.getDest()->isVisited()
+        && find(airportFilters->begin(), airportFilters->end(), flight.getDest()->getInfo().getCode()) == airportFilters->end()) {
+            if (flight.getDest()->getSteps() > source->getSteps() + 1) {
+                flight.getDest()->setSteps(source->getSteps() + 1);
+                flight.getDest()->setPrevious(source);
+            }
+        }
+        if (flight.getDest() == dest) return;
+    }
+    for (const Edge<Airport> &flight : source->getAdj()) {
+        if (!flight.getDest()->isVisited() && find(airportFilters->begin(), airportFilters->end(), flight.getDest()->getInfo().getCode()) == airportFilters->end())
+            minStopsBFS(flight.getDest(), dest, airportFilters, airlineFilters);
+    }
 }

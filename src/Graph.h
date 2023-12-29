@@ -23,6 +23,8 @@ class Vertex {
 	vector<Edge<T> > adj;  // list of outgoing edges
 	bool visited;          // auxiliary field
     bool processing;       // auxiliary field
+    int steps;             // auxiliary field
+    Vertex<T>* previous;    // auxiliary field
 
     void addEdge(Vertex<T> *dest, Airline w);
 	bool removeEdgeTo(Vertex<T> *d);
@@ -34,6 +36,11 @@ public:
     void setVisited(bool v);
     bool isProcessing() const;
     void setProcessing(bool p);
+    Vertex<T>* getPrevious() const;
+    void setPrevious(Vertex<T> *prev);
+    int getSteps() const;
+    void setSteps(int s);
+
     const vector<Edge<T> > &getAdj() const;
     void setAdj(const vector<Edge<T> > &adj);
     friend class Graph<T>;
@@ -161,6 +168,25 @@ void Vertex<T>::setAdj(const vector<Edge<T> > &adj) {
     Vertex::adj = adj;
 }
 
+template<class T>
+void Vertex<T>::setSteps(int s) {
+    steps = s;
+}
+
+template<class T>
+int Vertex<T>::getSteps() const {
+    return steps;
+}
+
+template<class T>
+void Vertex<T>::setPrevious(Vertex<T> *prev) {
+    previous = prev;
+}
+
+template<class T>
+Vertex<T> *Vertex<T>::getPrevious() const {
+    return previous;
+}
 
 /*
  *  Adds a vertex with a given content or info (in) to a graph (this).
