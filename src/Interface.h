@@ -50,8 +50,9 @@ public:
 
     vector<string> sourceCodes;
     vector<string> destinationCodes;
-    vector<string> airportFilters;
-    vector<string> airlineFilters;
+    vector<string> airlinePreferences;
+    vector<string> airlineRestrictions;
+    vector<string> airportRestrictions;
 };
 
 bool stringIsNumeric(const string &s);
