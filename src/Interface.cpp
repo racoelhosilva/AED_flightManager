@@ -17,7 +17,7 @@ void Interface::clear() {
 
 void Interface::outputWait() {
     cin.clear();
-    cout << "\n                                    " << FAINT << "< Press " << RESET << BOLD << "ENTER" << RESET << FAINT << " to Continue >" << RESET;
+    cout << "\n\n                                    " << FAINT << "< Press " << RESET << BOLD << "ENTER" << RESET << FAINT << " to Continue >" << RESET;
     cin.ignore();
 }
 
@@ -30,7 +30,7 @@ void Interface::init() {
         this->mainMenu();
     }
     else {
-        std::cout << RED << BOLD << " ✗ Problem loading data... Exiting!\n" << RESET;
+        std::cout << RED << BOLD << " ✗ Problem loading data: Exiting!\n" << RESET;
     }
 }
 
@@ -175,7 +175,7 @@ bool stringIsNumeric(const string &s){
 int Interface::readNumber() {
     string choice;
     do {
-        std::cout << FAINT << "  Number:" << RESET << ": ";
+        std::cout << FAINT << "  Number" << RESET << ": ";
         cin.clear();
         getline(cin, choice, '\n');
     } while (!stringIsNumeric(choice));

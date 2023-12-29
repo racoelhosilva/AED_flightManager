@@ -147,9 +147,14 @@ class Manager {
         void bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string> *airportFlters, vector<string> *airlineFilters);
 
         void printCount(int number, string text);
+        void printListHeader(string text);
+        void printListValue(string text);
         void printAirlineHeader();
         void printAirline(const Airline &airline);
         void printAirlineFooter();
+        void printAirportHeader();
+        void printAirport(const Airport &airport);
+        void printAirportFooter();
 };
 
 
