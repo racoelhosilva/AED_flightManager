@@ -1,4 +1,5 @@
 #include <iostream>
+#include <climits>
 #include "Interface.h"
 
 void Interface::header() {
@@ -16,7 +17,6 @@ void Interface::clear() {
 }
 
 void Interface::outputWait() {
-    cin.ignore();
     cin.clear();
     cout << "                            \033[2m< Press \033[0m\033[1mENTER\033[0m\033[2m to Continue >\033[0m";
     cin.ignore();
@@ -78,6 +78,7 @@ int Interface::readOption(int max) {
         std::cout << "  Option: ";
         cin.clear();
         std::cin >> choice;
+        cin.ignore();
     } while (!validOption(max, choice));
     return stoi(choice);
 }
@@ -90,7 +91,7 @@ bool Interface::validOption(unsigned long size, const std::string &choice) {
 std::string Interface::readAirline() {
     string choice;
     do {
-        std::cout << "  Airline: ";
+        std::cout << "  Airline Code: ";
         cin.clear();
         std::cin >> choice;
     } while (!manager.validateAirline(choice));
@@ -112,7 +113,7 @@ std::string Interface::readAirportName() {
     do {
         std::cout << "  Airport Name: ";
         cin.clear();
-        std::cin >> choice;
+        getline(cin, choice, '\n');
     } while (!manager.validateAirportName(choice));
     return choice;
 }
@@ -122,7 +123,7 @@ std::string Interface::readCity() {
     do {
         std::cout << "  City: ";
         cin.clear();
-        std::cin >> choice;
+        getline(cin, choice, '\n');
     } while (!manager.validateCity(choice));
     return choice;
 }
@@ -131,7 +132,7 @@ std::string Interface::readCityOptional() {
     string choice;
     std::cout << "  City (Optional): ";
     cin.clear();
-    std::cin >> choice;
+    getline(cin, choice, '\n');
     return choice;
 }
 
@@ -140,7 +141,7 @@ std::string Interface::readCountry() {
     do {
         std::cout << "  Country: ";
         cin.clear();
-        std::cin >> choice;
+        getline(cin, choice, '\n');
     } while (!manager.validateCountry(choice));
     return choice;
 }
@@ -365,11 +366,11 @@ void Interface::airportInformationMenu(){
              "Airline List",
              "Flight List",
              "Reachable Airports",
-             "Reachable Airports with N Layovers",
+             "Reachable Airports with N Flights",
              "Reachable Cities",
-             "Reachable Cities with N Layovers",
+             "Reachable Cities with N Flights",
              "Reachable Countries",
-             "Reachable Countries with N Layovers",
+             "Reachable Countries with N Flights",
              "Choose type of Airport Information:"};
     printOptions(options);
 
