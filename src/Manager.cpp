@@ -8,7 +8,7 @@ bool Manager::extractAirports(std::string fname) {
 
     if (!getline(input, line)) return false;
 
-    std::string code, name, city, country;
+    std::string code, name, city, country, lats, lgts;
     double lat, lgt;
 
     getline(input, line);
@@ -18,7 +18,10 @@ bool Manager::extractAirports(std::string fname) {
         getline(lineInput, name, ',');
         getline(lineInput, city, ',');
         getline(lineInput, country, ',');
-        lineInput >> lat >> new char >> lgt >> new char;
+        getline(lineInput, lats, ',');
+        getline(lineInput, lgts, '\r');
+        lat = stod(lats);
+        lgt = stod(lgts);
 
         Airport airport = Airport(code, name, city, country, lat, lgt);
         airports.insert(airport);
@@ -85,7 +88,7 @@ bool Manager::extractFlights(std::string fname) {
             }
         }
         if (airline.getCode() == "noCode") return false;
-        flightNet.addEdge(airport1, airport2, airline);
+        flightNet.addEdge(code1, code2, airline);
     } while (getline(input, line));
     return true;
 }
