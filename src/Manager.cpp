@@ -66,7 +66,8 @@ bool Manager::extractFlights(std::string fname) {
         istringstream lineInput(line);
         getline(lineInput, code1, ',');
         getline(lineInput, code2, ',');
-        getline(lineInput, airlineCode, '\r');Airport airport1, airport2;
+        getline(lineInput, airlineCode, '\r');
+        Airport airport1, airport2;
         for (const Airport& a : airports) {
             if (a.getCode() == code1) {
                 airport1 = a;
@@ -121,13 +122,7 @@ void Manager::reachableAirports(string airport, int n){}
 void Manager::reachableCities(string airport, int n){}
 void Manager::reachableCountries(string airport, int n){}
 
-void Manager::listAllFlights() {
-    for (auto v : this->getFlightNet().getVertexSet()){
-        for (auto e : v->getAdj()){
-            cout << v->getInfo().getCode() << " ---" << e.getAirline() << " (" << e.getDistance() << ") ---> " << e.getDest()->getInfo().getCode();
-        }
-    }
-}
+void Manager::listAllFlights() {}
 void Manager::numberFlights(){}
 void Manager::listFlightsAirline(string airline){}
 void Manager::numberFlightsAirline(string airline){}
