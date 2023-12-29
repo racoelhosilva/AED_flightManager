@@ -1,3 +1,5 @@
+#include <climits>
+#include <algorithm>
 #include "Manager.h"
 
 
@@ -140,6 +142,32 @@ std::string Manager::getAirportCode(const std::string &name) {
     return airportNameToCode[name];
 }
 
-vector<string> Manager::getAirportsCountryCity(string country, string city) {return vector<string>();}
-vector<string> Manager::getAirportsCoordinates(pair<double, double> coords) {return vector<string>();}
-void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string> *airportFlters, vector<string> *airlineFilters) {}
+vector<string> Manager::getAirportsCountryCity(string country, string city) {
+    vector<string> res;
+    for (const Airport &airport : airports) {
+        if (airport.getCity() == city && airport.getCountry() == country)
+            res.push_back(airport.getCode());
+    }
+    return res;
+}
+
+vector<string> Manager::getAirportsCoordinates(pair<double, double> coords) {
+    vector<string> res;
+    Coordinate location(coords.first, coords.second);
+    double distance = INT_MAX;
+    for (const Airport &airport : airports) {
+        Coordinate airport_coord(airport.getLatitiude(), airport.getLongitude());
+        double distance_to_airport = location.distance(airport_coord);
+        if (distance_to_airport < distance) {
+            res.clear();
+            res.push_back(airport.getCode());
+            distance = distance_to_airport;
+        }
+        else if (distance_to_airport == distance) {
+            res.push_back(airport.getCode());
+        }
+    }
+    return res;
+}
+void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string> *airportFilters, vector<string> *airlineFilters) {
+}
