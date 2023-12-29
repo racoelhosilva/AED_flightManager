@@ -2,6 +2,7 @@
 #define AED2324_PRJ2_G15_AIRPORT_H
 
 #include <string>
+#include "Coordinate.h"
 
 class Airport {
     private:

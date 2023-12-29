@@ -23,6 +23,9 @@ bool Manager::extractAirports(std::string fname) {
         Airport airport = Airport(code, name, city, country, lat, lgt);
         airports.insert(airport);
         flightNet.addVertex(airport);
+        airportNameToCode[name] = code;
+        cities.insert(city);
+        countries.insert(country);
     } while (getline(input, line));
     return true;
 }
@@ -46,6 +49,7 @@ bool Manager::extractAirlines(std::string fname) {
 
         Airline airline = Airline(code, name, callsign, country);
         airlines.insert(airline);
+        countries.insert(country);
     } while (getline(input, line));
     return true;
 }
@@ -63,7 +67,8 @@ bool Manager::extractFlights(std::string fname) {
         istringstream lineInput(line);
         getline(lineInput, code1, ',');
         getline(lineInput, code2, ',');
-        getline(lineInput, airlineCode, '\r');Airport airport1, airport2;
+        getline(lineInput, airlineCode, '\r');
+        Airport airport1, airport2;
         for (const Airport& a : airports) {
             if (a.getCode() == code1) {
                 airport1 = a;
@@ -84,13 +89,21 @@ bool Manager::extractFlights(std::string fname) {
     } while (getline(input, line));
     return true;
 }
-
-bool Manager::validateAirport(const std::string &code) {return true;}
-bool Manager::validateAirportName(const std::string &name) {return true;}
-bool Manager::validateCountry(const std::string &country) {return true;}
-bool Manager::validateAirline(const std::string &airline) {return true;}
-bool Manager::validateCity(const std::string &airline) {return true;}
-
+bool Manager::validateAirport(const std::string &code) {
+    return airports.find(Airport(code)) != airports.end();
+}
+bool Manager::validateAirline(const std::string &airline) {
+    return airlines.find(Airline(airline)) != airlines.end();
+}
+bool Manager::validateAirportName(const std::string &name) {
+    return airportNameToCode.count(name) != 0;
+}
+bool Manager::validateCountry(const std::string &country) {
+    return countries.find(country) != countries.end();
+}
+bool Manager::validateCity(const std::string &city) {
+    return cities.find(city) != cities.end();
+}
 void Manager::listAllAirlines() {
     cout << left << setw(6) << "CODE" << '\t'
               << setw(40) << "NAME" << '\t'
@@ -108,7 +121,6 @@ void Manager::numberAirlines() {
 }
 void Manager::listAirlinesAirport(string airport) {
     Airport airport1 = *airports.find(Airport(airport));
-
     auto v = flightNet.findVertex(airport1);
     set<Airline> availableAirlines;
     for (auto e : v->getAdj()) {
@@ -154,7 +166,10 @@ void Manager::listCitiesMostAirports(int n){}
 void Manager::articulationPoints(){}
 void Manager::diameter(){}
 
-std::string Manager::getAirportCode(const std::string &name) {return "";}
+std::string Manager::getAirportCode(const std::string &name) {
+    return airportNameToCode[name];
+}
+
 vector<string> Manager::getAirportsCountryCity(string country, string city) {return vector<string>();}
 vector<string> Manager::getAirportsCoordinates(pair<double, double> coords) {return vector<string>();}
 void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string> *airportFlters, vector<string> *airlineFilters) {}
