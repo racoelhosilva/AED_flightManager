@@ -89,9 +89,21 @@ bool Manager::validateCountry(const std::string &country) {return true;}
 bool Manager::validateAirline(const std::string &airline) {return true;}
 bool Manager::validateCity(const std::string &airline) {return true;}
 
-
-void Manager::listAllAirlines() {}
-void Manager::numberAirlines() {}
+void Manager::listAllAirlines() {
+    cout << left << setw(6) << "CODE" << '\t'
+              << setw(40) << "NAME" << '\t'
+              << setw(24) << "CALLSIGN" << '\t'
+              << setw(24) << "COUNTRY" << '\n';
+    for (Airline airline : airlines) {
+        cout << left << setw(6) << airline.getCode() << '\t'
+                    << setw(40) << airline.getName() << '\t'
+                    << setw(24) << (airline.getCallsign() == "_" ? "" : airline.getCallsign()) << '\t'
+                    << setw(24) << airline.getCountry() << '\n';
+    }
+}
+void Manager::numberAirlines() {
+    cout << airlines.size() << endl;
+}
 void Manager::listAirlinesAirport(string airport) {}
 void Manager::listAirlinesCountry(string country) {}
 void Manager::airlineInfo(string airline) {}
