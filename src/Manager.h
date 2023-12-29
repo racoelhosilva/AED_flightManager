@@ -131,8 +131,10 @@ class Manager {
         void numberFlights();
         void listFlightsAirline(string airline);
         void numberFlightsAirline(string airline);
-        void listFlightsCountryCity(string country, string city = "");
-        void numberFlightsCountryCity(string country, string city = "");
+        void listArrivalsCountryCity(string country, string city = "");
+        void numberArrivalsCountryCity(string country, string city = "");
+        void listDeparturesCountryCity(string country, string city = "");
+        void numberDeparturesCountryCity(string country, string city = "");
 
         void listCountriesMostAirlines(int n);
         void listCountriesMostAirports(int n);

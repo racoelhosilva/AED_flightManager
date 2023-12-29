@@ -450,8 +450,10 @@ void Interface::flightStatisticsMenu() {
              "Number of Flights",
              "Flights by Airline",
              "Number of Flights by Airline",
-             "Flights by Country/City",
-             "Number of Flights by Country/City",
+             "Arrivals by Country/City",
+             "Number of Arrivals by Country/City",
+             "Departures by Country/City",
+             "Number of Departures by Country/City",
              "Choose type of Flight Statistics:"};
     printOptions(options);
 
@@ -482,14 +484,28 @@ void Interface::flightStatisticsMenu() {
         case 5: {
             string country = readCountry();
             string city = readCityOptional();
-            manager.listFlightsCountryCity(country, city);
+            manager.listArrivalsCountryCity(country, city);
             outputWait();
             break;
         }
         case 6: {
             string country = readCountry();
             string city = readCityOptional();
-            manager.numberFlightsCountryCity(country, city);
+            manager.numberArrivalsCountryCity(country, city);
+            outputWait();
+            break;
+        }
+        case 7: {
+            string country = readCountry();
+            string city = readCityOptional();
+            manager.listDeparturesCountryCity(country, city);
+            outputWait();
+            break;
+        }
+        case 8: {
+            string country = readCountry();
+            string city = readCityOptional();
+            manager.numberDeparturesCountryCity(country, city);
             outputWait();
             break;
         }

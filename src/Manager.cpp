@@ -328,7 +328,7 @@ void Manager::numberFlights(){
             count++;
         }
     }
-    cout << count << endl;
+    printCount(count, "Total Number of Flights:");
 }
 void Manager::listFlightsAirline(string airline){
     for (auto v : flightNet.getVertexSet()) {
@@ -348,9 +348,39 @@ void Manager::numberFlightsAirline(string airline){
             }
         }
     }
-    cout << count << endl;
+    printCount(count, "Number of Flights:");
 }
-void Manager::listFlightsCountryCity(string country, string city){
+void Manager::listArrivalsCountryCity(string country, string city){
+    auto cityIt = cities.find(city);
+    if (cityIt == cities.end()) city.erase();
+    for (auto w : flightNet.getVertexSet()) {
+        for (auto e : w->getAdj()){
+            Vertex<Airport> *v = e.getDest();
+            if (v->getInfo().getCountry() == country && !city.empty() && v->getInfo().getCity() == city) {
+                cout << w->getInfo().getCode() << ' ' << v->getInfo().getCode() << ' ' << e.getWeight().getCode() << endl;
+            } else if (v->getInfo().getCountry() == country && city.empty()) {
+                cout << w->getInfo().getCode() << ' ' << v->getInfo().getCode() << ' ' << e.getWeight().getCode() << endl;
+            }
+        }
+    }
+}
+void Manager::numberArrivalsCountryCity(string country, string city){
+    auto cityIt = cities.find(city);
+    if (cityIt == cities.end()) city.erase();
+    int count = 0;
+    for (auto w : flightNet.getVertexSet()) {
+        for (auto e : w->getAdj()){
+            Vertex<Airport> *v = e.getDest();
+            if (v->getInfo().getCountry() == country && !city.empty() && v->getInfo().getCity() == city) {
+                count++;
+            } else if (v->getInfo().getCountry() == country && city.empty()) {
+                count++;
+            }
+        }
+    }
+    printCount(count, "Number of Arrivals:");
+}
+void Manager::listDeparturesCountryCity(string country, string city){
     auto cityIt = cities.find(city);
     if (cityIt == cities.end()) city.erase();
     for (auto v : flightNet.getVertexSet()) {
@@ -365,7 +395,7 @@ void Manager::listFlightsCountryCity(string country, string city){
         }
     }
 }
-void Manager::numberFlightsCountryCity(string country, string city){
+void Manager::numberDeparturesCountryCity(std::string country, std::string city) {
     auto cityIt = cities.find(city);
     if (cityIt == cities.end()) city.erase();
     int count = 0;
@@ -380,7 +410,7 @@ void Manager::numberFlightsCountryCity(string country, string city){
             }
         }
     }
-    cout << count << endl;
+    printCount(count, "Number of Departures:");
 }
 
 void Manager::listCountriesMostAirlines(int n){
