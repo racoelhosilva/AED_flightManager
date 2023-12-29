@@ -202,8 +202,11 @@ void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinat
         }
     }
 
+    if (minStops.size() < 2)  {
+        cout << "The flight is not possible!" << endl;
+        return;
+    }
     cout << minStops[0];
-    if (minStops.size() == 1) return;
     for (int i = 1; i < minStops.size(); i++) {
         cout << " <----- " << minStops[i];
     }
