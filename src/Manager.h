@@ -146,9 +146,10 @@ class Manager {
         vector<string> getAirportsCoordinates(pair<double, double> coords);
         void bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string> *airportFlters, vector<string> *airlineFilters);
 
+        void printCount(int number, string text);
         void printAirlineHeader();
         void printAirline(const Airline &airline);
-        void printCount(int number, string text);
+        void printAirlineFooter();
 };
 
 

@@ -104,6 +104,7 @@ void Manager::listAllAirlines() {
     for (Airline airline : airlines) {
         printAirline(airline);
     }
+    printAirlineFooter();
     printCount(airlines.size(), "Total Number of Airlines: ");
 }
 
@@ -122,6 +123,7 @@ void Manager::listAirlinesAirport(string airport) {
     for (const Airline &airline : availableAirlines) {
         printAirline(airline);
     }
+    printAirlineFooter();
     printCount(availableAirlines.size(), "Number of Airlines: ");
 }
 
@@ -134,12 +136,14 @@ void Manager::listAirlinesCountry(string country) {
             count++;
         }
     }
+    printAirlineFooter();
     printCount(count, "Number of Airlines: ");
 }
 
 void Manager::airlineInfo(string airline) {
     printAirlineHeader();
     printAirline(*airlines.find(Airline(airline)));
+    printAirlineFooter();
 }
 
 void Manager::listAllAirports() {
@@ -420,23 +424,28 @@ vector<string> Manager::getAirportsCountryCity(string country, string city) {ret
 vector<string> Manager::getAirportsCoordinates(pair<double, double> coords) {return vector<string>();}
 void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string> *airportFlters, vector<string> *airlineFilters) {}
 
+void Manager::printCount(int number, std::string text) {
+    cout << "\n     " << BOLD << text << " " << MAGENTA << number << RESET << '\n';
+}
+
 void Manager::printAirlineHeader(){
-    cout << '\n' << INVERT << BOLD << left  << "|"
-         << setw(6) << " CODE " << "|"
-         << setw(43) << " NAME" << "|"
-         << setw(27) << " CALLSIGN" << "|"
-         << setw(39) << " COUNTRY" << "|" << '\n' << RESET;
+    cout << '\n' << INVERT << BOLD << left  << " "
+         << setw(6) << " CODE " << " "
+         << setw(43) << " NAME" << " "
+         << setw(27) << " CALLSIGN" << " "
+         << setw(39) << " COUNTRY" << " " << '\n' << RESET;
 }
 
 void Manager::printAirline(const Airline &airline){
-    cout << left << "|"
-         << " " << setw(5)  << airline.getCode() << "|"
-         << " " << setw(42) << airline.getName() << "|"
-         << " " << setw(26) << (airline.getCallsign() == "_" ? "" : airline.getCallsign()) << "|"
-         << " " << setw(38) << airline.getCountry() << "|" << '\n';
+    cout << left << "│"
+         << " " << setw(5)  << airline.getCode() << "│"
+         << " " << setw(42) << airline.getName() << "│"
+         << " " << setw(26) << (airline.getCallsign() == "_" ? "" : airline.getCallsign()) << "│"
+         << " " << setw(38) << airline.getCountry() << "│" << '\n';
 }
 
-void Manager::printCount(int number, std::string text) {
-    cout << "\n     " << BOLD << text << " " << MAGENTA << number << RESET << '\n';
-
+void Manager::printAirlineFooter() {
+    cout << left << "└──────┴───────────────────────────────────────────┴───────────────────────────┴───────────────────────────────────────┘";
 }
+
+
