@@ -93,7 +93,7 @@ std::string Interface::readAirline() {
     do {
         std::cout << "  Airline Code: ";
         cin.clear();
-        std::cin >> choice;
+        getline(cin, choice, '\n');
     } while (!manager.validateAirline(choice));
     return choice;
 }
@@ -103,7 +103,7 @@ std::string Interface::readAirportCode() {
     do {
         std::cout << "  Airport Code: ";
         cin.clear();
-        std::cin >> choice;
+        getline(cin, choice, '\n');
     } while (!manager.validateAirport(choice));
     return choice;
 }

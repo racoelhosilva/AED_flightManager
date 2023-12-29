@@ -40,6 +40,7 @@ class Manager {
         unordered_set<std::string> countries;
 
         unordered_map<string, string> airportNameToCode;
+        unordered_map<string, Vertex<Airport> *> airportCodeToVertex;
 
     public:
         bool extractAirports(std::string fname);

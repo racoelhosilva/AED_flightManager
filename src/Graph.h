@@ -7,6 +7,7 @@
 #include <cstddef>
 #include <vector>
 #include <queue>
+#include <iostream>
 
 using namespace std;
 
@@ -61,9 +62,9 @@ class Graph {
 public:
     Vertex<T> *findVertex(const T &in) const;
     int getNumVertex() const;
-	bool addVertex(const T &in);
+	Vertex<T>* addVertex(const T &in);
 	bool removeVertex(const T &in);
-	bool addEdge(const T &sourc, const T &dest, Airline w);
+	bool addEdge(Vertex<T> *sourc, Vertex<T> *dest, Airline w);
 	bool removeEdge(const T &sourc, const T &dest);
     vector<Vertex<T> * > getVertexSet() const;
 	vector<T> dfs() const;
@@ -167,11 +168,10 @@ void Vertex<T>::setAdj(const vector<Edge<T> > &adj) {
  *  Returns true if successful, and false if a vertex with that content already exists.
  */
 template <class T>
-bool Graph<T>::addVertex(const T &in) {
-	if ( findVertex(in) != NULL)
-		return false;
-	vertexSet.push_back(new Vertex<T>(in));
-	return true;
+Vertex<T>* Graph<T>::addVertex(const T &in) {
+    Vertex<T> * vx = new Vertex<T>(in);
+	vertexSet.push_back(vx);
+	return vx;
 }
 
 
@@ -181,12 +181,8 @@ bool Graph<T>::addVertex(const T &in) {
  * Returns true if successful, and false if the source or destination vertex does not exist.
  */
 template <class T>
-bool Graph<T>::addEdge(const T &sourc, const T &dest, Airline w) {
-	auto v1 = findVertex(sourc);
-	auto v2 = findVertex(dest);
-	if (v1 == NULL || v2 == NULL)
-		return false;
-	v1->addEdge(v2,w);
+bool Graph<T>::addEdge(Vertex<T> *sourc, Vertex<T> *dest, Airline w) {
+	sourc->addEdge(dest,w);
 	return true;
 }
 
