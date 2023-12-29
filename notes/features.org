@@ -22,7 +22,7 @@
 
 + Identify the airport articulation points
 
-+ Best flight option (shortest path between two airports)
++ Best flight option (shortest path between two airports (least amount of stops))
   - Source and Destination can be given as:
   + Airport code or name
   + City name

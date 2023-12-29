@@ -28,10 +28,11 @@ public:
 
     std::string readAirline();
     std::string readAirportCode();
+    std::string readAirportName();
     std::string readCity();
     std::string readCityOptional();
     std::string readCountry();
-    std::string readCoordinates();
+    pair<double, double> readCoordinates();
     int readNumber();
 
     void mainMenu();
@@ -43,7 +44,14 @@ public:
     void flightStatisticsMenu();
     void locationStatisticsMenu();
 
+    void flightSourceMenu();
+    void flightDestinationMenu();
+    void flightFilterMenu();
 
+    vector<string> sourceCodes;
+    vector<string> destinationCodes;
+    vector<string> airportFilters;
+    vector<string> airlineFilters;
 };
 
 bool stringIsNumeric(const string &s);
