@@ -14,4 +14,6 @@ add_executable(AED2324_PRJ2_G15
         src/Airport.h
         src/Airline.cpp
         src/Airline.h
+        src/Coordinate.cpp
+        src/Coordinate.h
 )

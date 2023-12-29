@@ -11,6 +11,7 @@ class Airline {
         std::string country;
     public:
         Airline() {code = "noCode";}
+        Airline(std::string code_) : code(code_) {};
         Airline(std::string code_, std::string name_, std::string callsign_, std::string country_) : code(code_), name(name_), callsign(callsign_), country(country_) {}
         std::string getCode() const {return code;}
         std::string getName() const {return name;}

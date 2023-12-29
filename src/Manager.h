@@ -9,6 +9,7 @@
 #include <fstream>
 #include <sstream>
 #include <unordered_set>
+#include <unordered_map>
 
 struct AirlineHash {
     int operator() (const Airline &airline) const {
@@ -26,7 +27,7 @@ struct AirportHash {
     }
 
     bool operator() (const Airport &airport1, const Airport &airport2) const {
-        return airport1 == airport2;
+        return airport1.getCode() == airport2.getCode();
     }
 };
 class Manager {
@@ -34,6 +35,10 @@ class Manager {
         Graph<Airport> flightNet;
         unordered_set<Airline, AirlineHash, AirlineHash> airlines;
         unordered_set<Airport, AirportHash, AirportHash> airports;
+        unordered_set<std::string> cities;
+        unordered_set<std::string> countries;
+
+        unordered_map<string, string> airportNameToCode;
 
     public:
         bool extractAirports(std::string fname);
