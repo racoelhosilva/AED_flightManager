@@ -1,3 +1,4 @@
+#include <set>
 #include "Manager.h"
 
 
@@ -105,7 +106,26 @@ void Manager::listAllAirlines() {
 void Manager::numberAirlines() {
     cout << airlines.size() << endl;
 }
-void Manager::listAirlinesAirport(string airport) {}
+void Manager::listAirlinesAirport(string airport) {
+    Airport airport1 = *airports.find(Airport(airport));
+
+    auto v = flightNet.findVertex(airport1);
+    set<Airline> availableAirlines;
+    for (auto e : v->getAdj()) {
+        availableAirlines.insert(e.getWeight());
+    }
+
+    cout << left << setw(6) << "CODE" << '\t'
+         << setw(40) << "NAME" << '\t'
+         << setw(24) << "CALLSIGN" << '\t'
+         << setw(24) << "COUNTRY" << '\n';
+    for (Airline airline : availableAirlines) {
+        cout << left << setw(6) << airline.getCode() << '\t'
+             << setw(40) << airline.getName() << '\t'
+             << setw(24) << (airline.getCallsign() == "_" ? "" : airline.getCallsign()) << '\t'
+             << setw(24) << airline.getCountry() << '\n';
+    }
+}
 void Manager::listAirlinesCountry(string country) {}
 void Manager::airlineInfo(string airline) {}
 
