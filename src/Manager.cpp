@@ -1,3 +1,4 @@
+#include <set>
 #include "Manager.h"
 
 
@@ -88,7 +89,6 @@ bool Manager::extractFlights(std::string fname) {
     } while (getline(input, line));
     return true;
 }
-
 bool Manager::validateAirport(const std::string &code) {
     return airports.find(Airport(code)) != airports.end();
 }
@@ -104,12 +104,65 @@ bool Manager::validateCountry(const std::string &country) {
 bool Manager::validateCity(const std::string &city) {
     return cities.find(city) != cities.end();
 }
+void Manager::listAllAirlines() {
+    cout << left << setw(6) << "CODE" << '\t'
+              << setw(40) << "NAME" << '\t'
+              << setw(24) << "CALLSIGN" << '\t'
+              << setw(24) << "COUNTRY" << '\n';
+    for (Airline airline : airlines) {
+        cout << left << setw(6) << airline.getCode() << '\t'
+                    << setw(40) << airline.getName() << '\t'
+                    << setw(24) << (airline.getCallsign() == "_" ? "" : airline.getCallsign()) << '\t'
+                    << setw(24) << airline.getCountry() << '\n';
+    }
+}
+void Manager::numberAirlines() {
+    cout << airlines.size() << endl;
+}
+void Manager::listAirlinesAirport(string airport) {
+    Airport airport1 = *airports.find(Airport(airport));
+    auto v = flightNet.findVertex(airport1);
+    set<Airline> availableAirlines;
+    for (auto e : v->getAdj()) {
+        availableAirlines.insert(e.getWeight());
+    }
 
-void Manager::listAllAirlines() {}
-void Manager::numberAirlines() {}
-void Manager::listAirlinesAirport(string airport) {}
-void Manager::listAirlinesCountry(string country) {}
-void Manager::airlineInfo(string airline) {}
+    cout << left << setw(6) << "CODE" << '\t'
+         << setw(40) << "NAME" << '\t'
+         << setw(24) << "CALLSIGN" << '\t'
+         << setw(24) << "COUNTRY" << '\n';
+    for (Airline airline : availableAirlines) {
+        cout << left << setw(6) << airline.getCode() << '\t'
+             << setw(40) << airline.getName() << '\t'
+             << setw(24) << (airline.getCallsign() == "_" ? "" : airline.getCallsign()) << '\t'
+             << setw(24) << airline.getCountry() << '\n';
+    }
+}
+void Manager::listAirlinesCountry(string country) {
+    cout << left << setw(6) << "CODE" << '\t'
+         << setw(40) << "NAME" << '\t'
+         << setw(24) << "CALLSIGN" << '\t'
+         << setw(24) << "COUNTRY" << '\n';
+    for (Airline airline : airlines) {
+        if (airline.getCountry() == country) {
+            cout << left << setw(6) << airline.getCode() << '\t'
+                 << setw(40) << airline.getName() << '\t'
+                 << setw(24) << (airline.getCallsign() == "_" ? "" : airline.getCallsign()) << '\t'
+                 << setw(24) << airline.getCountry() << '\n';
+        }
+    }
+}
+void Manager::airlineInfo(string airline) {
+    Airline airline1 = *airlines.find(Airline(airline));
+    cout << left << setw(6) << "CODE" << '\t'
+         << setw(40) << "NAME" << '\t'
+         << setw(24) << "CALLSIGN" << '\t'
+         << setw(24) << "COUNTRY" << '\n';
+    cout << left << setw(6) << airline1.getCode() << '\t'
+        << setw(40) << airline1.getName() << '\t'
+        << setw(24) << (airline1.getCallsign() == "_" ? "" : airline1.getCallsign()) << '\t'
+        << setw(24) << airline1.getCountry() << '\n';
+}
 
 void Manager::listAllAirports() {}
 void Manager::numberAirports() {}
@@ -122,12 +175,74 @@ void Manager::reachableAirports(string airport, int n){}
 void Manager::reachableCities(string airport, int n){}
 void Manager::reachableCountries(string airport, int n){}
 
-void Manager::listAllFlights() {}
-void Manager::numberFlights(){}
-void Manager::listFlightsAirline(string airline){}
-void Manager::numberFlightsAirline(string airline){}
-void Manager::listFlightsCountryCity(string country, string city){}
-void Manager::numberFlightsCountryCity(string country, string city){}
+void Manager::listAllFlights() {
+    for (auto v : flightNet.getVertexSet()) {
+        for (auto e : v->getAdj()) {
+            cout << v->getInfo().getCode() << ' ' << e.getDest()->getInfo().getCode() << ' ' << e.getWeight().getCode() << endl;
+        }
+    }
+}
+void Manager::numberFlights(){
+    int count = 0;
+    for (auto v : flightNet.getVertexSet()) {
+        for (auto e : v->getAdj()) {
+            count++;
+        }
+    }
+    cout << count << endl;
+}
+void Manager::listFlightsAirline(string airline){
+    for (auto v : flightNet.getVertexSet()) {
+        for (auto e : v->getAdj()) {
+            if (e.getWeight().getCode() == airline) {
+                cout << v->getInfo().getCode() << ' ' << e.getDest()->getInfo().getCode() << ' ' << e.getWeight().getCode() << endl;
+            }
+        }
+    }
+}
+void Manager::numberFlightsAirline(string airline){
+    int count = 0;
+    for (auto v : flightNet.getVertexSet()) {
+        for (auto e : v->getAdj()) {
+            if (e.getWeight().getCode() == airline) {
+                count++;
+            }
+        }
+    }
+    cout << count << endl;
+}
+void Manager::listFlightsCountryCity(string country, string city){
+    auto cityIt = cities.find(city);
+    if (cityIt == cities.end()) city.erase();
+    for (auto v : flightNet.getVertexSet()) {
+        if (v->getInfo().getCountry() == country && !city.empty() && v->getInfo().getCity() == city) {
+            for (auto e : v->getAdj()) {
+                cout << v->getInfo().getCode() << ' ' << e.getDest()->getInfo().getCode() << ' ' << e.getWeight().getCode() << endl;
+            }
+        } else if (v->getInfo().getCountry() == country && city.empty()) {
+            for (auto e : v->getAdj()) {
+                cout << v->getInfo().getCode() << ' ' << e.getDest()->getInfo().getCode() << ' ' << e.getWeight().getCode() << endl;
+            }
+        }
+    }
+}
+void Manager::numberFlightsCountryCity(string country, string city){
+    auto cityIt = cities.find(city);
+    if (cityIt == cities.end()) city.erase();
+    int count = 0;
+    for (auto v : flightNet.getVertexSet()) {
+        if (v->getInfo().getCountry() == country && !city.empty() && v->getInfo().getCity() == city) {
+            for (auto e : v->getAdj()) {
+                count++;
+            }
+        } else if (v->getInfo().getCountry() == country && city.empty()) {
+            for (auto e : v->getAdj()) {
+                count++;
+            }
+        }
+    }
+    cout << count << endl;
+}
 
 void Manager::listCountriesMostAirlines(int n){}
 void Manager::listCountriesMostAirports(int n){}
