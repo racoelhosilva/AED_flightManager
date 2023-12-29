@@ -177,7 +177,7 @@ int Interface::readNumber() {
     do {
         std::cout << "  Number: ";
         cin.clear();
-        std::cin >> choice;
+        getline(cin, choice, '\n');
     } while (!stringIsNumeric(choice));
     return stoi(choice);
 }

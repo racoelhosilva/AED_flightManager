@@ -31,6 +31,17 @@ struct AirportHash {
         return airport1.getCode() == airport2.getCode();
     }
 };
+
+template <class T1, class T2>
+struct hash<std::pair<T1, T2>> {
+    size_t operator()(const std::pair<T1, T2>& p) const {
+        auto hash1 = std::hash<T1>{}(p.first);
+        auto hash2 = std::hash<T2>{}(p.second);
+
+        // Combine the hash values using bitwise XOR
+        return hash1 ^ hash2;
+    }
+};
 class Manager {
     private:
         Graph<Airport> flightNet;
@@ -41,6 +52,9 @@ class Manager {
 
         unordered_map<string, string> airportNameToCode;
         unordered_map<string, Vertex<Airport> *> airportCodeToVertex;
+        unordered_map<string, int> countryToAirportCount;
+        unordered_map<string, int> countryToAirlineCount;
+        unordered_map<pair<string, string>, int> countryCityToAirportCount;
 
     public:
         bool extractAirports(std::string fname);
@@ -65,8 +79,8 @@ class Manager {
         void listAllAirports();
         void numberAirports();
         void listAirportsCountryCity(string country, string city = "");
-        void listAirportsMostAirlines(int n); // TODO
-        void listAirportsMostFlights(int n); // TODO
+        void listAirportsMostAirlines(int n);
+        void listAirportsMostFlights(int n);
         void airportInfo(string airport);
         void listAirportFlights(string airport);
         void reachableAirports(string airport, int n=1);

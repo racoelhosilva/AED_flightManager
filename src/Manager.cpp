@@ -28,6 +28,8 @@ bool Manager::extractAirports(std::string fname) {
         Vertex<Airport> *vx = flightNet.addVertex(airport);
         airportCodeToVertex[code] = vx;
         airportNameToCode[name] = code;
+        countryToAirportCount[country]++;
+        countryCityToAirportCount[make_pair(country, city)] += 1;
         cities.insert(city);
         countries.insert(country);
     } while (getline(input, line));
@@ -54,6 +56,7 @@ bool Manager::extractAirlines(std::string fname) {
         Airline airline = Airline(code, name, callsign, country);
         airlines.insert(airline);
         countries.insert(country);
+        countryToAirlineCount[country]++;
     } while (getline(input, line));
     return true;
 }
@@ -176,8 +179,32 @@ void Manager::listAirportsCountryCity(std::string country, std::string city) {
         }
     }
 }
-void Manager::listAirportsMostAirlines(int n) {}
-void Manager::listAirportsMostFlights(int n){}
+void Manager::listAirportsMostAirlines(int n) {
+    priority_queue<pair<int, string>> airportAirlineCount;
+    for (auto a : flightNet.getVertexSet()){
+        unordered_set<string> airportAirlines;
+        for (const Edge<Airport> &e : a->getAdj()){
+            airportAirlines.insert(e.getWeight().getCode());
+        }
+        airportAirlineCount.push({airportAirlines.size(), a->getInfo().getCode()});
+    }
+    for (int pos = 1; pos <= min(n, int(airports.size())); pos++){
+        pair<int, string> current = airportAirlineCount.top();
+        cout << pos << ")   " << current.second << " (" << current.first << ")\n";
+        airportAirlineCount.pop();
+    }
+}
+void Manager::listAirportsMostFlights(int n){
+    priority_queue<pair<int, string>> airportFlightCount;
+    for (auto a : flightNet.getVertexSet()){
+        airportFlightCount.push({a->getAdj().size(), a->getInfo().getCode()});
+    }
+    for (int pos = 1; pos <= min(n, int(airports.size())); pos++){
+        pair<int, string> current = airportFlightCount.top();
+        cout << pos << ")   " << current.second << " (" << current.first << ")\n";
+        airportFlightCount.pop();
+    }
+}
 void Manager::airportInfo(string airport){
     auto a = airports.find(Airport(airport));
     cout << a->getCode() << "  " << a->getName() << "  " << a->getCity() << " (" << a->getCountry() << ")\n";
@@ -351,9 +378,42 @@ void Manager::numberFlightsCountryCity(string country, string city){
     cout << count << endl;
 }
 
-void Manager::listCountriesMostAirlines(int n){}
-void Manager::listCountriesMostAirports(int n){}
-void Manager::listCitiesMostAirports(int n){}
+void Manager::listCountriesMostAirlines(int n){
+    priority_queue<pair<int, string>> countryAirlineCount;
+    for (const string &country : countries){
+        countryAirlineCount.push({countryToAirlineCount[country], country});
+    }
+    for (int pos = 1; pos <= min(n, int(countries.size())); pos++){
+        pair<int, string> current = countryAirlineCount.top();
+        cout << pos << ")   " << current.second << " (" << current.first << ")\n";
+        countryAirlineCount.pop();
+    }
+}
+void Manager::listCountriesMostAirports(int n){
+    priority_queue<pair<int, string>> countryAirportCount;
+    for (const string &country : countries){
+        countryAirportCount.push({countryToAirportCount[country], country});
+    }
+    for (int pos = 1; pos <= min(n, int(countries.size())); pos++){
+        pair<int, string> current = countryAirportCount.top();
+        cout << pos << ")   " << current.second << " (" << current.first << ")\n";
+        countryAirportCount.pop();
+    }
+}
+void Manager::listCitiesMostAirports(int n){
+    priority_queue<pair<int, pair<string,string>>> countryCityAirportCount;
+    for (const string &country : countries){
+        for (const string &city : cities){
+            pair<string, string> countryCity = make_pair(country, city);
+            countryCityAirportCount.push({countryCityToAirportCount[countryCity], countryCity});
+        }
+    }
+    for (int pos = 1; pos <= min(n, int(cities.size())); pos++){
+        pair<int, pair<string,string>> current = countryCityAirportCount.top();
+        cout << pos << ")   " << current.second.first << " " << current.second.second << " (" << current.first << ")\n";
+        countryCityAirportCount.pop();
+    }
+}
 
 void Manager::articulationPoints(){}
 void Manager::diameter(){}
