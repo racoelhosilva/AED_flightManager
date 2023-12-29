@@ -2,13 +2,13 @@
 #include "Interface.h"
 
 void Interface::header() {
-    std::cout << "┌───────────────────────────────────────────────────────────────────────────────────┐\n"
-              << "├──────────────────────────── \033[1;34mFlight Manager (Group 15)\033[0m ────────────────────────────┤\n\n";
+    std::cout << BOLD << "┌─────────────────────────────────────────────────────────────────────────────────────────────────┐\n"
+              << "├" << RESET << "─────────────────────────────────── " << BOLD << BLUE << "Flight Manager (Group 15)" << RESET <<" ───────────────────────────────────" << BOLD << "┤\n\n" << RESET;
 }
 
 void Interface::footer() {
-    std::cout << "├──────────────────────────── \033[1;34mFlight Manager (Group 15)\033[0m ────────────────────────────┤\n"
-              << "└───────────────────────────────────────────────────────────────────────────────────┘\n";
+    std::cout << BOLD << "├" << RESET << "─────────────────────────────────── " << BOLD << BLUE << "Flight Manager (Group 15)" << RESET << " ───────────────────────────────────" << BOLD "┤\n"
+              << "└─────────────────────────────────────────────────────────────────────────────────────────────────┘\n" << RESET;
 }
 
 void Interface::clear() {
@@ -17,7 +17,7 @@ void Interface::clear() {
 
 void Interface::outputWait() {
     cin.clear();
-    cout << "                            \033[2m< Press \033[0m\033[1mENTER\033[0m\033[2m to Continue >\033[0m";
+    cout << "\n                                    " << FAINT << "< Press " << RESET << BOLD << "ENTER" << RESET << FAINT << " to Continue >" << RESET;
     cin.ignore();
 }
 
@@ -25,50 +25,51 @@ void Interface::init() {
     header();
     this->manager = Manager();
     if (loadData()){
-        std::cout << "        Data Loaded: Starting flight manager!\n";
+        std::cout << YELLOW << BOLD << "        Data Loaded: " << GREEN
+                     "\n ✓ " << RESET << "Starting flight manager!\n";
         this->mainMenu();
     }
     else {
-        std::cout << "Problem loading data... Exiting!\n";
+        std::cout << RED << BOLD << " ✗ Problem loading data... Exiting!\n" << RESET;
     }
 }
 
 void Interface::exitMenu() {
     clear();
 
-    std::cout << "\n                        \033[1mThanks for using our Flight Manager!\033[0m\n\n";
+    std::cout << "\n                               " << BOLD << UNDERLINE << "Thanks for using our Flight Manager!" << RESET << "\n\n";
 
     footer();
     exit(0);
 }
 
 bool Interface::loadData() {
-    std::cout << "        Loading data (this may take a while):\n";
+    std::cout << "        " << BOLD << YELLOW << "Loading data (this may take a while):\n";
     if (!manager.extractAirports("../data/airports.csv")) {
         return false;
     }
-    std::cout << " - Airports loaded\n";
+    std::cout << GREEN << BOLD << " ✓ " << RESET << "Airports loaded\n";
     if (!manager.extractAirlines("../data/airlines.csv")) {
         return false;
     }
-    std::cout << " - Airlines loaded\n";
+    std::cout << GREEN << BOLD << " ✓ " << RESET << "Airlines loaded\n";
     if (!manager.extractFlights("../data/flights.csv")){
         return false;
     }
-    std::cout << " - Flights loaded\n";
+    std::cout << GREEN << BOLD << " ✓ " << RESET << "Flights loaded\n";
     return true;
 }
 
 void Interface::printOptions(const std::vector<std::string> &options) {
-    std::cout << "     \033[1m" << options[options.size()-1] << "\033[0m\n";
+    std::cout << "     " << BOLD << options[options.size()-1] << RESET << "\n";
     for (int idx = 1; idx < options.size() - 1; idx++ ){
-        std::cout << " \033[1;36m[" << idx << "]\033[0m " << options[idx] << '\n';
+        std::cout << CYAN << BOLD << " [" << idx << "] " << RESET << options[idx] << '\n';
     }
-    std::cout << " \033[31m[0]\033[0m " << options[0] << '\n';
+    std::cout << RED << " [0] " << RESET << options[0] << '\n';
 }
 
 void Interface::printSelected(const std::string &s) {
-    std::cout << "     \033[1m>  \033[33m" << s << "\033[0m selected\n\n";
+    std::cout << "     " <<  BOLD << "> " << YELLOW << s << RESET << " selected\n";
 }
 
 int Interface::readOption(int max) {
