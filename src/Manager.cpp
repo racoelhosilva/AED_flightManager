@@ -410,7 +410,7 @@ void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinat
     }
 
     int minDist = INT_MAX;
-    vector<string> minStops;
+    vector<vector<string>> minStops;
 
     for (const string &src : *sources) {
         Airport source = *airports.find(Airport(src));
@@ -418,8 +418,12 @@ void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinat
             Airport destination = *airports.find(Airport(dest));
             vector<string> stops = minStopsBetweenAirports(source, destination, airportFilters, airlineFilters);
             if (stops.size() < minDist) {
+                minStops.clear();
                 minDist = stops.size();
-                minStops = stops;
+                minStops.push_back(stops);
+            }
+            else if (stops.size() == minDist) {
+                minStops.push_back(stops);
             }
         }
     }
@@ -428,9 +432,12 @@ void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinat
         cout << "The flight is not possible!" << endl;
         return;
     }
-    cout << minStops[0];
-    for (int i = 1; i < minStops.size(); i++) {
-        cout << " <----- " << minStops[i];
+    for (vector<string> trip : minStops) {
+    cout << trip[0];
+        for (int i = 1; i < trip.size(); i++) {
+        cout << " <----- " << trip[i];
+        }
+        cout << endl;
     }
     cout << endl;
 }
