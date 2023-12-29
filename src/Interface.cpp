@@ -1,5 +1,4 @@
 #include <iostream>
-#include <climits>
 #include "Interface.h"
 
 void Interface::header() {
@@ -26,7 +25,7 @@ void Interface::init() {
     header();
     this->manager = Manager();
     if (loadData()){
-        std::cout << "Data Loaded... Starting flight manager!\n";
+        std::cout << "        Data Loaded: Starting flight manager!\n";
         this->mainMenu();
     }
     else {
