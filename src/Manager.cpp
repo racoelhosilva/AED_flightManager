@@ -138,8 +138,31 @@ void Manager::listAirlinesAirport(string airport) {
              << setw(24) << airline.getCountry() << '\n';
     }
 }
-void Manager::listAirlinesCountry(string country) {}
-void Manager::airlineInfo(string airline) {}
+void Manager::listAirlinesCountry(string country) {
+    cout << left << setw(6) << "CODE" << '\t'
+         << setw(40) << "NAME" << '\t'
+         << setw(24) << "CALLSIGN" << '\t'
+         << setw(24) << "COUNTRY" << '\n';
+    for (Airline airline : airlines) {
+        if (airline.getCountry() == country) {
+            cout << left << setw(6) << airline.getCode() << '\t'
+                 << setw(40) << airline.getName() << '\t'
+                 << setw(24) << (airline.getCallsign() == "_" ? "" : airline.getCallsign()) << '\t'
+                 << setw(24) << airline.getCountry() << '\n';
+        }
+    }
+}
+void Manager::airlineInfo(string airline) {
+    Airline airline1 = *airlines.find(Airline(airline));
+    cout << left << setw(6) << "CODE" << '\t'
+         << setw(40) << "NAME" << '\t'
+         << setw(24) << "CALLSIGN" << '\t'
+         << setw(24) << "COUNTRY" << '\n';
+    cout << left << setw(6) << airline1.getCode() << '\t'
+        << setw(40) << airline1.getName() << '\t'
+        << setw(24) << (airline1.getCallsign() == "_" ? "" : airline1.getCallsign()) << '\t'
+        << setw(24) << airline1.getCountry() << '\n';
+}
 
 void Manager::listAllAirports() {}
 void Manager::numberAirports() {}
