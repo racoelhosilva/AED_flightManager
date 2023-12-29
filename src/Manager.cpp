@@ -111,16 +111,132 @@ void Manager::listAirlinesAirport(string airport) {}
 void Manager::listAirlinesCountry(string country) {}
 void Manager::airlineInfo(string airline) {}
 
-void Manager::listAllAirports() {}
-void Manager::numberAirports() {}
-void Manager::listAirportsCountryCity(std::string country, std::string city) {}
-void Manager::listAirportsMostAirlines(int n){}
+void Manager::listAllAirports() {
+    for (const Airport& a : airports){
+        cout << a.getCode() << "  " << a.getName() << "  " << a.getCity() << " (" << a.getCountry() << ")\n";
+    }
+}
+void Manager::numberAirports() {
+    cout << airports.size() << '\n';
+}
+void Manager::listAirportsCountryCity(std::string country, std::string city) {
+    bool cityExists = cities.find(city) != cities.end();
+    for (const Airport &a : airports){
+        if (a.getCountry() == country){
+            if (cityExists && a.getCity() != city){
+                continue;
+            }
+            else {
+                cout << a.getCode() << "  " << a.getName() << "  " << a.getCity() << " (" << a.getCountry() << ")\n";
+            }
+        }
+    }
+}
+void Manager::listAirportsMostAirlines(int n) {}
 void Manager::listAirportsMostFlights(int n){}
-void Manager::airportInfo(string airport){}
-void Manager::listAirportFlights(string airport){}
-void Manager::reachableAirports(string airport, int n){}
-void Manager::reachableCities(string airport, int n){}
-void Manager::reachableCountries(string airport, int n){}
+void Manager::airportInfo(string airport){
+    auto a = airports.find(Airport(airport));
+    cout << a->getCode() << "  " << a->getName() << "  " << a->getCity() << " (" << a->getCountry() << ")\n";
+}
+void Manager::listAirportFlights(string airport) {
+    for (const Edge<Airport> &e : flightNet.findVertex(*airports.find(Airport(airport)))->getAdj()){
+        cout << airport << " --- (" << e.getWeight().getCode() << ") --> "<< e.getDest()->getInfo().getCode() << '\n';
+    }
+}
+void Manager::reachableAirports(string airport, int n){
+    for (auto a : flightNet.getVertexSet()){
+        a->setVisited(false);
+    }
+
+    vector<Airport> airportsReached;
+    queue<pair<Airport, int>> remaining;
+
+    remaining.push({*airports.find(Airport(airport)), n});
+
+    while (!remaining.empty()) {
+        Airport a = remaining.front().first;
+        int layoversRemaining = remaining.front().second - 1;
+        remaining.pop();
+        airportsReached.push_back(a);
+
+        if (layoversRemaining >= 0){
+            for (const Edge<Airport> &e : flightNet.findVertex(a)->getAdj()){
+                if (!e.getDest()->isVisited()){
+                    remaining.push({e.getDest()->getInfo(), layoversRemaining});
+                    e.getDest()->setVisited(true);
+                }
+            }
+        }
+    }
+    for (auto a : airportsReached){
+        cout << a.getCode() << "  " << a.getName() << "  " << a.getCity() << " (" << a.getCountry() << ")\n";
+    }
+    cout << airportsReached.size() << '\n';
+}
+void Manager::reachableCities(string airport, int n){
+    for (auto a : flightNet.getVertexSet()){
+        a->setVisited(false);
+    }
+
+    unordered_set<string> citiesReached;
+    queue<pair<Airport, int>> remaining;
+
+    remaining.push({*airports.find(Airport(airport)), n});
+
+    while (!remaining.empty()) {
+        Airport a = remaining.front().first;
+        int layoversRemaining = remaining.front().second - 1;
+        remaining.pop();
+        citiesReached.insert(a.getCity());
+
+        if (layoversRemaining >= 0){
+            for (const Edge<Airport> &e : flightNet.findVertex(a)->getAdj()){
+                if (!e.getDest()->isVisited()){
+                    if (citiesReached.count(e.getDest()->getInfo().getCity()) == 0){
+                        remaining.push({e.getDest()->getInfo(), layoversRemaining});
+                    }
+                    e.getDest()->setVisited(true);
+                }
+            }
+        }
+    }
+    for (auto c : citiesReached){
+        cout << c << "\n";
+    }
+    cout << citiesReached.size() << '\n';
+}
+void Manager::reachableCountries(string airport, int n){
+    for (auto a : flightNet.getVertexSet()){
+        a->setVisited(false);
+    }
+
+    unordered_set<string> countriesReached;
+    queue<pair<Airport, int>> remaining;
+
+    remaining.push({*airports.find(Airport(airport)), n});
+
+    while (!remaining.empty()) {
+        Airport a = remaining.front().first;
+        int layoversRemaining = remaining.front().second - 1;
+        remaining.pop();
+        countriesReached.insert(a.getCountry());
+
+        if (layoversRemaining >= 0){
+            for (const Edge<Airport> &e : flightNet.findVertex(a)->getAdj()){
+                if (!e.getDest()->isVisited()){
+                    if (countriesReached.count(e.getDest()->getInfo().getCountry()) == 0){
+                        remaining.push({e.getDest()->getInfo(), layoversRemaining});
+                    }
+                    e.getDest()->setVisited(true);
+                }
+            }
+        }
+    }
+    for (auto c : countriesReached){
+        cout << c << "\n";
+    }
+    cout << countriesReached.size() << '\n';
+}
 
 void Manager::listAllFlights() {}
 void Manager::numberFlights(){}

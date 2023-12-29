@@ -365,11 +365,11 @@ void Interface::airportInformationMenu(){
              "Airline List",
              "Flight List",
              "Reachable Airports",
-             "Reachable Airports with N Layovers",
+             "Reachable Airports with N Flights",
              "Reachable Cities",
-             "Reachable Cities with N Layovers",
+             "Reachable Cities with N Flights",
              "Reachable Countries",
-             "Reachable Countries with N Layovers",
+             "Reachable Countries with N Flights",
              "Choose type of Airport Information:"};
     printOptions(options);
 
