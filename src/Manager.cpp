@@ -415,7 +415,17 @@ void Manager::listCitiesMostAirports(int n){
     }
 }
 
-void Manager::articulationPoints(){}
+void Manager::articulationPoints(){
+    auto articulationPoints = flightNet.articulationPoints();
+    unordered_set<Airport, AirportHash, AirportHash> s;
+    for (const Airport &v : articulationPoints){
+        s.insert(v);
+    }
+    for (const Airport &ap : s){
+        cout << ap.getCode() << "    " << ap.getName() << '\n';
+    }
+    cout << s.size() << '\n';
+}
 void Manager::diameter(){}
 
 std::string Manager::getAirportCode(const std::string &name) {

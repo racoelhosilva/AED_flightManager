@@ -8,12 +8,17 @@
 #include <vector>
 #include <queue>
 #include <iostream>
+#include <unordered_set>
+#include <stack>
 
 using namespace std;
 
 template <class T> class Edge;
 template <class T> class Graph;
 template <class T> class Vertex;
+
+template <typename T>
+bool stackSearch(stack<T> s, T i);
 
 
 /****************** Provided structures  ********************/
@@ -25,6 +30,10 @@ class Vertex {
 	bool visited;          // auxiliary field
     bool processing;       // auxiliary field
 
+    int lowest = 0;
+    int visitIndex = 0;
+    int auxiliar = 0;
+
     void addEdge(Vertex<T> *dest, Airline w);
 	bool removeEdgeTo(Vertex<T> *d);
 public:
@@ -35,6 +44,12 @@ public:
     void setVisited(bool v);
     bool isProcessing() const;
     void setProcessing(bool p);
+    int getLowest() const;
+    void setLowest(int low);
+    int getVisitIndex() const;
+    void setVisitIndex(int visIdx);
+    int getAuxiliar() const;
+    void setAuxiliar(int aux);
     const vector<Edge<T> > &getAdj() const;
     void setAdj(const vector<Edge<T> > &adj);
     friend class Graph<T>;
@@ -70,6 +85,11 @@ public:
 	vector<T> dfs() const;
 	vector<T> dfs(const T & source) const;
 	vector<T> bfs(const T &source) const;
+
+    vector<T> articulationPoints();
+    void dfs_art(Vertex<T> *v, stack<T> &s, vector<T> &l, int &i);
+
+
 };
 
 /****************** Provided constructors and functions ********************/
@@ -109,6 +129,31 @@ bool Vertex<T>::isProcessing() const {
 template<class T>
 void Vertex<T>::setProcessing(bool p) {
     Vertex::processing = p;
+}
+
+template <class T>
+int Vertex<T>::getLowest() const{
+    return lowest;
+}
+template <class T>
+void Vertex<T>::setLowest(int low){
+    Vertex::lowest = low;
+}
+template <class T>
+int Vertex<T>::getVisitIndex() const{
+    return visitIndex;
+}
+template <class T>
+void Vertex<T>::setVisitIndex(int visIdx){
+    Vertex::visitIndex = visIdx;
+}
+template <class T>
+int Vertex<T>::getAuxiliar() const {
+    return auxiliar;
+}
+template <class T>
+void Vertex<T>::setAuxiliar(int aux) {
+    Vertex::auxiliar = aux;
 }
 
 template<class T>
@@ -305,6 +350,80 @@ vector<T> Graph<T>::bfs(const T & source) const {
 		}
 	}
 	return res;
+}
+
+// ARTICULATION POINTS
+template <class T>
+vector<T> Graph<T>::articulationPoints() {
+    vector<T> res;
+
+    for (auto vx : this->getVertexSet()){
+        vx->setLowest(0);
+        vx->setVisitIndex(0);
+        vx->setVisited(false);
+    }
+
+    stack<T> s;
+    int idx = 1;
+    for (auto v : this->getVertexSet()){
+        if (!v->isVisited()){
+            this->dfs_art(v, s, res, idx);
+        }
+    }
+
+    // (Optional) printing the "indegree"/number of tree edges in the dfs tree
+    /*for (auto v : g->getVertexSet()){
+        cout << v->getInfo() << " : " << v->getIndegree() << "\n";
+    }
+    cout << "\n";
+    */
+
+    if (this->getVertexSet().front()->getAuxiliar() > 2){
+        res.push_back(this->getVertexSet().front()->getInfo());
+    }
+    else {
+        res.pop_back();
+    }
+
+    return res;
+}
+
+template <class T>
+void Graph<T>::dfs_art(Vertex<T> *v, stack<T> &s, vector<T> &l, int &i){
+    v->setLowest(i);
+    v->setVisitIndex(i);
+    v->setAuxiliar(0);
+    v->setVisited(true);
+    s.push(v->getInfo());
+    i++;
+
+    for (auto e : v->getAdj()){
+        Vertex<T> *w = e.getDest();
+        if (!w->isVisited()){
+            v->setAuxiliar(v->getAuxiliar()+1);
+            dfs_art(w, s, l, i);
+            v->setLowest(min(v->getLowest(), w->getLowest()));
+            if (w->getLowest() >= v->getVisitIndex()){
+                l.push_back(v->getInfo());
+            }
+        }
+        else if (stackSearch(s, w->getInfo())){
+            v->setLowest(min(v->getLowest(), w->getVisitIndex()));
+        }
+    }
+    s.pop();
+}
+
+template <typename T>
+bool stackSearch(stack<T> s, const T i){
+    while (!s.empty()){
+        T x = s.top();
+        s.pop();
+        if (x == i){
+            return true;
+        }
+    }
+    return false;
 }
 
 #endif /* GRAPH_H_ */
