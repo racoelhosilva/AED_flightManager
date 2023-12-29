@@ -192,7 +192,6 @@ void Manager::numberFlights(){
     cout << count << endl;
 }
 void Manager::listFlightsAirline(string airline){
-    int count = 0;
     for (auto v : flightNet.getVertexSet()) {
         for (auto e : v->getAdj()) {
             if (e.getWeight().getCode() == airline) {
@@ -213,6 +212,8 @@ void Manager::numberFlightsAirline(string airline){
     cout << count << endl;
 }
 void Manager::listFlightsCountryCity(string country, string city){
+    auto cityIt = cities.find(city);
+    if (cityIt == cities.end()) city.erase();
     for (auto v : flightNet.getVertexSet()) {
         if (v->getInfo().getCountry() == country && !city.empty() && v->getInfo().getCity() == city) {
             for (auto e : v->getAdj()) {
@@ -226,6 +227,8 @@ void Manager::listFlightsCountryCity(string country, string city){
     }
 }
 void Manager::numberFlightsCountryCity(string country, string city){
+    auto cityIt = cities.find(city);
+    if (cityIt == cities.end()) city.erase();
     int count = 0;
     for (auto v : flightNet.getVertexSet()) {
         if (v->getInfo().getCountry() == country && !city.empty() && v->getInfo().getCity() == city) {
