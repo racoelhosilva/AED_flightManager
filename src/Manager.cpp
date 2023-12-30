@@ -76,10 +76,10 @@ bool Manager::extractFlights(std::string fname) {
         getline(lineInput, code2, ',');
         getline(lineInput, airlineCode, '\r');
 
-        Airline airline = *airlines.find(Airline(airlineCode));
+        Vertex<Airport> *a1 = airportCodeToVertex[code1];
+        Vertex<Airport> *a2 = airportCodeToVertex[code2];
 
-        if (airline.getCode() == "noCode") return false;
-        flightNet.addEdge(airportCodeToVertex[code1], airportCodeToVertex[code2], airline);
+        flightNet.addEdge(a1, a2, 0, airlineCode);
     } while (getline(input, line));
     return true;
 }
@@ -114,14 +114,14 @@ void Manager::numberAirlines() {
 
 void Manager::listAirlinesAirport(string airport) {
     Vertex<Airport> *v = airportCodeToVertex[airport];
-    unordered_set<Airline, AirlineHash, AirlineHash> availableAirlines;
+    unordered_set<string> availableAirlines;
     for (const Edge<Airport> &e : v->getAdj()) {
-        availableAirlines.insert(e.getWeight());
+        availableAirlines.insert(e.getInfo());
     }
 
     printAirlineHeader();
-    for (const Airline &airline : availableAirlines) {
-        printAirline(airline);
+    for (const string &airlineCode : availableAirlines) {
+        printAirline(*airlines.find(Airline(airlineCode)));
     }
     printAirlineFooter();
     printCount(availableAirlines.size(), "Number of Airlines: ");
@@ -180,10 +180,11 @@ void Manager::listAirportsMostAirlines(int n) {
     for (auto a : flightNet.getVertexSet()){
         unordered_set<string> airportAirlines;
         for (const Edge<Airport> &e : a->getAdj()){
-            airportAirlines.insert(e.getWeight().getCode());
+            airportAirlines.insert(e.getInfo());
         }
         airportAirlineCount.push({airportAirlines.size(), a->getInfo().getCode()});
     }
+
     printListHeader("Airports with most Airlines:");
     for (int pos = 1; pos <= min(n, int(airports.size())); pos++){
         pair<int, string> current = airportAirlineCount.top();
@@ -213,7 +214,7 @@ void Manager::airportInfo(const string airport){
 void Manager::listAirportFlights(string airport) {
     printDepartureHeader();
     for (const Edge<Airport> &e : airportCodeToVertex[airport]->getAdj()){
-        printDeparture(airport, e.getDest()->getInfo(), e.getWeight().getCode());
+        printDeparture(airport, e.getDest()->getInfo(), e.getInfo());
     }
     printDepartureFooter();
     printCount(airportCodeToVertex[airport]->getAdj().size(), "Number of Flights:");
@@ -324,7 +325,7 @@ void Manager::listAllFlights() {
     int count = 0;
     for (auto v : flightNet.getVertexSet()) {
         for (auto e : v->getAdj()) {
-            printFlight(v->getInfo(), e.getDest()->getInfo(), e.getWeight().getCode());
+            printFlight(v->getInfo(), e.getDest()->getInfo(), e.getInfo());
             count++;
         }
     }
@@ -345,9 +346,9 @@ void Manager::listFlightsAirline(string airline){
     printFlightHeader();
     for (auto v : flightNet.getVertexSet()) {
         for (auto e : v->getAdj()) {
-            if (e.getWeight().getCode() == airline) {
+            if (e.getInfo() == airline) {
                 count++;
-                printFlight(v->getInfo(), e.getDest()->getInfo(), e.getWeight().getCode());
+                printFlight(v->getInfo(), e.getDest()->getInfo(), e.getInfo());
             }
         }
     }
@@ -358,7 +359,7 @@ void Manager::numberFlightsAirline(string airline){
     int count = 0;
     for (auto v : flightNet.getVertexSet()) {
         for (auto e : v->getAdj()) {
-            if (e.getWeight().getCode() == airline) {
+            if (e.getInfo() == airline) {
                 count++;
             }
         }
@@ -374,10 +375,10 @@ void Manager::listArrivalsCountryCity(string country, string city){
         for (auto e : w->getAdj()){
             Vertex<Airport> *v = e.getDest();
             if (v->getInfo().getCountry() == country && !city.empty() && v->getInfo().getCity() == city) {
-                printArrival(w->getInfo(), v->getInfo().getCode(), e.getWeight().getCode());
+                printArrival(w->getInfo(), v->getInfo().getCode(), e.getInfo());
                 count++;
             } else if (v->getInfo().getCountry() == country && city.empty()) {
-                printArrival(w->getInfo(), v->getInfo().getCode(), e.getWeight().getCode());
+                printArrival(w->getInfo(), v->getInfo().getCode(), e.getInfo());
                 count++;
             }
         }
@@ -409,12 +410,12 @@ void Manager::listDeparturesCountryCity(string country, string city){
     for (auto v : flightNet.getVertexSet()) {
         if (v->getInfo().getCountry() == country && !city.empty() && v->getInfo().getCity() == city) {
             for (auto e : v->getAdj()) {
-                printDeparture(v->getInfo().getCode(), e.getDest()->getInfo(), e.getWeight().getCode());
+                printDeparture(v->getInfo().getCode(), e.getDest()->getInfo(), e.getInfo());
                 count++;
             }
         } else if (v->getInfo().getCountry() == country && city.empty()) {
             for (auto e : v->getAdj()) {
-                printDeparture(v->getInfo().getCode(), e.getDest()->getInfo(), e.getWeight().getCode());
+                printDeparture(v->getInfo().getCode(), e.getDest()->getInfo(), e.getInfo());
                 count++;
             }
         }
@@ -616,7 +617,7 @@ void Manager::printArrivalFooter() {
 void Manager::printFlightHeader(){
     cout << '\n' << INVERT << BOLD << left  << " "
          << setw(6) << " SRC " << " "
-         << setw(55) << " SOURCE NAME" << " "
+         << setw(55) << " SOURCE NAME " << "  "
          << setw(6) << " DEST" << " "
          << setw(55) << " DESTINATION NAME" << " "
          << setw(8) << " AIRLINE" << " " << '\n' << RESET;
