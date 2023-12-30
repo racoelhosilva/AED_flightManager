@@ -4,6 +4,9 @@
 #include <string>
 #include "Coordinate.h"
 
+/**
+ * @brief Class that defines an Airport. Each airport contains a unique code, a name, a city a country, and its coordinates.
+ */
 class Airport {
     private:
         std::string code;
@@ -13,16 +16,22 @@ class Airport {
         double latitude;
         double longitude;
     public:
+        /// Default constructor. Sets airport code to "noCode".
         Airport() {code = "noCode";}
+        /// Code constructor
         Airport(std::string code_) : code(code_) {}
+        /// All parameter constructor
         Airport(std::string code_, std::string name_, std::string city_, std::string country_, double latitude_, double longitude_) :
             code(code_), name(name_), city(city_), country(country_), latitude(latitude_), longitude(longitude_) {}
+
         std::string getCode() const {return code;}
         std::string getName() const {return name;}
         std::string getCity() const {return city;}
         std::string getCountry() const {return country;}
         double getLatitiude() const {return latitude;}
         double getLongitude() const {return longitude;}
+
+        /// Equality operator. Returns true if all of the airports' elements are equal.
         bool operator==(const Airport& other) const {return code == other.code && name == other.name && city == other.city && country == other.country && latitude == other.latitude && longitude == other.longitude;}
 };
 
