@@ -410,45 +410,41 @@ void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinat
     }
 
     int minDist = INT_MAX;
-    vector<vector<string>> minStops;
+    vector<pair<string, string>> minStops;
 
     for (const string &src : *sources) {
         Airport source = *airports.find(Airport(src));
         for (const string &dest : *destinations) {
             Airport destination = *airports.find(Airport(dest));
-            vector<string> stops = minStopsBetweenAirports(source, destination, airlinePreferences, airlineRestrictions, airportRestrictions);
-            if (stops.size() < minDist) {
+            minStopsBetweenAirports(source, destination, airlinePreferences, airlineRestrictions, airportRestrictions);
+            if (flightNet.findVertex(destination)->getSteps() < minDist) {
                 minStops.clear();
-                minDist = stops.size();
-                minStops.push_back(stops);
+                minDist = flightNet.findVertex(destination)->getSteps();
+                minStops.push_back({source.getCode(), destination.getCode()});
             }
-            else if (stops.size() == minDist) {
-                minStops.push_back(stops);
+            else if (flightNet.findVertex(destination)->getSteps() == minDist) {
+                minStops.push_back({source.getCode(), destination.getCode()});
             }
         }
     }
 
-    if (minDist < 2)  {
+    if (minDist < 1)  {
         cout << "The flight is not possible!" << endl;
         return;
     }
 
-    for (vector<string> trip : minStops) {
-        cout << trip[0];
-        for (int i = 1; i < trip.size(); i++) {
-        cout << " <----- " << trip[i];
-        }
-        cout << endl;
+    for (pair<string, string> trip : minStops) {
+        cout << trip.first << " -------> " << trip.second << endl;
     }
     cout << endl;
 }
 
-vector<string> Manager::minStopsBetweenAirports(const Airport &source, const Airport &destination, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions) {
-    vector<string> res;
+void Manager::minStopsBetweenAirports(const Airport &source, const Airport &destination, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions) {
+    vector<pair<string, string>> res;
 
     for (Vertex<Airport>* airport : flightNet.getVertexSet()) {
         airport->setVisited(false);
-        airport->setPrevious(nullptr);
+        airport->clearPrevious();
         airport->setSteps(INT_MAX);
     }
 
@@ -457,13 +453,6 @@ vector<string> Manager::minStopsBetweenAirports(const Airport &source, const Air
     src->setVisited(true);
     src->setSteps(0);
     minStopsBFS(src, dest, airlinePreferences, airlineRestrictions, airportRestrictions);
-
-    while (dest != src) {
-        res.push_back(dest->getInfo().getCode());
-        dest = dest->getPrevious();
-    }
-    res.push_back(src->getInfo().getCode());
-    return res;
 }
 
 void Manager::minStopsBFS(Vertex<Airport>* source, Vertex<Airport>* dest, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions) {
@@ -473,7 +462,7 @@ void Manager::minStopsBFS(Vertex<Airport>* source, Vertex<Airport>* dest, vector
         && find(airportRestrictions->begin(), airportRestrictions->end(), flight.getDest()->getInfo().getCode()) == airportRestrictions->end()) {
             if (flight.getDest()->getSteps() > source->getSteps() + 1) {
                 flight.getDest()->setSteps(source->getSteps() + 1);
-                flight.getDest()->setPrevious(source);
+                flight.getDest()->addPrevious({source, flight});
             }
         }
         if (flight.getDest() == dest) return;

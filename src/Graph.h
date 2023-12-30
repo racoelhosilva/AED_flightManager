@@ -25,7 +25,7 @@ class Vertex {
 	bool visited;          // auxiliary field
     bool processing;       // auxiliary field
     int steps;             // auxiliary field
-    Vertex<T>* previous;    // auxiliary field
+    vector<pair<Vertex<T>*, Edge<T>>> previous;    // auxiliary field
 
     void addEdge(Vertex<T> *dest, Airline w);
 	bool removeEdgeTo(Vertex<T> *d);
@@ -37,8 +37,9 @@ public:
     void setVisited(bool v);
     bool isProcessing() const;
     void setProcessing(bool p);
-    Vertex<T>* getPrevious() const;
-    void setPrevious(Vertex<T> *prev);
+    vector<pair<Vertex<T>*, Edge<T>>> getPrevious() const;
+    void clearPrevious();
+    void addPrevious(pair<Vertex<T>*, Edge<T>>);
     int getSteps() const;
     void setSteps(int s);
 
@@ -180,13 +181,18 @@ int Vertex<T>::getSteps() const {
 }
 
 template<class T>
-void Vertex<T>::setPrevious(Vertex<T> *prev) {
-    previous = prev;
+void Vertex<T>::addPrevious(pair<Vertex<T>*, Edge<T>> prev) {
+    previous.push_back(prev);
 }
 
 template<class T>
-Vertex<T> *Vertex<T>::getPrevious() const {
+vector<pair<Vertex<T>*, Edge<T>>> Vertex<T>::getPrevious() const {
     return previous;
+}
+
+template<class T>
+void Vertex<T>::clearPrevious() {
+    previous.clear();
 }
 
 /*
