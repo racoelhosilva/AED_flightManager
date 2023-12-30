@@ -82,81 +82,95 @@ struct hash<std::pair<T1, T2>> {
         return hash1 ^ hash2;
     }
 };
+
 class Manager {
-    private:
-        Graph<Airport> flightNet;
-        unordered_set<Airline, AirlineHash, AirlineHash> airlines;
-        unordered_set<Airport, AirportHash, AirportHash> airports;
-        unordered_set<std::string> cities;
-        unordered_set<std::string> countries;
+private:
+    Graph<Airport> flightNet;
+    unordered_set<Airline, AirlineHash, AirlineHash> airlines;
+    unordered_set<Airport, AirportHash, AirportHash> airports;
+    unordered_set<std::string> cities;
+    unordered_set<std::string> countries;
 
-        unordered_map<string, string> airportNameToCode;
-        unordered_map<string, Vertex<Airport> *> airportCodeToVertex;
-        unordered_map<string, int> countryToAirportCount;
-        unordered_map<string, int> countryToAirlineCount;
-        unordered_map<pair<string, string>, int> countryCityToAirportCount;
+    unordered_map<string, string> airportNameToCode;
+    unordered_map<string, Vertex<Airport> *> airportCodeToVertex;
+    unordered_map<string, int> countryToAirportCount;
+    unordered_map<string, int> countryToAirlineCount;
+    unordered_map<pair<string, string>, int> countryCityToAirportCount;
 
-    public:
-        bool extractAirports(std::string fname);
-        bool extractAirlines(std::string fname);
-        bool extractFlights(std::string fname);
-        unordered_set<Airport, AirportHash, AirportHash>  getAirports() const {return airports;}
-        unordered_set<Airline, AirlineHash, AirlineHash> getAirlines() const {return airlines;}
-        Graph<Airport> getFlightNet() const {return flightNet;}
+public:
+    bool extractAirports(std::string fname);
+    bool extractAirlines(std::string fname);
+    bool extractFlights(std::string fname);
+    unordered_set<Airport, AirportHash, AirportHash>  getAirports() const {return airports;}
+    unordered_set<Airline, AirlineHash, AirlineHash> getAirlines() const {return airlines;}
+    Graph<Airport> getFlightNet() const {return flightNet;}
 
-        bool validateAirline(const std::string &airline);
-        bool validateAirport(const std::string &code);
-        bool validateAirportName(const std::string &name);
-        bool validateCountry(const std::string &country);
-        bool validateCity(const string &city);
+    bool validateAirline(const std::string &airline);
+    bool validateAirport(const std::string &code);
+    bool validateAirportName(const std::string &name);
+    bool validateCountry(const std::string &country);
+    bool validateCity(const string &city);
 
-        void listAllAirlines();
-        void numberAirlines();
-        void listAirlinesAirport(string airport);
-        void listAirlinesCountry(string country);
-        void airlineInfo(string airline);
+    void listAllAirlines();
+    void numberAirlines();
+    void listAirlinesAirport(string airport);
+    void listAirlinesCountry(string country);
+    void airlineInfo(string airline);
 
-        void listAllAirports();
-        void numberAirports();
-        void listAirportsCountryCity(string country, string city = "");
-        void listAirportsMostAirlines(int n);
-        void listAirportsMostFlights(int n);
-        void airportInfo(string airport);
-        void listAirportFlights(string airport);
-        void reachableAirports(string airport, int n=1);
-        void reachableCities(string airport, int n=1);
-        void reachableCountries(string airport, int n=1);
+    void listAllAirports();
+    void numberAirports();
+    void listAirportsCountryCity(string country, string city = "");
+    void listAirportsMostAirlines(int n);
+    void listAirportsMostFlights(int n);
+    void airportInfo(string airport);
+    void listAirportFlights(string airport);
+    void reachableAirports(string airport, int n=1);
+    void reachableCities(string airport, int n=1);
+    void reachableCountries(string airport, int n=1);
 
-        void listAllFlights();
-        void numberFlights();
-        void listFlightsAirline(string airline);
-        void numberFlightsAirline(string airline);
-        void listArrivalsCountryCity(string country, string city = "");
-        void numberArrivalsCountryCity(string country, string city = "");
-        void listDeparturesCountryCity(string country, string city = "");
-        void numberDeparturesCountryCity(string country, string city = "");
+    void listAllFlights();
+    void numberFlights();
+    void listFlightsAirline(string airline);
+    void numberFlightsAirline(string airline);
+    void listArrivalsCountryCity(string country, string city = "");
+    void numberArrivalsCountryCity(string country, string city = "");
+    void listDeparturesCountryCity(string country, string city = "");
+    void numberDeparturesCountryCity(string country, string city = "");
 
-        void listCountriesMostAirlines(int n);
-        void listCountriesMostAirports(int n);
-        void listCitiesMostAirports(int n);
+    void listCountriesMostAirlines(int n);
+    void listCountriesMostAirports(int n);
+    void listCitiesMostAirports(int n);
 
-        void articulationPoints();
-        void diameter();
+    void articulationPoints();
+    void diameter();
 
-        std::string getAirportCode(const std::string &name);
-        vector<string> getAirportsCountryCity(string country, string city);
-        vector<string> getAirportsCoordinates(pair<double, double> coords);
-        void bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string> *airportFlters, vector<string> *airlineFilters);
+    std::string getAirportCode(const std::string &name);
+    vector<string> getAirportsCountryCity(string country, string city);
+    vector<string> getAirportsCoordinates(pair<double, double> coords);
+    void bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string> *airportFlters, vector<string> *airlineFilters);
 
-        void printCount(int number, string text);
-        void printListHeader(string text);
-        void printListValue(string text);
-        void printAirlineHeader();
-        void printAirline(const Airline &airline);
-        void printAirlineFooter();
-        void printAirportHeader();
-        void printAirport(const Airport &airport);
-        void printAirportFooter();
+private:
+    void printCount(int number, string text);
+    void printListHeader(string text);
+    void printListValue(string text);
+    void printOrderedValue(int pos, int count, string text);
+    void printOrderedValueAirport(int pos, int count, string text1, string text2);
+    void printOrderedValueCity(int pos, int count, string text1, string text2);
+    void printAirlineHeader();
+    void printAirline(const Airline &airline);
+    void printAirlineFooter();
+    void printAirportHeader();
+    void printAirport(const Airport &airport);
+    void printAirportFooter();
+    void printDepartureHeader();
+    void printDeparture(string source, const Airport &dest, string airline);
+    void printDepartureFooter();
+    void printArrivalHeader();
+    void printArrival(const Airport &source, string dest, string airline);
+    void printArrivalFooter();
+    void printFlightHeader();
+    void printFlight(const Airport &source, const Airport &dest, string airline);
+    void printFlightFooter();
 };
 
 

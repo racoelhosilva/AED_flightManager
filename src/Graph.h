@@ -371,13 +371,6 @@ vector<T> Graph<T>::articulationPoints() {
         }
     }
 
-    // (Optional) printing the "indegree"/number of tree edges in the dfs tree
-    /*for (auto v : g->getVertexSet()){
-        cout << v->getInfo() << " : " << v->getIndegree() << "\n";
-    }
-    cout << "\n";
-    */
-
     if (this->getVertexSet().front()->getAuxiliar() > 2){
         res.push_back(this->getVertexSet().front()->getInfo());
     }
