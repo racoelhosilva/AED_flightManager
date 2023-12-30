@@ -31,8 +31,7 @@ class Vertex {
 	bool visited;          // auxiliary field
     bool processing;       // auxiliary field
 
-    int steps;             // auxiliary field
-    vector<pair<Vertex<T>*, Edge<T>>> previous;    // auxiliary field
+    vector<pair<string,string>> path;    // auxiliary field
 
     int lowest = 0;
     int visitIndex = 0;
@@ -55,11 +54,9 @@ public:
     int getAuxiliar() const;
     void setAuxiliar(int aux);
     vector<Edge<T> > &getAdj();
-    vector<pair<Vertex<T>*, Edge<T>>> getPrevious() const;
-    void clearPrevious();
-    void addPrevious(pair<Vertex<T>*, Edge<T>>);
-    int getSteps() const;
-    void setSteps(int s);
+    vector<pair<string,string>> getPath() const;
+    void clearPath();
+    void addPath(pair<string, string>);
 
     const vector<Edge<T> > &getAdj() const;
     void setAdj(const vector<Edge<T> > &adj);
@@ -234,28 +231,18 @@ void Vertex<T>::setAdj(const vector<Edge<T> > &adj) {
 }
 
 template<class T>
-void Vertex<T>::setSteps(int s) {
-    steps = s;
+void Vertex<T>::addPath(pair<string, string> prev) {
+    path.push_back(prev);
 }
 
 template<class T>
-int Vertex<T>::getSteps() const {
-    return steps;
+vector<pair<string, string>> Vertex<T>::getPath() const {
+    return path;
 }
 
 template<class T>
-void Vertex<T>::addPrevious(pair<Vertex<T>*, Edge<T>> prev) {
-    previous.push_back(prev);
-}
-
-template<class T>
-vector<pair<Vertex<T>*, Edge<T>>> Vertex<T>::getPrevious() const {
-    return previous;
-}
-
-template<class T>
-void Vertex<T>::clearPrevious() {
-    previous.clear();
+void Vertex<T>::clearPath() {
+    path.clear();
 }
 
 /*

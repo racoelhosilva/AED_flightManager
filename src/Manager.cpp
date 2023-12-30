@@ -532,7 +532,8 @@ vector<string> Manager::getAirportsCoordinates(pair<double, double> coords) {
     }
     return res;
 }
-void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions) {
+/*
+void Manager::bestFlightOptionDEP(vector<string> *sources, vector<string> *destinations, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions) {
 
     // Removing values from the source that are restricted
     auto It = sources->begin();
@@ -606,9 +607,44 @@ void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinat
     cout << endl;
 }
 
-void Manager::minStopsBetweenAirports(const Airport &source, const Airport &destination, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions) {
-    vector<pair<string, string>> res;
+void Manager::auxBFS(const Airport &source, const Airport &destination, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions) {
+    // RESETTING EVERYTHING
+    for (Vertex<Airport>* airport : flightNet.getVertexSet()) {
+        airport->setVisited(false);
+        airport->clearPrevious();
+        airport->setSteps(INT_MAX);
+    }
+    queue<Vertex<Airport> *> remaining;
+    Vertex<Airport> *src = airportCodeToVertex[source.getCode()];
+    src->setVisited(true);
+    src->setSteps(0);
+    remaining.push(src);
 
+    while (!remaining.empty()){
+        Vertex<Airport> *current = remaining.front();
+        remaining.pop();
+
+        for (const Edge<Airport> &e : current->getAdj()){
+            Vertex<Airport> *next = e.getDest();
+            bool isValidAirlineP = !airlinePreferences->empty() && find(airlinePreferences->begin(), airlinePreferences->end(), e.getInfo()) != airlinePreferences->end();
+            bool isValidAirlineR = find(airlineRestrictions->begin(), airlineRestrictions->end(), e.getInfo()) != airlineRestrictions->end();
+            bool isValidAirport = find(airportRestrictions->begin(), airportRestrictions->end(), next->getInfo().getCode()) != airportRestrictions->end();
+
+            if (isValidAirlineP && isValidAirlineR && isValidAirport && !next->isVisited()){
+                remaining.push(next);
+                next->setVisited(true);
+                next->setSteps(current->getSteps()+1);
+                next->addPrevious({current, e});
+            }
+
+            if (next == airportCodeToVertex[destination.getCode()]){
+                return;
+            }
+        }
+    }
+}
+
+void Manager::minStopsBetweenAirports(const Airport &source, const Airport &destination, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions) {
     for (Vertex<Airport>* airport : flightNet.getVertexSet()) {
         airport->setVisited(false);
         airport->clearPrevious();
@@ -656,6 +692,123 @@ void Manager::minStopsBFS(Vertex<Airport>* source, Vertex<Airport>* dest, vector
             find(airlineRestrictions->begin(), airlineRestrictions->end(), flight.getInfo()) == airlineRestrictions->end())
             minStopsBFS(flight.getDest(), dest, airlinePreferences, airlineRestrictions, airportRestrictions);
     }
+}*/
+
+void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions){
+    // Removing values from the source that are restricted
+    auto It = sources->begin();
+    while (It != sources->end()) {
+        if (find(airportRestrictions->begin(), airportRestrictions->end(), *It) != airportRestrictions->end() || find(airportRestrictions->begin(), airportRestrictions->end(), airportNameToCode[*It]) != airportRestrictions->end())
+            It = sources->erase(It);
+        else {
+            It++;
+        }
+    }
+    // Removing values from the destination that are restricted
+    It = destinations->begin();
+    while (It != destinations->end()) {
+        if (find(airportRestrictions->begin(), airportRestrictions->end(), *It) != airportRestrictions->end() || find(airportRestrictions->begin(), airportRestrictions->end(), airportNameToCode[*It]) != airportRestrictions->end())
+            It = destinations->erase(It);
+        else {
+            It++;
+        }
+    }
+
+    // Calculating the minimum distance
+    int minDist = INT_MAX;
+    for (string& src : *sources){
+        for (string& dest : *destinations){
+            minDist = min(minDistanceBFS(src, dest, airlinePreferences, airlineRestrictions, airlinePreferences), minDist);
+        }
+    }
+    cout << minDist << '\n';
+
+    for (const auto &v : flightNet.getVertexSet()){
+        v->setVisited(false);
+    }
+
+    for (string& src : *sources){
+        for (string& dest : *destinations){
+            this->currentPath.clear();
+            findPathsDistance(airportCodeToVertex[src], dest, airlinePreferences, airlineRestrictions, airlinePreferences, minDist, "");
+        }
+    }
+}
+
+void Manager::findPathsDistance(Vertex<Airport> *current, string &dest, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions, int depth, string airline){
+    if (depth < 0){
+        return;
+    }
+
+    current->setVisited(true);
+    this->currentPath.push_back(airline);
+    this->currentPath.push_back(current->getInfo().getCode());
+
+    if (current->getInfo().getCode() == dest){
+        printCurrentPath();
+    }
+
+    for (const auto& e : current->getAdj()){
+
+        bool isValidAirlinePref = airlinePreferences->empty() || find(airlinePreferences->begin(), airlinePreferences->end(), e.getInfo()) != airlinePreferences->end();
+        bool isValidAirlineRest = find(airlineRestrictions->begin(), airlineRestrictions->end(), e.getInfo()) == airlineRestrictions->end();
+        bool isValidAirport = find(airportRestrictions->begin(), airportRestrictions->end(), e.getDest()->getInfo().getCode()) == airportRestrictions->end();
+
+
+        if (!e.getDest()->isVisited() && isValidAirlineRest && isValidAirlinePref && isValidAirport){
+            findPathsDistance(e.getDest(), dest, airlinePreferences, airlineRestrictions, airportRestrictions, depth-1, e.getInfo());
+        }
+    }
+
+    current->setVisited(false);
+    currentPath.pop_back();
+    currentPath.pop_back();
+}
+
+void Manager::printCurrentPath(){
+    for (auto x : this->currentPath){
+        cout << x << '\t';
+    }
+    cout << '\n';
+}
+
+// Calculates the minimum distance needed according to the restrictions
+int Manager::minDistanceBFS(string &src, string &dest, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions) {
+    for (Vertex<Airport> *w : flightNet.getVertexSet()){
+        w->setVisited(false);
+        w->setVisitIndex(-1);
+        w->clearPath();
+    }
+
+    queue<Vertex<Airport> *> remaining;
+    Vertex<Airport> *source = airportCodeToVertex[src];
+    source->setVisited(true);
+    source->setVisitIndex(0);
+    remaining.push(source);
+
+    while (!remaining.empty()){
+        Vertex<Airport> *current = remaining.front();
+        remaining.pop();
+
+        for (const Edge<Airport> &e : current->getAdj()){
+            Vertex<Airport> *next = e.getDest();
+
+            bool isValidAirlinePref = airlinePreferences->empty() || find(airlinePreferences->begin(), airlinePreferences->end(), e.getInfo()) != airlinePreferences->end();
+            bool isValidAirlineRest = find(airlineRestrictions->begin(), airlineRestrictions->end(), e.getInfo()) == airlineRestrictions->end();
+            bool isValidAirport = find(airportRestrictions->begin(), airportRestrictions->end(), next->getInfo().getCode()) == airportRestrictions->end();
+
+            if (!next->isVisited() && isValidAirport && isValidAirlinePref && isValidAirlineRest){
+                remaining.push(next);
+                next->setVisited(true);
+                next->setVisitIndex(current->getVisitIndex() + 1);
+
+                if (next->getInfo().getCode() == dest){
+                    return next->getVisitIndex();
+                }
+            }
+        }
+    }
+    return INT_MAX;
 }
 
 /************************************/
