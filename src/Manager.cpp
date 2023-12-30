@@ -115,7 +115,7 @@ void Manager::numberAirlines() {
 void Manager::listAirlinesAirport(string airport) {
     Airport airport1 = *airports.find(Airport(airport));
     auto v = flightNet.findVertex(airport1);
-    set<Airline> availableAirlines;
+    unordered_set<Airline, AirlineHash> availableAirlines;
     for (auto e : v->getAdj()) {
         availableAirlines.insert(e.getWeight());
     }
@@ -358,7 +358,40 @@ void Manager::listCountriesMostAirports(int n){}
 void Manager::listCitiesMostAirports(int n){}
 
 void Manager::articulationPoints(){}
-void Manager::diameter(){}
+void Manager::diameter(){
+    cout << "Calculating diameter (this might take a while)" << endl;
+    int diameter = 0;
+    for (auto v : flightNet.getVertexSet()) {
+        for (auto w : flightNet.getVertexSet()) {
+            w->setVisited(false);
+            w->setProcessing(false);
+        }
+        queue<Vertex<Airport>*> q = {};
+        queue<Vertex<Airport>*> next = {};
+        q.push(v);
+        int distance = 0;
+        v->setVisited(true);
+        do {
+            while (!q.empty()) {
+                auto u = q.front();
+                q.pop();
+                u->setVisited(true);
+                u->setProcessing(false);
+                for (auto e : u->getAdj()) {
+                    if (e.getDest()->isVisited() == false && e.getDest()->isProcessing() == false) {
+                        e.getDest()->setProcessing(true);
+                        next.push(e.getDest());
+                    }
+                }
+            }
+            if (!next.empty()) distance++;
+            q = next;
+            next = {};
+        } while (!q.empty());
+        if (distance > diameter) diameter = distance;
+    }
+    cout << diameter << endl;
+}
 
 std::string Manager::getAirportCode(const std::string &name) {
     return airportNameToCode[name];
