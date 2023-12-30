@@ -494,7 +494,9 @@ void Manager::articulationPoints(){
     printAirportFooter();
     printCount(s.size(), "Number of Articulation Points:");
 }
-void Manager::diameter(){}
+void Manager::diameter(){
+    printCount(flightNet.diameter(), "Diameter of the graph:");
+}
 
 std::string Manager::getAirportCode(const std::string &name) {
     return airportNameToCode[name];

@@ -51,7 +51,7 @@ public:
     void setVisitIndex(int visIdx);
     int getAuxiliar() const;
     void setAuxiliar(int aux);
-    const vector<Edge<T> > &getAdj() const;
+    vector<Edge<T> > &getAdj();
     void setAdj(const vector<Edge<T> > &adj);
     friend class Graph<T>;
 };
@@ -89,6 +89,9 @@ public:
 	vector<T> dfs() const;
 	vector<T> dfs(const T & source) const;
 	vector<T> bfs(const T &source) const;
+
+    int diameter();
+    int bfs_diameter(Vertex<T> *v);
 
     vector<T> articulationPoints();
     void dfs_art(Vertex<T> *v, stack<T> &s, vector<T> &l, int &i);
@@ -211,7 +214,7 @@ void Vertex<T>::setVisited(bool v) {
 }
 
 template<class T>
-const vector<Edge<T> > &Vertex<T>::getAdj() const {
+vector<Edge<T> > &Vertex<T>::getAdj() {
     return adj;
 }
 
@@ -363,6 +366,54 @@ vector<T> Graph<T>::bfs(const T & source) const {
 		}
 	}
 	return res;
+}
+
+// DIAMETER BFS
+template <class T>
+int Graph<T>::diameter(){
+    int max = 0;
+    for (Vertex<T> *v : this->getVertexSet()){
+        if (!v->isVisited()){
+            v->setVisited(true);
+            int result = bfs_diameter(v);
+            if (result > max){
+                max = result;
+            }
+        }
+    }
+    return max;
+}
+
+template <class T>
+int Graph<T>::bfs_diameter(Vertex<T> *v) {
+    for (Vertex<T> *w : vertexSet){
+        w->setVisited(false);
+        w->setVisitIndex(-1);
+    }
+    int diameter = 0;
+    queue<Vertex<T> *> remaining;
+    v->setVisited(true);
+    v->setVisitIndex(0);
+    remaining.push(v);
+
+    while (!remaining.empty()){
+        Vertex<T> *current = remaining.front();
+        remaining.pop();
+
+        for (const Edge<T> &e : current->getAdj()){
+            Vertex<T> *next = e.getDest();
+            if (!next->isVisited()){
+                remaining.push(next);
+                next->setVisited(true);
+                next->setVisitIndex(current->getVisitIndex()+1);
+                if (next->getVisitIndex() > diameter){
+                    diameter = next->getVisitIndex();
+                }
+            }
+        }
+
+    }
+    return diameter;
 }
 
 // ARTICULATION POINTS
