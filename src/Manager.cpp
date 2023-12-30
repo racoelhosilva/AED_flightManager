@@ -582,7 +582,7 @@ void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinat
         for (auto flight : destination->getPrevious()) {
             if (flight.first->getInfo().getCode() != trip.first)
                 processing.push(flight.first);
-            cout << flight.first->getInfo().getCode() << " / " << flight.second.getWeight().getCode() << " | ";
+            cout << flight.first->getInfo().getCode() << " / " << flight.second.getInfo() << " | ";
         }
         cout << endl;
         while (!processing.empty()) {
@@ -591,7 +591,7 @@ void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinat
             for (auto flight : front->getPrevious()) {
                 if (flight.first->getInfo().getCode() != trip.first)
                     processing.push(flight.first);
-                cout << flight.first->getInfo().getCode() << " / " << flight.second.getWeight().getCode() << " | ";
+                cout << flight.first->getInfo().getCode() << " / " << flight.second.getInfo() << " | ";
             }
             cout << endl;
             processing.pop();
@@ -620,7 +620,7 @@ void Manager::minStopsBFS(Vertex<Airport>* source, Vertex<Airport>* dest, vector
     source->setVisited(true);
     bool flag = false;
     for (const Edge<Airport> &flight : source->getAdj()) {
-        if (find(airlineRestrictions->begin(), airlineRestrictions->end(), flight.getWeight().getCode()) == airlineRestrictions->end() && !flight.getDest()->isVisited()
+        if (find(airlineRestrictions->begin(), airlineRestrictions->end(), flight.getInfo()) == airlineRestrictions->end() && !flight.getDest()->isVisited()
         && find(airportRestrictions->begin(), airportRestrictions->end(), flight.getDest()->getInfo().getCode()) == airportRestrictions->end()) {
             if (flight.getDest()->getSteps() >= source->getSteps() + 1) {
                 flight.getDest()->setSteps(source->getSteps() + 1);
@@ -633,11 +633,11 @@ void Manager::minStopsBFS(Vertex<Airport>* source, Vertex<Airport>* dest, vector
     if (flag) return;
 
     for (const Edge<Airport> &flight : source->getAdj()) {
-        if (!flight.getDest()->isVisited() && find(airportRestrictions->begin(), airportRestrictions->end(), flight.getDest()->getInfo().getCode()) == airportRestrictions->end() && find(airlinePreferences->begin(), airlinePreferences->end(), flight.getWeight().getCode()) != airlinePreferences->end() && find(airlineRestrictions->begin(), airlineRestrictions->end(), flight.getWeight().getCode()) == airlineRestrictions->end())
+        if (!flight.getDest()->isVisited() && find(airportRestrictions->begin(), airportRestrictions->end(), flight.getDest()->getInfo().getCode()) == airportRestrictions->end() && find(airlinePreferences->begin(), airlinePreferences->end(), flight.getInfo()) != airlinePreferences->end() && find(airlineRestrictions->begin(), airlineRestrictions->end(), flight.getInfo()) == airlineRestrictions->end())
             minStopsBFS(flight.getDest(), dest, airlinePreferences, airlineRestrictions, airportRestrictions);
     }
     for (const Edge<Airport> &flight : source->getAdj()) {
-        if (!flight.getDest()->isVisited() && find(airportRestrictions->begin(), airportRestrictions->end(), flight.getDest()->getInfo().getCode()) == airportRestrictions->end() && find(airlineRestrictions->begin(), airlineRestrictions->end(), flight.getWeight().getCode()) == airlineRestrictions->end())
+        if (!flight.getDest()->isVisited() && find(airportRestrictions->begin(), airportRestrictions->end(), flight.getDest()->getInfo().getCode()) == airportRestrictions->end() && find(airlineRestrictions->begin(), airlineRestrictions->end(), flight.getInfo()) == airlineRestrictions->end())
             minStopsBFS(flight.getDest(), dest, airlinePreferences, airlineRestrictions, airportRestrictions);
     }
 }

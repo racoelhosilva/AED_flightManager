@@ -405,13 +405,14 @@ vector<T> Graph<T>::bfs(const T & source) const {
 template <class T>
 int Graph<T>::diameter(){
     int max = 0;
+    for (Vertex<T> *w : vertexSet){
+        w->setVisited(false);
+    }
     for (Vertex<T> *v : this->getVertexSet()){
-        if (!v->isVisited()){
-            v->setVisited(true);
-            int result = bfs_diameter(v);
-            if (result > max){
-                max = result;
-            }
+        v->setVisited(true);
+        int result = bfs_diameter(v);
+        if (result > max){
+            max = result;
         }
     }
     return max;
