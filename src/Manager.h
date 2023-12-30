@@ -147,7 +147,9 @@ public:
     std::string getAirportCode(const std::string &name);
     vector<string> getAirportsCountryCity(string country, string city);
     vector<string> getAirportsCoordinates(pair<double, double> coords);
-    void bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string> *airportFlters, vector<string> *airlineFilters);
+    void bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions);
+    void minStopsBetweenAirports(const Airport &source, const Airport &destination, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions);
+    void minStopsBFS(Vertex<Airport>* source, Vertex<Airport>* dest, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions);
 
 private:
     void printCount(int number, string text);
@@ -171,6 +173,8 @@ private:
     void printFlightHeader();
     void printFlight(const Airport &source, const Airport &dest, string airline);
     void printFlightFooter();
+
+
 };
 
 

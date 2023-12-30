@@ -663,8 +663,9 @@ void Interface::flightFilterMenu() {
     std::vector<std::string> options =
             {"Back",
              "Process Operation",
-             "Airline Filters",
-             "Airport Filters",
+             "Add Airline Preference",
+             "Add Airline Restriction",
+             "Add Airport Restriction",
              "Clear Filters",
              "Choose the Filters:"};
     printOptions(options);
@@ -674,20 +675,24 @@ void Interface::flightFilterMenu() {
     printSelected(options[choice]);
     switch (choice) {
         case 1:
-            manager.bestFlightOption(&sourceCodes, &destinationCodes, &airportFilters, &airlineFilters);
+            manager.bestFlightOption(&sourceCodes, &destinationCodes, &airlinePreferences, &airlineRestrictions, &airportRestrictions);
             outputWait();
             clear();
             header();
             break;
         case 2:
-            airlineFilters.push_back(readAirline());
+            airlinePreferences.push_back(readAirline());
             break;
         case 3:
-            airportFilters.push_back(readAirportCode());
+            airlineRestrictions.push_back(readAirline());
             break;
         case 4:
-            airportFilters.clear();
-            airlineFilters.clear();
+            airportRestrictions.push_back(readAirportCode());
+            break;
+        case 5:
+            airlinePreferences.clear();
+            airlineRestrictions.clear();
+            airportRestrictions.clear();
             break;
         case 0:
             clear();
