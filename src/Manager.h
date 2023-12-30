@@ -12,6 +12,9 @@
 #include <unordered_set>
 #include <unordered_map>
 
+/**
+ * @brief Contains hash function and equality operator for the Airline hash table.
+ */
 struct AirlineHash {
     int operator() (const Airline &airline) const {
         return std::hash<std::string>()(airline.getCode());
@@ -22,6 +25,9 @@ struct AirlineHash {
     }
 };
 
+/**
+ * @brief Contains hash function and equality operator for the Airport hash table.
+ */
 struct AirportHash {
     int operator() (const Airport &airport) const {
         return std::hash<std::string>()(airport.getCode());
