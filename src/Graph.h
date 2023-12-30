@@ -57,6 +57,7 @@ public:
     vector<pair<string,string>> getPath() const;
     void clearPath();
     void addPath(pair<string, string>);
+    void setPath(vector<pair<string,string>>);
 
     const vector<Edge<T> > &getAdj() const;
     void setAdj(const vector<Edge<T> > &adj);
@@ -233,6 +234,11 @@ void Vertex<T>::setAdj(const vector<Edge<T> > &adj) {
 template<class T>
 void Vertex<T>::addPath(pair<string, string> prev) {
     path.push_back(prev);
+}
+
+template <class T>
+void Vertex<T>::setPath(vector<pair<string,string>> path_){
+    Vertex<T>::path = path_;
 }
 
 template<class T>

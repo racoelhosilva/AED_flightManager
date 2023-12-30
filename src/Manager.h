@@ -147,17 +147,13 @@ public:
     std::string getAirportCode(const std::string &name);
     vector<string> getAirportsCountryCity(string country, string city);
     vector<string> getAirportsCoordinates(pair<double, double> coords);
-    //void bestFlightOptionDEP(vector<string> *sources, vector<string> *destinations, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions);
-    //void minStopsBetweenAirports(const Airport &source, const Airport &destination, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions);
-    //void minStopsBFS(Vertex<Airport>* source, Vertex<Airport>* dest, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions);
-    //void auxBFS(const Airport &source, const Airport &destination, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions);
+
     void bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions);
     int minDistanceBFS(string &src, string &dest, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions);
-    void findPathsDistance(Vertex<Airport> *src, string &dest, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions, int depth, string airline);
-    void printCurrentPath();
+    void printPath(Vertex<Airport> *v);
 
-    vector<string> currentPath;
-    vector<vector<string>> allPaths;
+    vector<vector<pair<string,string>>> allPaths;
+
 private:
     void printCount(int number, string text);
     void printListHeader(string text);
@@ -181,6 +177,7 @@ private:
     void printFlight(const Airport &source, const Airport &dest, string airline);
     void printFlightFooter();
 
+    void printAllPaths();
 
 };
 
