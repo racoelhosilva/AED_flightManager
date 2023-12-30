@@ -498,7 +498,16 @@ void Manager::articulationPoints(){
     printCount(s.size(), "Number of Articulation Points:");
 }
 void Manager::diameter(){
-    printCount(flightNet.diameter(), "Diameter of the graph:");
+    int diameter;
+    vector<pair<Vertex<Airport>*, vector<Vertex<Airport> *>>> result = flightNet.diameter(diameter);
+    for (auto x : result){
+        cout << x.first->getInfo().getCode() << " :      ";
+        for (auto y : x.second){
+            cout << y->getInfo().getCode() << "  ";
+        }
+        cout << '\n';
+    }
+    printCount(diameter, "Diameter of the graph:");
 }
 
 std::string Manager::getAirportCode(const std::string &name) {
