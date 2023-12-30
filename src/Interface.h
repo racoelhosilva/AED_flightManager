@@ -29,7 +29,7 @@ public:
     std::string readAirline();
     std::string readAirportCode();
     std::string readAirportName();
-    std::string readCity();
+    std::string readCity(string country);
     std::string readCityOptional();
     std::string readCountry();
     pair<double, double> readCoordinates();

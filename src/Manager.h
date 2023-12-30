@@ -109,7 +109,7 @@ public:
     bool validateAirport(const std::string &code);
     bool validateAirportName(const std::string &name);
     bool validateCountry(const std::string &country);
-    bool validateCity(const string &city);
+    bool validateCity(const string &city, const string &country);
 
     void listAllAirlines();
     void numberAirlines();

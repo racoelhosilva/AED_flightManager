@@ -95,8 +95,8 @@ bool Manager::validateAirportName(const std::string &name) {
 bool Manager::validateCountry(const std::string &country) {
     return countries.find(country) != countries.end();
 }
-bool Manager::validateCity(const std::string &city) {
-    return cities.find(city) != cities.end();
+bool Manager::validateCity(const std::string &city, const std::string &country) {
+    return countryCityToAirportCount.find({country, city}) != countryCityToAirportCount.end();
 }
 
 void Manager::listAllAirlines() {

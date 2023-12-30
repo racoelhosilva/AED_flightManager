@@ -118,13 +118,13 @@ std::string Interface::readAirportName() {
     return choice;
 }
 
-std::string Interface::readCity() {
+std::string Interface::readCity(string country) {
     string choice;
     do {
         std::cout << FAINT << "  City" << RESET << ": ";
         cin.clear();
         getline(cin, choice, '\n');
-    } while (!manager.validateCity(choice));
+    } while (!manager.validateCity(choice, country));
     return choice;
 }
 
@@ -559,7 +559,7 @@ void Interface::locationStatisticsMenu() {
         }
         case 5: {
             string country = readCountry();
-            string city = readCity();
+            string city = readCity(country);
             manager.listAirportsCountryCity(country, city);
             outputWait();
             break;
@@ -601,9 +601,12 @@ void Interface::flightSourceMenu() {
         case 2:
             sourceCodes.push_back(manager.getAirportCode(readAirportName()));
             break;
-        case 3:
-            sourceCodes = manager.getAirportsCountryCity(readCountry(), readCity());
+        case 3: {
+            string country = readCountry();
+            string city = readCity(country);
+            sourceCodes = manager.getAirportsCountryCity(country, city);
             break;
+        }
         case 4:
             sourceCodes = manager.getAirportsCoordinates(readCoordinates());
             break;
@@ -637,9 +640,12 @@ void Interface::flightDestinationMenu() {
         case 2:
             destinationCodes.push_back(manager.getAirportCode(readAirportName()));
             break;
-        case 3:
-            destinationCodes = manager.getAirportsCountryCity(readCountry(), readCity());
+        case 3:{
+            string country = readCountry();
+            string city = readCity(country);
+            destinationCodes = manager.getAirportsCountryCity(country, city);
             break;
+        }
         case 4:
             destinationCodes = manager.getAirportsCoordinates(readCoordinates());
             break;
