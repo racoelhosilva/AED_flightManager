@@ -1,4 +1,3 @@
-#include <set>
 #include "Manager.h"
 
 
@@ -113,7 +112,7 @@ void Manager::numberAirlines() {
 void Manager::listAirlinesAirport(string airport) {
     Airport airport1 = *airports.find(Airport(airport));
     auto v = flightNet.findVertex(airport1);
-    set<Airline> availableAirlines;
+    unordered_set<Airline, AirlineHash> availableAirlines;
     for (auto e : v->getAdj()) {
         availableAirlines.insert(e.getWeight());
     }
