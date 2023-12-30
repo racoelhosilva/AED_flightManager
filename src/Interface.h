@@ -25,6 +25,7 @@ public:
     bool validOption(unsigned long size, const std::string &choice);
     int readOption(int i);
     void printSelected(const string &s);
+    void printFilters();
 
     std::string readAirline();
     std::string readAirportCode();

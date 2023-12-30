@@ -72,6 +72,22 @@ void Interface::printSelected(const std::string &s) {
     std::cout << "     " <<  BOLD << "> " << YELLOW << s << RESET << " selected\n";
 }
 
+void Interface::printFilters(){
+    std::cout << "Airline Preferences: ";
+    for (auto x : airlinePreferences){
+        cout << x << " _ ";
+    }
+    std::cout << "\nAirline Restrictions: ";
+    for (auto x : airlineRestrictions){
+        cout << x << " _ ";
+    }
+    std::cout << "\nAirport Restrictions: ";
+    for (auto x : airportRestrictions){
+        cout << x << " _ ";
+    }
+    std::cout << '\n';
+}
+
 int Interface::readOption(int max) {
     string choice;
     do {
@@ -669,6 +685,8 @@ void Interface::flightFilterMenu() {
              "Clear Filters",
              "Choose the Filters:"};
     printOptions(options);
+
+    printFilters();
 
     int choice = readOption(int(options.size()));
 

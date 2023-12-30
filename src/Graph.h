@@ -30,6 +30,7 @@ class Vertex {
 	vector<Edge<T> > adj;  // list of outgoing edges
 	bool visited;          // auxiliary field
     bool processing;       // auxiliary field
+
     int steps;             // auxiliary field
     vector<pair<Vertex<T>*, Edge<T>>> previous;    // auxiliary field
 
@@ -409,10 +410,12 @@ int Graph<T>::diameter(){
         w->setVisited(false);
     }
     for (Vertex<T> *v : this->getVertexSet()){
-        v->setVisited(true);
-        int result = bfs_diameter(v);
-        if (result > max){
-            max = result;
+        if (!v->isVisited()){
+            v->setVisited(true);
+            int result = bfs_diameter(v);
+            if (result > max){
+                max = result;
+            }
         }
     }
     return max;
