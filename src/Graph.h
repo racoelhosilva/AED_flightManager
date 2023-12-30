@@ -17,6 +17,7 @@ template <class T> class Edge;
 template <class T> class Graph;
 template <class T> class Vertex;
 
+// Auxiliar function declaration (used in the articulation points algorithm)
 template <typename T>
 bool stackSearch(stack<T> s, T i);
 
