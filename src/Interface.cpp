@@ -162,7 +162,7 @@ std::string Interface::readCountry() {
     return choice;
 }
 
-pair<double, double> Interface::readCoordinates() {
+Coordinate Interface::readCoordinates() {
     double latitude;
     do {
         std::cout << FAINT << "  Latitude:" << RESET << ": ";

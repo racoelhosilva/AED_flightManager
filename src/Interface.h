@@ -33,7 +33,7 @@ public:
     std::string readCity(string country);
     std::string readCityOptional();
     std::string readCountry();
-    pair<double, double> readCoordinates();
+    Coordinate readCoordinates();
     int readNumber();
 
     void mainMenu();

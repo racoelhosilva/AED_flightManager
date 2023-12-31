@@ -25,7 +25,7 @@ bool Manager::extractAirports(std::string fname) {
         lat = stod(lats);
         lgt = stod(lgts);
 
-        Airport airport = Airport(code, name, city, country, lat, lgt);
+        Airport airport = Airport(code, name, city, country, Coordinate(lat, lgt));
         airports.insert(airport);
         Vertex<Airport> *vx = flightNet.addVertex(airport);
         airportCodeToVertex[code] = vx;
@@ -523,13 +523,12 @@ vector<string> Manager::getAirportsCountryCity(string country, string city) {
     return res;
 }
 
-vector<string> Manager::getAirportsCoordinates(pair<double, double> coords) {
+vector<string> Manager::getAirportsCoordinates(Coordinate coords) {
     vector<string> res;
-    Coordinate location(coords.first, coords.second);
     double distance = INT_MAX;
     for (const Airport &airport : airports) {
         Coordinate airport_coord(airport.getLatitiude(), airport.getLongitude());
-        double distance_to_airport = location.distance(airport_coord);
+        double distance_to_airport = coords.distance(airport_coord);
         if (distance_to_airport < distance) {
             res.clear();
             res.push_back(airport.getCode());
