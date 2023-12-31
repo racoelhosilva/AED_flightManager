@@ -163,6 +163,7 @@ public:
 
 private:
     void printCount(int number, string text);
+    void printDouble(double number, string text);
     void printListHeader(string text);
     void printListValue(string text);
     void printOrderedValue(int pos, int count, string text);
@@ -175,13 +176,13 @@ private:
     void printAirport(const Airport &airport);
     void printAirportFooter();
     void printDepartureHeader();
-    void printDeparture(string source, const Airport &dest, string airline);
+    void printDeparture(string source, const Airport &dest, string airline, double distance);
     void printDepartureFooter();
     void printArrivalHeader();
-    void printArrival(const Airport &source, string dest, string airline);
+    void printArrival(const Airport &source, string dest, string airline, double distance);
     void printArrivalFooter();
     void printFlightHeader();
-    void printFlight(const Airport &source, const Airport &dest, string airline);
+    void printFlight(const Airport &source, const Airport &dest, string airline, double distance);
     void printFlightFooter();
 
     void printAllPaths();

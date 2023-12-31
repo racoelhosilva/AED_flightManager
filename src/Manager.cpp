@@ -217,11 +217,16 @@ void Manager::airportInfo(const string airport){
 
 void Manager::listAirportFlights(string airport) {
     printDepartureHeader();
+    double maxDist = 0;
     for (const Edge<Airport> &e : airportCodeToVertex[airport]->getAdj()){
-        printDeparture(airport, e.getDest()->getInfo(), e.getInfo());
+        printDeparture(airport, e.getDest()->getInfo(), e.getInfo(), e.getWeight());
+        if (e.getWeight() > maxDist){
+            maxDist = e.getWeight();
+        }
     }
     printDepartureFooter();
     printCount(airportCodeToVertex[airport]->getAdj().size(), "Number of Flights:");
+    printDouble(maxDist, "Longest Flight Distance [km]:");
 }
 
 void Manager::reachableAirports(string airport, int n){
@@ -326,15 +331,20 @@ void Manager::reachableCountries(string airport, int n){
 
 void Manager::listAllFlights() {
     printFlightHeader();
+    double maxDist = 0;
     int count = 0;
     for (auto v : flightNet.getVertexSet()) {
         for (auto e : v->getAdj()) {
-            printFlight(v->getInfo(), e.getDest()->getInfo(), e.getInfo());
+            printFlight(v->getInfo(), e.getDest()->getInfo(), e.getInfo(), e.getWeight());
             count++;
+            if (e.getWeight() > maxDist){
+                maxDist = e.getWeight();
+            }
         }
     }
     printFlightFooter();
     printCount(count, "Total Number of Flights:");
+    printDouble(maxDist, "Longest Flight Distance [km]:");
 }
 void Manager::numberFlights(){
     int count = 0;
@@ -347,17 +357,22 @@ void Manager::numberFlights(){
 }
 void Manager::listFlightsAirline(string airline){
     int count = 0;
+    double maxDist = 0;
     printFlightHeader();
     for (auto v : flightNet.getVertexSet()) {
         for (auto e : v->getAdj()) {
             if (e.getInfo() == airline) {
                 count++;
-                printFlight(v->getInfo(), e.getDest()->getInfo(), e.getInfo());
+                printFlight(v->getInfo(), e.getDest()->getInfo(), e.getInfo(), e.getWeight());
+                if (e.getWeight() > maxDist){
+                    maxDist = e.getWeight();
+                }
             }
         }
     }
     printFlightFooter();
     printCount(count, "Total Number of Flights:");
+    printDouble(maxDist, "Longest Flight Distance [km]:");
 }
 void Manager::numberFlightsAirline(string airline){
     int count = 0;
@@ -374,21 +389,29 @@ void Manager::listArrivalsCountryCity(string country, string city){
     auto cityIt = cities.find(city);
     if (cityIt == cities.end()) city.erase();
     int count = 0;
+    double maxDist = 0;
     printArrivalHeader();
     for (auto w : flightNet.getVertexSet()) {
         for (auto e : w->getAdj()){
             Vertex<Airport> *v = e.getDest();
             if (v->getInfo().getCountry() == country && !city.empty() && v->getInfo().getCity() == city) {
-                printArrival(w->getInfo(), v->getInfo().getCode(), e.getInfo());
+                printArrival(w->getInfo(), v->getInfo().getCode(), e.getInfo(), e.getWeight());
                 count++;
+                if (e.getWeight() > maxDist){
+                    maxDist = e.getWeight();
+                }
             } else if (v->getInfo().getCountry() == country && city.empty()) {
-                printArrival(w->getInfo(), v->getInfo().getCode(), e.getInfo());
+                printArrival(w->getInfo(), v->getInfo().getCode(), e.getInfo(), e.getWeight());
                 count++;
+                if (e.getWeight() > maxDist){
+                    maxDist = e.getWeight();
+                }
             }
         }
     }
     printArrivalFooter();
     printCount(count, "Number of Arrivals:");
+    printDouble(maxDist, "Longest Arrival Distance [km]:");
 }
 void Manager::numberArrivalsCountryCity(string country, string city){
     auto cityIt = cities.find(city);
@@ -410,22 +433,30 @@ void Manager::listDeparturesCountryCity(string country, string city){
     auto cityIt = cities.find(city);
     if (cityIt == cities.end()) city.erase();
     int count = 0;
+    double maxDist = 0;
     printDepartureHeader();
     for (auto v : flightNet.getVertexSet()) {
         if (v->getInfo().getCountry() == country && !city.empty() && v->getInfo().getCity() == city) {
             for (auto e : v->getAdj()) {
-                printDeparture(v->getInfo().getCode(), e.getDest()->getInfo(), e.getInfo());
+                printDeparture(v->getInfo().getCode(), e.getDest()->getInfo(), e.getInfo(), e.getWeight());
                 count++;
+                if (e.getWeight() > maxDist){
+                    maxDist = e.getWeight();
+                }
             }
         } else if (v->getInfo().getCountry() == country && city.empty()) {
             for (auto e : v->getAdj()) {
-                printDeparture(v->getInfo().getCode(), e.getDest()->getInfo(), e.getInfo());
+                printDeparture(v->getInfo().getCode(), e.getDest()->getInfo(), e.getInfo(), e.getWeight());
                 count++;
+                if (e.getWeight() > maxDist){
+                    maxDist = e.getWeight();
+                }
             }
         }
     }
     printDepartureFooter();
     printCount(count, "Number of Departures:");
+    printDouble(maxDist, "Longest Departure Distance [km]:");
 }
 void Manager::numberDeparturesCountryCity(std::string country, std::string city) {
     auto cityIt = cities.find(city);
@@ -772,6 +803,10 @@ void Manager::printCount(int number, std::string text) {
     cout << "\n     " << BOLD << text << " " << MAGENTA << number << RESET;
 }
 
+void Manager::printDouble(double number, std::string text) {
+    cout << "\n     " << BOLD << text << " " << MAGENTA << number << RESET;
+}
+
 void Manager::printListHeader(string text){
     cout << "\n       " << BOLD << text << RESET << '\n';
 }
@@ -843,19 +878,21 @@ void Manager::printDepartureHeader(){
          << setw(6) << " SRC " << " "
          << setw(6) << " DEST" << " "
          << setw(55) << " DESTINATION NAME" << " "
-         << setw(8) << " AIRLINE" << " " << '\n' << RESET;
+         << setw(8) << " AIRLINE" << " "
+         << setw(12) << "   DISTANCE" << " " << '\n' << RESET;
 }
 
-void Manager::printDeparture(string source, const Airport &dest, string airline){
+void Manager::printDeparture(string source, const Airport &dest, string airline, double distance){
     cout << left << "│"
          << " " << setw(5)  << source << "│"
          << " " << setw(5) << dest.getCode() << "│"
          << " " << setw(55) << dest.getName() << "│"
-         << " " << setw(6) << airline << "│" << '\n';
+         << " " << setw(6) << airline << "│"
+         << " " << right << setw(10) << distance << " │" << '\n';
 }
 
 void Manager::printDepartureFooter() {
-    cout << left << "└──────┴──────┴────────────────────────────────────────────────────────┴───────┘";
+    cout << left << "└──────┴──────┴────────────────────────────────────────────────────────┴───────┴────────────┘";
 }
 
 void Manager::printArrivalHeader(){
@@ -863,19 +900,21 @@ void Manager::printArrivalHeader(){
          << setw(6) << " SRC " << " "
          << setw(55) << " SOURCE NAME" << " "
          << setw(6) << " DEST" << " "
-         << setw(8) << " AIRLINE" << " " << '\n' << RESET;
+         << setw(8) << " AIRLINE" << " "
+         << setw(12) << "   DISTANCE" << " " << '\n' << RESET;
 }
 
-void Manager::printArrival(const Airport &source, string dest, string airline){
+void Manager::printArrival(const Airport &source, string dest, string airline, double distance){
     cout << left << "│"
          << " " << setw(5)  << source.getCode() << "│"
          << " " << setw(55) << source.getName() << "│"
          << " " << setw(5) << dest << "│"
-         << " " << setw(6) << airline << "│" << '\n';
+         << " " << setw(6) << airline << "│"
+         << " " << right << setw(10) << distance << " │" << '\n';
 }
 
 void Manager::printArrivalFooter() {
-    cout << left << "└──────┴────────────────────────────────────────────────────────┴──────┴───────┘";
+    cout << left << "└──────┴────────────────────────────────────────────────────────┴──────┴───────┴────────────┘";
 }
 
 void Manager::printFlightHeader(){
@@ -884,18 +923,20 @@ void Manager::printFlightHeader(){
          << setw(55) << " SOURCE NAME " << "  "
          << setw(6) << " DEST" << " "
          << setw(55) << " DESTINATION NAME" << " "
-         << setw(8) << " AIRLINE" << " " << '\n' << RESET;
+         << setw(8) << " AIRLINE" << " "
+         << setw(12) << "   DISTANCE" << " " << '\n' << RESET;
 }
-void Manager::printFlight(const Airport &source, const Airport &dest, string airline){
+void Manager::printFlight(const Airport &source, const Airport &dest, string airline, double distance){
     cout << left << "│"
          << " " << setw(5)  << source.getCode() << "│"
          << " " << setw(55) << source.getName() << "│"
          << " " << setw(5) << dest.getCode() << "│"
          << " " << setw(55) << dest.getName() << "│"
-         << " " << setw(6) << airline << "│" << '\n';
+         << " " << setw(6) << airline << "│"
+         << " " << right << setw(10) << distance << " │" << '\n';
 }
 void Manager::printFlightFooter(){
-    cout << left << "└──────┴────────────────────────────────────────────────────────┴──────┴────────────────────────────────────────────────────────┴───────┘";
+    cout << left << "└──────┴────────────────────────────────────────────────────────┴──────┴────────────────────────────────────────────────────────┴───────┴────────────┘";
 }
 
 void Manager::printAllPaths(){
