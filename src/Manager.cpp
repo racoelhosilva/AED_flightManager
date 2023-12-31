@@ -656,7 +656,7 @@ void Manager::bestFlightOptions(vector<string> *sources, vector<string> *destina
     int minDist = INT_MAX;
     for (string& src : *sources){
         for (string& dest : *destinations){
-            int current = minDistanceBFS2(src, dest, airlinePreferences, airlineRestrictions, airlinePreferences);
+            int current = minDistanceBFS2(src, dest, airlinePreferences, airlineRestrictions, airportRestrictions);
             if (current < minDist){
                 minDist = current;
             }
@@ -913,7 +913,7 @@ void Manager::printPaths(vector<string>* airlinePreferences, vector<string> *air
 }
 
 void Manager::printFlightAirlines(const string &currentAirport, const string &nextAirport, vector<string>* airlinePreferences, vector<string> *airlineRestrictions){
-    cout << " --- [ ";
+    cout << " [ ";
     for (const Edge<Airport> &e : airportCodeToVertex[currentAirport]->getAdj()){
         if (e.getDest()->getInfo().getCode() == nextAirport){
             bool isValidAirlinePref = airlinePreferences->empty() || find(airlinePreferences->begin(), airlinePreferences->end(), e.getInfo()) != airlinePreferences->end();
@@ -923,5 +923,5 @@ void Manager::printFlightAirlines(const string &currentAirport, const string &ne
             }
         }
     }
-    cout << "] ---> ";
+    cout << "] ";
 }
