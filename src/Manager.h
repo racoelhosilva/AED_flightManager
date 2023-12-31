@@ -13,7 +13,7 @@
 #include <unordered_map>
 
 /**
- * @brief Contains hash function and equality operator for the Airline hash table.
+ * @brief Struct that contains the hash function and equality operator for the Airline hash table.
  */
 struct AirlineHash {
     int operator() (const Airline &airline) const {
@@ -26,7 +26,7 @@ struct AirlineHash {
 };
 
 /**
- * @brief Contains hash function and equality operator for the Airport hash table.
+ * @brief Struct that contains the hash function and equality operator for the Airport hash table.
  */
 struct AirportHash {
     int operator() (const Airport &airport) const {
@@ -37,6 +37,11 @@ struct AirportHash {
         return airport1.getCode() == airport2.getCode();
     }
 };
+
+/**
+ * @brief Class that defines the flight Manager. The manager contains a graph that represents the flight network,
+ * as well as a series of unordered sets and maps to facilitate data manipulation.
+ */
 class Manager {
     private:
         Graph<Airport> flightNet;
