@@ -527,6 +527,15 @@ vector<string> Manager::getAirportsCountryCity(string country, string city) {
     return res;
 }
 
+vector<string> Manager::getAirportsCountry(string country) {
+    vector<string> res;
+    for (const Airport &airport : airports) {
+        if (airport.getCountry() == country)
+            res.push_back(airport.getCode());
+    }
+    return res;
+}
+
 vector<string> Manager::getAirportsCoordinates(Coordinate coords) {
     vector<string> res;
     double distance = INT_MAX;

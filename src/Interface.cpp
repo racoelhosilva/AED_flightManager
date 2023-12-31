@@ -73,19 +73,32 @@ void Interface::printSelected(const std::string &s) {
 }
 
 void Interface::printFilters(){
-    std::cout << "Airline Preferences: ";
-    for (auto x : airlinePreferences){
-        cout << x << " _ ";
+    if (airlinePreferences.empty() && airlineRestrictions.empty() && airportRestrictions.empty()){
+        return;
     }
-    std::cout << "\nAirline Restrictions: ";
-    for (auto x : airlineRestrictions){
-        cout << x << " _ ";
+    std::cout << BOLD << "            Current Filters:" << RESET;
+    if (!airlinePreferences.empty()){
+        std::cout << GREEN << FAINT << BOLD << "\n        Airline Preferences" << RESET << ": ";
+        for (const string &t : airlinePreferences){
+            cout << t << "  ";
+        }
+
     }
-    std::cout << "\nAirport Restrictions: ";
-    for (auto x : airportRestrictions){
-        cout << x << " _ ";
+
+    if (!airlineRestrictions.empty()){
+        std::cout << RED << FAINT << BOLD << "\n        Airline Restrictions" << RESET << ": ";
+        for (const string &t : airlineRestrictions){
+            cout << t << "  ";
+        }
     }
-    std::cout << '\n';
+
+    if (!airportRestrictions.empty()){
+        std::cout << RED << FAINT << BOLD << "\n        Airport Restrictions" << RESET << ": ";
+        for (const string &t : airportRestrictions){
+            cout << t << "  ";
+        }
+    }
+    cout << RESET << '\n';
 }
 
 int Interface::readOption(int max) {
@@ -687,6 +700,8 @@ void Interface::flightFilterMenu() {
              "Add Airline Preference",
              "Add Airline Restriction",
              "Add Airport Restriction",
+             "Add City Restriction",
+             "Add Country Restriction",
              "Clear Filters",
              "Choose the Filters:"};
     printOptions(options);
@@ -712,7 +727,24 @@ void Interface::flightFilterMenu() {
         case 4:
             airportRestrictions.push_back(readAirportCode());
             break;
-        case 5:
+        case 5:{
+            string country = readCountry();
+            string city = readCity(country);
+            vector<string> airports = manager.getAirportsCountryCity(country, city);
+            for (const string &airport : airports){
+                airportRestrictions.push_back(airport);
+            }
+            break;
+        }
+        case 6:{
+            string country = readCountry();
+            vector<string> airports = manager.getAirportsCountry(country);
+            for (const string &airport : airports){
+                airportRestrictions.push_back(airport);
+            }
+            break;
+        }
+        case 7:
             airlinePreferences.clear();
             airlineRestrictions.clear();
             airportRestrictions.clear();

@@ -147,6 +147,7 @@ public:
 
     std::string getAirportCode(const std::string &name);
     vector<string> getAirportsCountryCity(string country, string city);
+    vector<string> getAirportsCountry(string country);
     vector<string> getAirportsCoordinates(Coordinate coords);
 
     void bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions);
