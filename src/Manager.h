@@ -190,7 +190,7 @@ private:
     void printFlightHeader();
     void printFlight(const Airport &source, const Airport &dest, string airline, double distance);
     void printFlightFooter();
-    void printPaths(vector<string>* airlinePreferences, vector<string> *airlineRestrictions);
+    int printPaths(vector<string>* airlinePreferences, vector<string> *airlineRestrictions);
     void printFlightAirlines(const string &currentAirport, const string &nextAirport, vector<string>* airlinePreferences, vector<string> *airlineRestrictions);
 
 
