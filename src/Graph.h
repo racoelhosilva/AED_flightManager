@@ -59,6 +59,8 @@ public:
     void addPath(pair<string, string>);
     void setPath(vector<pair<string,string>>);
 
+    unordered_set<string> parents;
+
     const vector<Edge<T> > &getAdj() const;
     void setAdj(const vector<Edge<T> > &adj);
     friend class Graph<T>;
@@ -404,7 +406,7 @@ vector<pair<Vertex<T>*, vector<Vertex<T> *>>> Graph<T>::diameter(int &diameter){
     }
     vector<pair<Vertex<T>*, vector<Vertex<T> *>>> longest;
     for (Vertex<T> *v : vertexSet){
-        if (!v->isVisited()){
+        if (!v->isVisited()){ // REMOVING THE IF SKIPS SOME STEPS BUT RETURNS THE SAME RESULT
             v->setVisited(true);
             int result = bfs_diameter(v);
             if (result > diameter){

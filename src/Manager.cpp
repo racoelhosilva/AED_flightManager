@@ -625,6 +625,145 @@ int Manager::minDistanceBFS(string &src, string &dest, vector<string>* airlinePr
     return INT_MAX;
 }
 
+
+void Manager::bestFlightOptions(vector<string> *sources, vector<string> *destinations, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions){
+// Removing values from the source that are restricted
+    auto It = sources->begin();
+    while (It != sources->end()) {
+        if (find(airportRestrictions->begin(), airportRestrictions->end(), *It) != airportRestrictions->end() || find(airportRestrictions->begin(), airportRestrictions->end(), airportNameToCode[*It]) != airportRestrictions->end())
+            It = sources->erase(It);
+        else {
+            It++;
+        }
+    }
+    // Removing values from the destination that are restricted
+    It = destinations->begin();
+    while (It != destinations->end()) {
+        if (find(airportRestrictions->begin(), airportRestrictions->end(), *It) != airportRestrictions->end() || find(airportRestrictions->begin(), airportRestrictions->end(), airportNameToCode[*It]) != airportRestrictions->end())
+            It = destinations->erase(It);
+        else {
+            It++;
+        }
+    }
+    for (Vertex<Airport> *w : flightNet.getVertexSet()){
+        w->setVisited(false);
+        w->parents.clear();
+        w->setVisitIndex(-1);
+    }
+
+    paths.clear();
+    // Calculating the minimum distance
+    int minDist = INT_MAX;
+    for (string& src : *sources){
+        for (string& dest : *destinations){
+            int current = minDistanceBFS2(src, dest, airlinePreferences, airlineRestrictions, airlinePreferences);
+            if (current < minDist){
+                minDist = current;
+            }
+        }
+    }
+
+    for (Vertex<Airport> *w : flightNet.getVertexSet()){
+        w->setVisited(false);
+        w->setProcessing(false);
+    }
+
+    /*// PRINT DESTINATION'S PARENTS
+    for (auto x : *destinations){
+        cout << x << ":  ";
+        for (auto y : airportCodeToVertex[x]->parents){
+            cout << y << "  ";
+        }
+        cout << '\n';
+    }*/
+
+
+    for (auto x : *destinations){
+        path.clear();
+        reconstructPaths(airportCodeToVertex[x], minDist);
+    }
+
+    printPaths();
+    /*printCount(paths.size(), "Total number of different paths:");
+    printCount(minDist, "Minimum path distance (Flights):");*/
+}
+
+void Manager::printPaths(){
+    for (auto x : paths){
+        std::reverse(x.begin(), x.end());
+        for (auto y : x){
+            cout << y << '\t';
+        }
+        cout << '\n';
+    }
+}
+
+void Manager::reconstructPaths(Vertex<Airport> *dest, int minDist){
+    if (dest->parents.empty()){
+        path.push_back(dest->getInfo().getCode());
+        paths.push_back(path);
+        path.pop_back();
+    }
+    else {
+        for (auto x : dest->parents){
+            path.push_back(dest->getInfo().getCode());
+            reconstructPaths(airportCodeToVertex[x], minDist - 1);
+            path.pop_back();
+        }
+    }
+}
+
+// Calculates the minimum distance needed according to the restrictions
+int Manager::minDistanceBFS2(string &src, string &dest, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions) {
+
+
+    queue<Vertex<Airport> *> remaining;
+    Vertex<Airport> *source = airportCodeToVertex[src];
+    source->setVisited(true);
+    source->setVisitIndex(0);
+    source->parents.clear();
+    remaining.push(source);
+
+    int distance = INT_MAX;
+
+    while (!remaining.empty()){
+        Vertex<Airport> *current = remaining.front();
+        remaining.pop();
+
+        if (current->getVisitIndex() > distance){
+            continue;
+        }
+
+        for (const Edge<Airport> &e : current->getAdj()){
+            Vertex<Airport> *next = e.getDest();
+
+            bool isValidAirlinePref = airlinePreferences->empty() || find(airlinePreferences->begin(), airlinePreferences->end(), e.getInfo()) != airlinePreferences->end();
+            bool isValidAirlineRest = find(airlineRestrictions->begin(), airlineRestrictions->end(), e.getInfo()) == airlineRestrictions->end();
+            bool isValidAirport = find(airportRestrictions->begin(), airportRestrictions->end(), next->getInfo().getCode()) == airportRestrictions->end();
+
+            if (!next->isVisited() && isValidAirport && isValidAirlinePref && isValidAirlineRest){
+                remaining.push(next);
+                next->setVisited(true);
+                next->setVisitIndex(current->getVisitIndex() + 1);
+                next->parents.insert(current->getInfo().getCode());
+
+                if (next->getInfo().getCode() == dest){
+                    distance = min(distance, next->getVisitIndex());
+                }
+            }
+            if (next->isVisited() && next->getVisitIndex() > current->getVisitIndex() + 1){
+                next->parents.clear();
+                next->setVisitIndex(current->getVisitIndex() + 1);
+            }
+            if (next->isVisited() && next->getVisitIndex() == current->getVisitIndex() + 1){
+                next->parents.insert(current->getInfo().getCode());
+            }
+
+        }
+    }
+    return distance;
+}
+
 /************************************/
 
 void Manager::printCount(int number, std::string text) {
