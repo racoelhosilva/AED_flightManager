@@ -713,7 +713,7 @@ void Interface::flightFilterMenu() {
     printSelected(options[choice]);
     switch (choice) {
         case 1:
-            manager.bestFlightOptions(&sourceCodes, &destinationCodes, &airlinePreferences, &airlineRestrictions, &airportRestrictions);
+            manager.bestFlightOption(&sourceCodes, &destinationCodes, &airlinePreferences, &airlineRestrictions, &airportRestrictions);
             outputWait();
             clear();
             header();
