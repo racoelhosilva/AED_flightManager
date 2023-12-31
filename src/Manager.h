@@ -52,6 +52,9 @@
 #define LEFT        "\033[D"
 
 
+/**
+ * @brief Struct that contains the hash function and equality operator for the Airline hash table.
+ */
 struct AirlineHash {
     int operator() (const Airline &airline) const {
         return std::hash<std::string>()(airline.getCode());
@@ -62,6 +65,9 @@ struct AirlineHash {
     }
 };
 
+/**
+ * @brief Struct that contains the hash function and equality operator for the Airport hash table.
+ */
 struct AirportHash {
     int operator() (const Airport &airport) const {
         return std::hash<std::string>()(airport.getCode());
@@ -83,6 +89,11 @@ struct hash<std::pair<T1, T2>> {
     }
 };
 
+
+/**
+ * @brief Class that defines the flight Manager. The manager contains a graph that represents the flight network,
+ * as well as a series of unordered sets and maps to facilitate data manipulation.
+ */
 class Manager {
 private:
     Graph<Airport> flightNet;

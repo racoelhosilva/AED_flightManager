@@ -7,6 +7,9 @@
 
 #include "Manager.h"
 
+/**
+ * @brief Class that defines the graphical Interface. The interface contains the Manager which processes the user requests.
+ */
 class Interface {
 private:
     Manager manager;
@@ -49,10 +52,15 @@ public:
     void flightDestinationMenu();
     void flightFilterMenu();
 
+    /// Vector of available source airports for a trip.
     vector<string> sourceCodes;
+    /// Vector of available destination airports for a trip.
     vector<string> destinationCodes;
+    /// Vector of user preferred airlines for a trip.
     vector<string> airlinePreferences;
+    /// Vector of user restricted airlines for a trip.
     vector<string> airlineRestrictions;
+    /// Vector of user restricted airports for a trip.
     vector<string> airportRestrictions;
 };
 
