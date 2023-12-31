@@ -31,8 +31,6 @@ class Vertex {
 	bool visited;          // auxiliary field
     bool processing;       // auxiliary field
 
-    vector<pair<string,string>> path;    // auxiliary field
-
     int lowest = 0;
     int visitIndex = 0;
     int auxiliar = 0;
@@ -54,10 +52,6 @@ public:
     int getAuxiliar() const;
     void setAuxiliar(int aux);
     vector<Edge<T> > &getAdj();
-    vector<pair<string,string>> getPath() const;
-    void clearPath();
-    void addPath(pair<string, string>);
-    void setPath(vector<pair<string,string>>);
 
     unordered_set<string> parents;
 
@@ -232,26 +226,6 @@ vector<Edge<T> > &Vertex<T>::getAdj() {
 template <class T>
 void Vertex<T>::setAdj(const vector<Edge<T> > &adj) {
     Vertex::adj = adj;
-}
-
-template<class T>
-void Vertex<T>::addPath(pair<string, string> prev) {
-    path.push_back(prev);
-}
-
-template <class T>
-void Vertex<T>::setPath(vector<pair<string,string>> path_){
-    Vertex<T>::path = path_;
-}
-
-template<class T>
-vector<pair<string, string>> Vertex<T>::getPath() const {
-    return path;
-}
-
-template<class T>
-void Vertex<T>::clearPath() {
-    path.clear();
 }
 
 /*
