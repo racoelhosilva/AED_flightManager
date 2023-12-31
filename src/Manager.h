@@ -143,6 +143,7 @@ public:
 
     void articulationPoints();
     void diameter();
+    void longestPaths();
 
     std::string getAirportCode(const std::string &name);
     vector<string> getAirportsCountryCity(string country, string city);
@@ -153,15 +154,11 @@ public:
     void printPath(Vertex<Airport> *v);
     vector<vector<pair<string,string>>> allPaths;
 
-    vector<string> path;
-    vector<vector<string>> paths;
-
-
     void bestFlightOptions(vector<string> *sources, vector<string> *destinations, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions);
     int minDistanceBFS2(string &src, string &dest, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions);
     void reconstructPaths(Vertex<Airport> *dest, int minDist);
-    void printPaths(vector<string>* airlinePreferences, vector<string> *airlineRestrictions);
-    void printFlightAirlines(const string &currentAirport, const string &nextAirport, vector<string>* airlinePreferences, vector<string> *airlineRestrictions);
+    vector<string> path;
+    vector<vector<string>> paths;
 
 private:
     void printCount(int number, string text);
@@ -187,6 +184,10 @@ private:
     void printFlightFooter();
 
     void printAllPaths();
+
+    void printPaths(vector<string>* airlinePreferences, vector<string> *airlineRestrictions);
+    void printFlightAirlines(const string &currentAirport, const string &nextAirport, vector<string>* airlinePreferences, vector<string> *airlineRestrictions);
+
 
 };
 

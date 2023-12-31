@@ -236,6 +236,7 @@ void Interface::statisticsMenu() {
              "Countries/Cities",
              "Articulation Points",
              "Graph Diameter",
+             "Paths with Most Stops",
              "Choose type of Statistics:"};
     printOptions(options);
 
@@ -261,6 +262,10 @@ void Interface::statisticsMenu() {
             break;
         case 6:
             manager.diameter();
+            outputWait();
+            break;
+        case 7:
+            manager.longestPaths();
             outputWait();
             break;
         case 0:

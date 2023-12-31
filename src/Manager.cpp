@@ -80,8 +80,9 @@ bool Manager::extractFlights(std::string fname) {
 
         Vertex<Airport> *a1 = airportCodeToVertex[code1];
         Vertex<Airport> *a2 = airportCodeToVertex[code2];
+        double distance = a1->getInfo().getCoordinate().distance(a2->getInfo().getCoordinate());
 
-        flightNet.addEdge(a1, a2, 0, airlineCode);
+        flightNet.addEdge(a1, a2, distance, airlineCode);
     } while (getline(input, line));
     return true;
 }
@@ -498,16 +499,19 @@ void Manager::articulationPoints(){
     printCount(s.size(), "Number of Articulation Points:");
 }
 void Manager::diameter(){
-    int diameter;
-    vector<pair<Vertex<Airport>*, vector<Vertex<Airport> *>>> result = flightNet.diameter(diameter);
-    for (auto x : result){
-        cout << x.first->getInfo().getCode() << " :      ";
-        for (auto y : x.second){
-            cout << y->getInfo().getCode() << "  ";
+    printCount(flightNet.diameter(), "Diameter of the graph:");
+}
+
+void Manager::longestPaths(){
+    int distance;
+    vector<pair<Vertex<Airport>*, vector<Vertex<Airport> *>>> result = flightNet.longestPaths(distance);
+    for (const auto &x : result){
+        printListHeader(x.first->getInfo().getCode());
+        for (const auto &y : x.second){
+            printListValue(y->getInfo().getCode());
         }
-        cout << '\n';
     }
-    printCount(diameter, "Diameter of the graph:");
+    printCount(distance, "Longest Path Distance:");
 }
 
 std::string Manager::getAirportCode(const std::string &name) {
@@ -662,7 +666,7 @@ void Manager::bestFlightOptions(vector<string> *sources, vector<string> *destina
         }
     }
 
-    // If there are no paths, end here
+    // If there are no paths, end here (this accounts for empty src and dest)
     if (minDist == INT_MAX){
         printCount(0, "Total Number of Different Paths:");
         return;
@@ -678,11 +682,13 @@ void Manager::bestFlightOptions(vector<string> *sources, vector<string> *destina
     // Output the results
     printPaths(airlinePreferences, airlineRestrictions);
     printCount(paths.size(), "Total number of different paths:");
-    printCount(paths[0].size(), "Minimum path distance (Airports):");
-    printCount(paths[0].size()-1, "Minimum path distance (Flights):");
+    printCount(minDist, "Minimum path distance (Flights):");
 }
 
 void Manager::reconstructPaths(Vertex<Airport> *dest, int minDist){
+    if (minDist < 0){
+        return;
+    }
     if (dest->parents.empty()){
         path.push_back(dest->getInfo().getCode());
         paths.push_back(path);

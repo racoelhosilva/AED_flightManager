@@ -100,7 +100,8 @@ public:
 	vector<T> dfs(const T & source) const;
 	vector<T> bfs(const T &source) const;
 
-    vector<pair<Vertex<T>*, vector<Vertex<T> *>>> diameter(int &diameter);
+    int diameter();
+    vector<pair<Vertex<T>*, vector<Vertex<T> *>>> longestPaths(int &diameter);
     int bfs_diameter(Vertex<T> *v);
 
     vector<T> articulationPoints();
@@ -399,32 +400,19 @@ vector<T> Graph<T>::bfs(const T & source) const {
 
 // DIAMETER BFS
 template <class T>
-vector<pair<Vertex<T>*, vector<Vertex<T> *>>> Graph<T>::diameter(int &diameter){
-    diameter = 0;
+int Graph<T>::diameter(){
+    int diameter = 0;
     for (Vertex<T> *w : vertexSet){
         w->setVisited(false);
     }
-    vector<pair<Vertex<T>*, vector<Vertex<T> *>>> longest;
     for (Vertex<T> *v : vertexSet){
-        if (!v->isVisited()){ // REMOVING THE IF SKIPS SOME STEPS BUT RETURNS THE SAME RESULT
+        if (!v->isVisited()){
             v->setVisited(true);
             int result = bfs_diameter(v);
-            if (result > diameter){
-                diameter = result;
-                longest.clear();
-            }
-            if (result == diameter){
-                vector<Vertex<T> *> ends;
-                for (Vertex<T> *w : vertexSet){
-                    if (w->getVisitIndex() == diameter){
-                        ends.push_back(w);
-                    }
-                }
-                longest.push_back(make_pair(v, ends));
-            }
+            diameter = max(result, diameter);
         }
     }
-    return longest;
+    return diameter;
 }
 
 template <class T>
@@ -457,6 +445,33 @@ int Graph<T>::bfs_diameter(Vertex<T> *v) {
 
     }
     return diameter;
+}
+
+// LONGEST PAIRS
+template <class T>
+vector<pair<Vertex<T>*, vector<Vertex<T> *>>> Graph<T>::longestPaths(int &diameter){
+    diameter = 0;
+    for (Vertex<T> *w : vertexSet){
+        w->setVisited(false);
+    }
+    vector<pair<Vertex<T>*, vector<Vertex<T> *>>> longest;
+    for (Vertex<T> *v : vertexSet){
+        int result = bfs_diameter(v);
+        if (result > diameter){
+            diameter = result;
+            longest.clear();
+        }
+        if (result == diameter){
+            vector<Vertex<T> *> ends;
+            for (Vertex<T> *w : vertexSet){
+                if (w->getVisitIndex() == diameter){
+                    ends.push_back(w);
+                }
+            }
+            longest.push_back(make_pair(v, ends));
+        }
+    }
+    return longest;
 }
 
 // ARTICULATION POINTS
