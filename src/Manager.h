@@ -12,6 +12,9 @@
 #include <unordered_set>
 #include <unordered_map>
 
+/**
+ * @brief Struct that contains the hash function and equality operator for the Airline hash table.
+ */
 struct AirlineHash {
     int operator() (const Airline &airline) const {
         return std::hash<std::string>()(airline.getCode());
@@ -22,6 +25,9 @@ struct AirlineHash {
     }
 };
 
+/**
+ * @brief Struct that contains the hash function and equality operator for the Airport hash table.
+ */
 struct AirportHash {
     int operator() (const Airport &airport) const {
         return std::hash<std::string>()(airport.getCode());
@@ -31,6 +37,11 @@ struct AirportHash {
         return airport1.getCode() == airport2.getCode();
     }
 };
+
+/**
+ * @brief Class that defines the flight Manager. The manager contains a graph that represents the flight network,
+ * as well as a series of unordered sets and maps to facilitate data manipulation.
+ */
 class Manager {
     private:
         Graph<Airport> flightNet;

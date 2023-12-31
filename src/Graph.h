@@ -18,6 +18,11 @@ template <class T> class Vertex;
 
 /****************** Provided structures  ********************/
 
+/**
+ * @brief Class that defines a Vertex of a Graph. Each vertex has contents, a list of outgoing edges, and auxiliary fields to calculate DFS and BFS.
+ * @tparam T - Type of data to be stored in the graph vertex.
+ */
+
 template <class T>
 class Vertex {
 	T info;                // contents
@@ -48,6 +53,11 @@ public:
     friend class Graph<T>;
 };
 
+/**
+ * @brief Class that defines an Edge of the Graph. Each edge contains a pointer to its destination and a weight.
+ * In this project, the weight is an Airline, as each edge represents a flight.
+ * @tparam T - Type of data to be stored in the graph.
+ */
 template <class T>
 class Edge {
 	Vertex<T> * dest;      // destination vertex
@@ -62,6 +72,10 @@ public:
 	friend class Vertex<T>;
 };
 
+/**
+ * @brief Class that defines a Graph. Each graph has a vector of pointers to vertices.
+ * @tparam T - Type of data stored in the Graph. For this project, T is Airport.
+ */
 template <class T>
 class Graph {
 	vector<Vertex<T> *> vertexSet;    // vertex set
@@ -82,9 +96,11 @@ public:
 
 /****************** Provided constructors and functions ********************/
 
+/// Default constructor
 template <class T>
 Vertex<T>::Vertex(T in): info(in) {}
 
+/// All parameter constructor
 template <class T>
 Edge<T>::Edge(Vertex<T> *d, Airline w): dest(d), weight(w) {}
 
@@ -139,8 +155,8 @@ void Edge<T>::setWeight(Airline weight) {
     Edge::weight = weight;
 }
 
-/*
- * Auxiliary function to find a vertex with a given content.
+/**
+ * @brief Auxiliary function to find a vertex with a given content.
  */
 template <class T>
 Vertex<T> * Graph<T>::findVertex(const T &in) const {
@@ -195,9 +211,9 @@ void Vertex<T>::clearPrevious() {
     previous.clear();
 }
 
-/*
- *  Adds a vertex with a given content or info (in) to a graph (this).
- *  Returns true if successful, and false if a vertex with that content already exists.
+/**
+ *  @brief Adds a vertex with a given content or info (in) to a graph (this).
+ *  @return Returns true if successful, and false if a vertex with that content already exists.
  */
 template <class T>
 Vertex<T>* Graph<T>::addVertex(const T &in) {
@@ -207,10 +223,10 @@ Vertex<T>* Graph<T>::addVertex(const T &in) {
 }
 
 
-/*
- * Adds an edge to a graph (this), given the contents of the source and
+/**
+ * @brief Adds an edge to a graph (this), given the contents of the source and
  * destination vertices and the edge weight (w).
- * Returns true if successful, and false if the source or destination vertex does not exist.
+ * @return Returns true if successful, and false if the source or destination vertex does not exist.
  */
 template <class T>
 bool Graph<T>::addEdge(Vertex<T> *sourc, Vertex<T> *dest, Airline w) {
@@ -218,8 +234,8 @@ bool Graph<T>::addEdge(Vertex<T> *sourc, Vertex<T> *dest, Airline w) {
 	return true;
 }
 
-/*
- * Auxiliary function to add an outgoing edge to a vertex (this),
+/**
+ * @brief Auxiliary function to add an outgoing edge to a vertex (this),
  * with a given destination vertex (d) and edge weight (w).
  */
 template <class T>
@@ -228,10 +244,10 @@ void Vertex<T>::addEdge(Vertex<T> *d, Airline w) {
 }
 
 
-/*
- * Removes an edge from a graph (this).
+/**
+ * @brief Removes an edge from a graph (this).
  * The edge is identified by the source (sourc) and destination (dest) contents.
- * Returns true if successful, and false if such edge does not exist.
+ * @return Returns true if successful, and false if such edge does not exist.
  */
 template <class T>
 bool Graph<T>::removeEdge(const T &sourc, const T &dest) {
@@ -242,10 +258,10 @@ bool Graph<T>::removeEdge(const T &sourc, const T &dest) {
 	return v1->removeEdgeTo(v2);
 }
 
-/*
- * Auxiliary function to remove an outgoing edge (with a given destination (d))
+/**
+ * @brief Auxiliary function to remove an outgoing edge (with a given destination (d))
  * from a vertex (this).
- * Returns true if successful, and false if such edge does not exist.
+ * @return Returns true if successful, and false if such edge does not exist.
  */
 template <class T>
 bool Vertex<T>::removeEdgeTo(Vertex<T> *d) {
@@ -257,10 +273,10 @@ bool Vertex<T>::removeEdgeTo(Vertex<T> *d) {
 	return false;
 }
 
-/*
- *  Removes a vertex with a given content (in) from a graph (this), and
+/**
+ *  @brief Removes a vertex with a given content (in) from a graph (this), and
  *  all outgoing and incoming edges.
- *  Returns true if successful, and false if such vertex does not exist.
+ *  @return Returns true if successful, and false if such vertex does not exist.
  */
 template <class T>
 bool Graph<T>::removeVertex(const T &in) {
@@ -276,6 +292,10 @@ bool Graph<T>::removeVertex(const T &in) {
 	return false;
 }
 
+/**
+ * @brief Conducts a depth-first search of the graph.
+ * @return Vector of the contents of the vertices of the graph traversed by the DFS.
+ */
 template <class T>
 vector<T> Graph<T>::dfs() const {
 	vector<T> res;
@@ -287,7 +307,11 @@ vector<T> Graph<T>::dfs() const {
 	return res;
 }
 
-
+/**
+ * @brief Auxiliary function for the DFS.
+ * @param v - Source vertex of the search.
+ * @param res - Vector to insert the contents of traversed vertices.
+ */
 template <class T>
 void Graph<T>::dfsVisit(Vertex<T> *v, vector<T> & res) const {
     v->visited = true;
@@ -299,6 +323,10 @@ void Graph<T>::dfsVisit(Vertex<T> *v, vector<T> & res) const {
     }
 }
 
+/**
+ * @brief Conducts a depth-first search of the graph from a source vertex.
+ * @return Vector of the contents of the vertices of the graph traversed by the DFS.
+ */
 template <class T>
 vector<T> Graph<T>::dfs(const T & source) const {
     vector<T> res;
@@ -313,6 +341,10 @@ vector<T> Graph<T>::dfs(const T & source) const {
     return res;
 }
 
+/**
+ * @brief Conducts a breadth-first search of the graph from a source vertex.
+ * @return Vector of the contents of the vertices of the graph traversed by the BFS.
+ */
 template <class T>
 vector<T> Graph<T>::bfs(const T & source) const {
 	vector<T> res;

@@ -2,26 +2,41 @@
 #include <climits>
 #include "Interface.h"
 
+/**
+ * @brief Prints the menu header.
+ */
 void Interface::header() {
     std::cout << "┌───────────────────────────────────────────────────────────────────────────────────┐\n"
               << "├──────────────────────────── \033[1;34mFlight Manager (Group 15)\033[0m ────────────────────────────┤\n\n";
 }
 
+/**
+ * @brief Prints the menu footer.
+ */
 void Interface::footer() {
     std::cout << "├──────────────────────────── \033[1;34mFlight Manager (Group 15)\033[0m ────────────────────────────┤\n"
               << "└───────────────────────────────────────────────────────────────────────────────────┘\n";
 }
 
+/**
+ * @brief Clears the screen.
+ */
 void Interface::clear() {
     system("clear");
 }
 
+/**
+ * @brief Waits for user input to continue.
+ */
 void Interface::outputWait() {
     cin.clear();
     cout << "                            \033[2m< Press \033[0m\033[1mENTER\033[0m\033[2m to Continue >\033[0m";
     cin.ignore();
 }
 
+/**
+ * @brief Initializes the interface.
+ */
 void Interface::init() {
     header();
     this->manager = Manager();
@@ -34,6 +49,9 @@ void Interface::init() {
     }
 }
 
+/**
+ * @brief Prints the exit menu.
+ */
 void Interface::exitMenu() {
     clear();
 
@@ -43,6 +61,10 @@ void Interface::exitMenu() {
     exit(0);
 }
 
+/**
+ * @brief Requests the loading of the data from the manager.
+ * @return True if the operation was successful.
+ */
 bool Interface::loadData() {
     std::cout << "        Loading data (this may take a while):\n";
     if (!manager.extractAirports("../data/airports.csv")) {
@@ -60,6 +82,10 @@ bool Interface::loadData() {
     return true;
 }
 
+/**
+ * @brief Prints available options.
+ * @param options - vector of available options.
+ */
 void Interface::printOptions(const std::vector<std::string> &options) {
     std::cout << "     \033[1m" << options[options.size()-1] << "\033[0m\n";
     for (int idx = 1; idx < options.size() - 1; idx++ ){
@@ -68,10 +94,19 @@ void Interface::printOptions(const std::vector<std::string> &options) {
     std::cout << " \033[31m[0]\033[0m " << options[0] << '\n';
 }
 
+/**
+ * @brief Prints selected option.
+ * @param s - Selected option.
+ */
 void Interface::printSelected(const std::string &s) {
     std::cout << "     \033[1m>  \033[33m" << s << "\033[0m selected\n\n";
 }
 
+/**
+ * @brief Reads and filters the user chosen option.
+ * @param max - Maximum number of options.
+ * @return - Number of the chosen option.
+ */
 int Interface::readOption(int max) {
     string choice;
     do {
@@ -83,11 +118,20 @@ int Interface::readOption(int max) {
     return stoi(choice);
 }
 
+/**
+ * @brief Validates the user chosen option.
+ * @param size - Maximum number of options.
+ * @param choice - User chosen option.
+ * @return True if the option is valid.
+ */
 bool Interface::validOption(unsigned long size, const std::string &choice) {
     return choice.size() == 1 && "0" <= choice && choice <= to_string(size-2);
 }
 
-
+/**
+ * @brief Reads and requests the manager to validate user inputted airlines.
+ * @return - Code of the inputted airline.
+ */
 std::string Interface::readAirline() {
     string choice;
     do {
@@ -98,6 +142,10 @@ std::string Interface::readAirline() {
     return choice;
 }
 
+/**
+ * @brief Reads and requests the manager to validate user inputted airport codes.
+ * @return - Code of the inputted airport.
+ */
 std::string Interface::readAirportCode() {
     string choice;
     do {
@@ -108,6 +156,10 @@ std::string Interface::readAirportCode() {
     return choice;
 }
 
+/**
+ * @brief Reads and requests the manager to validate user inputted airport names.
+ * @return - Name of the inputted airport.
+ */
 std::string Interface::readAirportName() {
     string choice;
     do {
@@ -118,6 +170,10 @@ std::string Interface::readAirportName() {
     return choice;
 }
 
+/**
+ * @brief Reads and requests the manager to validate user inputted cities.
+ * @return - Name of the inputted city.
+ */
 std::string Interface::readCity() {
     string choice;
     do {
@@ -128,6 +184,10 @@ std::string Interface::readCity() {
     return choice;
 }
 
+/**
+ * @brief Reads and requests the manager to validate user inputted cities.
+ * @return - Name of the inputted city.
+ */
 std::string Interface::readCityOptional() {
     string choice;
     std::cout << "  City (Optional): ";
@@ -136,6 +196,10 @@ std::string Interface::readCityOptional() {
     return choice;
 }
 
+/**
+ * @brief Reads and requests the manager to validate user inputted countries.
+ * @return - Name of the inputted country.
+ */
 std::string Interface::readCountry() {
     string choice;
     do {
@@ -146,6 +210,10 @@ std::string Interface::readCountry() {
     return choice;
 }
 
+/**
+ * @brief Reads and requests the manager to validate user inputted coordinates.
+ * @return - Inputted coordinates.
+ */
 pair<double, double> Interface::readCoordinates() {
     double latitude;
     do {
@@ -162,7 +230,6 @@ pair<double, double> Interface::readCoordinates() {
     return {latitude, longitude};
 }
 
-
 bool stringIsNumeric(const string &s){
     for (const char &c : s){
         if (!isdigit(c)){
@@ -172,6 +239,10 @@ bool stringIsNumeric(const string &s){
     return true;
 }
 
+/**
+ * @brief Reads and requests the manager to validate user inputted numbers.
+ * @return - Inputted number.
+ */
 int Interface::readNumber() {
     string choice;
     do {
@@ -182,6 +253,9 @@ int Interface::readNumber() {
     return stoi(choice);
 }
 
+/**
+ * @brief Prints the main menu.
+ */
 void Interface::mainMenu() {
     clear();
     header();
@@ -209,6 +283,9 @@ void Interface::mainMenu() {
     mainMenu();
 }
 
+/**
+ * @brief Prints the flight statistics menu.
+ */
 void Interface::statisticsMenu() {
     clear();
     header();
@@ -253,6 +330,9 @@ void Interface::statisticsMenu() {
     statisticsMenu();
 }
 
+/**
+ * @brief Prints the airline statistics menu.
+ */
 void Interface::airlineStatisticsMenu() {
     clear();
     header();
@@ -302,6 +382,9 @@ void Interface::airlineStatisticsMenu() {
     airlineStatisticsMenu();
 }
 
+/**
+ * @brief Prints the airport statistics menu.
+ */
 void Interface::airportStatisticsMenu() {
     clear();
     header();
@@ -357,6 +440,9 @@ void Interface::airportStatisticsMenu() {
     airportStatisticsMenu();
 }
 
+/**
+ * @brief Prints the airport information menu.
+ */
 void Interface::airportInformationMenu(){
     clear();
     header();
@@ -441,6 +527,9 @@ void Interface::airportInformationMenu(){
     airportInformationMenu();
 }
 
+/**
+ * @brief Prints the flight statistics menu.
+ */
 void Interface::flightStatisticsMenu() {
     clear();
     header();
@@ -499,6 +588,9 @@ void Interface::flightStatisticsMenu() {
     flightStatisticsMenu();
 }
 
+/**
+ * @brief Prints location statistics menu.
+ */
 void Interface::locationStatisticsMenu() {
     clear();
     header();
@@ -560,6 +652,9 @@ void Interface::locationStatisticsMenu() {
     locationStatisticsMenu();
 }
 
+/**
+ * @brief Prints the flight source menu.
+ */
 void Interface::flightSourceMenu() {
     clear();
     header();
@@ -599,6 +694,9 @@ void Interface::flightSourceMenu() {
     flightSourceMenu();
 }
 
+/**
+ * @brief Prints the flight destination menu.
+ */
 void Interface::flightDestinationMenu() {
     std::vector<std::string> options =
             {"Back",
@@ -637,6 +735,9 @@ void Interface::flightDestinationMenu() {
     flightDestinationMenu();
 }
 
+/**
+ * @brief Prints the flight filter menu.
+ */
 void Interface::flightFilterMenu() {
     std::vector<std::string> options =
             {"Back",
