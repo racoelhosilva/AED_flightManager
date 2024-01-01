@@ -406,6 +406,11 @@ vector<T> Graph<T>::bfs(const T & source) const {
 }
 
 // DIAMETER BFS
+/**
+ * @brief
+ * Complexity: O(*)
+ * @return
+ */
 template <class T>
 int Graph<T>::diameter(){
     int diameter = 0;
@@ -422,6 +427,11 @@ int Graph<T>::diameter(){
     return diameter;
 }
 
+/**
+ * @brief
+ * Complexity: O(*)
+ * @return
+ */
 template <class T>
 int Graph<T>::bfs_diameter(Vertex<T> *v) {
     for (Vertex<T> *w : vertexSet){
@@ -455,6 +465,11 @@ int Graph<T>::bfs_diameter(Vertex<T> *v) {
 }
 
 // LONGEST PAIRS
+/**
+ * @brief
+ * Complexity: O(*)
+ * @return
+ */
 template <class T>
 vector<pair<Vertex<T>*, vector<Vertex<T> *>>> Graph<T>::longestPaths(int &diameter){
     diameter = 0;
@@ -482,6 +497,11 @@ vector<pair<Vertex<T>*, vector<Vertex<T> *>>> Graph<T>::longestPaths(int &diamet
 }
 
 // ARTICULATION POINTS
+/**
+ * @brief
+ * Complexity: O(*)
+ * @return
+ */
 template <class T>
 vector<T> Graph<T>::articulationPoints() {
     vector<T> res;
@@ -510,6 +530,11 @@ vector<T> Graph<T>::articulationPoints() {
     return res;
 }
 
+/**
+ * @brief
+ * Complexity: O(*)
+ * @return
+ */
 template <class T>
 void Graph<T>::dfs_art(Vertex<T> *v, stack<T> &s, vector<T> &l, int &i){
     v->setLowest(i);
@@ -534,18 +559,6 @@ void Graph<T>::dfs_art(Vertex<T> *v, stack<T> &s, vector<T> &l, int &i){
         }
     }
     s.pop();
-}
-
-template <typename T>
-bool stackSearch(stack<T> s, const T i){
-    while (!s.empty()){
-        T x = s.top();
-        s.pop();
-        if (x == i){
-            return true;
-        }
-    }
-    return false;
 }
 
 #endif /* GRAPH_H_ */

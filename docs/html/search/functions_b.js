@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['operator_3c_0',['operator&lt;',['../classAirline.html#ad316e77d2a6222ce649a000325713cef',1,'Airline']]],
-  ['operator_3d_3d_1',['operator==',['../classAirline.html#aab550db1265c3df4f66b90c2dea5f6cc',1,'Airline::operator==()'],['../classAirport.html#a2d93e2cadbdb3ed9114aff48aa0bac5c',1,'Airport::operator==()'],['../classCoordinate.html#a803c20b0c173a04886ace0c4f6b14361',1,'Coordinate::operator==()']]],
-  ['outputwait_2',['outputWait',['../classInterface.html#ac1a1129cd78bf2c5f2b58438a1cbb5fd',1,'Interface']]]
+  ['numberairlines_0',['numberAirlines',['../classManager.html#aa4bec539f9db925ecb517a31f90c9637',1,'Manager']]],
+  ['numberairports_1',['numberAirports',['../classManager.html#a986cf6875402bfbb258cbf8b4fa126e1',1,'Manager']]],
+  ['numberarrivalscountrycity_2',['numberArrivalsCountryCity',['../classManager.html#ae55bd228b0a8867b3168199b362ba32b',1,'Manager']]],
+  ['numberdeparturescountrycity_3',['numberDeparturesCountryCity',['../classManager.html#ad791cb796ca8164eb077fdd01978c752',1,'Manager']]],
+  ['numberflights_4',['numberFlights',['../classManager.html#a81384ba7a67484735cc7b51c171388d5',1,'Manager']]],
+  ['numberflightsairline_5',['numberFlightsAirline',['../classManager.html#a6b44d0bd8f7980e6f8b8d420a0de42c0',1,'Manager']]]
 ];

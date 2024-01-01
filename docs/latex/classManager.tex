@@ -61,84 +61,63 @@ void \mbox{\hyperlink{classManager_af9e8b1df4a37a09b4aeebbc03e27d069}{list\+Airp
 \begin{DoxyCompactList}\small\item\em Lists the first n airports with the most airlines. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m), having n as the number of airports and m the number of flights in an airport. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classManager_ac8491e9e93712a3aec5f94d31e645436}{list\+Airports\+Most\+Flights}} (int n)
 \begin{DoxyCompactList}\small\item\em Lists the first n airports with the most flights. Complexity\+: O(n), having n as the number of airports. \end{DoxyCompactList}\item 
-\Hypertarget{classManager_a0ef6b81b3bcfcbed17b0a643c1ab57f3}\label{classManager_a0ef6b81b3bcfcbed17b0a643c1ab57f3} 
-void {\bfseries airport\+Info} (string airport)
-\item 
-\Hypertarget{classManager_a8a2bb210ada7a44623ecc95150bb9f9a}\label{classManager_a8a2bb210ada7a44623ecc95150bb9f9a} 
-void {\bfseries list\+Airport\+Flights} (string airport)
-\item 
-\Hypertarget{classManager_af9d72b14b38203bfb71823ea7320cd10}\label{classManager_af9d72b14b38203bfb71823ea7320cd10} 
-void {\bfseries reachable\+Airports} (string airport, int n=1)
-\item 
-\Hypertarget{classManager_a031cf21ab61ba603e04c96f9fb718c2c}\label{classManager_a031cf21ab61ba603e04c96f9fb718c2c} 
-void {\bfseries reachable\+Cities} (string airport, int n=1)
-\item 
-\Hypertarget{classManager_adc888be5db7dbd24bddb2d6334aad912}\label{classManager_adc888be5db7dbd24bddb2d6334aad912} 
-void {\bfseries reachable\+Countries} (string airport, int n=1)
-\item 
+void \mbox{\hyperlink{classManager_a0ef6b81b3bcfcbed17b0a643c1ab57f3}{airport\+Info}} (string airport)
+\begin{DoxyCompactList}\small\item\em Prints the information for a given airport. Complexity\+: O(1). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a8a2bb210ada7a44623ecc95150bb9f9a}{list\+Airport\+Flights}} (string airport)
+\begin{DoxyCompactList}\small\item\em Lists the available flights for a given airport. Complexity\+: O(n), n being the number of flights in an airport. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_af9d72b14b38203bfb71823ea7320cd10}{reachable\+Airports}} (string airport, int n=1)
+\begin{DoxyCompactList}\small\item\em Lists the airports reachable from a given airport within a n number of flights. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges visited in the graph respectively. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a031cf21ab61ba603e04c96f9fb718c2c}{reachable\+Cities}} (string airport, int n=1)
+\begin{DoxyCompactList}\small\item\em Lists the cities reachable from a given airport within a n number of flights. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges visited in the graph respectively. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_adc888be5db7dbd24bddb2d6334aad912}{reachable\+Countries}} (string airport, int n=1)
+\begin{DoxyCompactList}\small\item\em Lists the countries reachable from a given airport within a n number of flights. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges visited within the distance n. \end{DoxyCompactList}\item 
 \Hypertarget{classManager_a2a8ea849e7e41e28dfed38122fe5377a}\label{classManager_a2a8ea849e7e41e28dfed38122fe5377a} 
 void {\bfseries list\+All\+Flights} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Lists all tbe available flights. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges of the graph respectively. \end{DoxyCompactList}\item 
 \Hypertarget{classManager_a81384ba7a67484735cc7b51c171388d5}\label{classManager_a81384ba7a67484735cc7b51c171388d5} 
 void {\bfseries number\+Flights} ()
-\item 
-\Hypertarget{classManager_a46855e268bd351b79411c4d3dabb6ed1}\label{classManager_a46855e268bd351b79411c4d3dabb6ed1} 
-void {\bfseries list\+Flights\+Airline} (string airline)
-\item 
-\Hypertarget{classManager_a6b44d0bd8f7980e6f8b8d420a0de42c0}\label{classManager_a6b44d0bd8f7980e6f8b8d420a0de42c0} 
-void {\bfseries number\+Flights\+Airline} (string airline)
-\item 
-\Hypertarget{classManager_aa9bbdc47deeefc4cca72ad21b33e9381}\label{classManager_aa9bbdc47deeefc4cca72ad21b33e9381} 
-void {\bfseries list\+Arrivals\+Country\+City} (string country, string city="{}"{})
-\item 
-\Hypertarget{classManager_ae55bd228b0a8867b3168199b362ba32b}\label{classManager_ae55bd228b0a8867b3168199b362ba32b} 
-void {\bfseries number\+Arrivals\+Country\+City} (string country, string city="{}"{})
-\item 
-\Hypertarget{classManager_a952a5078c1a0387f5247b7adff8b2028}\label{classManager_a952a5078c1a0387f5247b7adff8b2028} 
-void {\bfseries list\+Departures\+Country\+City} (string country, string city="{}"{})
-\item 
-\Hypertarget{classManager_ad791cb796ca8164eb077fdd01978c752}\label{classManager_ad791cb796ca8164eb077fdd01978c752} 
-void {\bfseries number\+Departures\+Country\+City} (string country, string city="{}"{})
-\item 
-\Hypertarget{classManager_afb621523d2141e143f5f175b9be7328a}\label{classManager_afb621523d2141e143f5f175b9be7328a} 
-void {\bfseries list\+Countries\+Most\+Airlines} (int n)
-\item 
-\Hypertarget{classManager_a6d6b98fc79efe5d14619884a1eebf051}\label{classManager_a6d6b98fc79efe5d14619884a1eebf051} 
-void {\bfseries list\+Countries\+Most\+Airports} (int n)
-\item 
-\Hypertarget{classManager_a69afee4d4e9a096282de1f0301a9f3b4}\label{classManager_a69afee4d4e9a096282de1f0301a9f3b4} 
-void {\bfseries list\+Cities\+Most\+Airports} (int n)
-\item 
+\begin{DoxyCompactList}\small\item\em Prints the number of all available flights. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges of the graph respectively. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a46855e268bd351b79411c4d3dabb6ed1}{list\+Flights\+Airline}} (string airline)
+\begin{DoxyCompactList}\small\item\em Lists all tbe available flights from a given airline. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges of the graph respectively. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a6b44d0bd8f7980e6f8b8d420a0de42c0}{number\+Flights\+Airline}} (string airline)
+\begin{DoxyCompactList}\small\item\em Prints the number of all available flights from a given airline. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges of the graph respectively. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_aa9bbdc47deeefc4cca72ad21b33e9381}{list\+Arrivals\+Country\+City}} (string country, string city="{}"{})
+\begin{DoxyCompactList}\small\item\em Lists the flights arriving to a given city and/or country. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges of the graph respectively. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_ae55bd228b0a8867b3168199b362ba32b}{number\+Arrivals\+Country\+City}} (string country, string city="{}"{})
+\begin{DoxyCompactList}\small\item\em Prints the number of flights arriving to a given city and/or country. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges of the graph respectively. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a952a5078c1a0387f5247b7adff8b2028}{list\+Departures\+Country\+City}} (string country, string city="{}"{})
+\begin{DoxyCompactList}\small\item\em Lists the flights departing from a given city and/or country. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges of the graph respectively. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_ad791cb796ca8164eb077fdd01978c752}{number\+Departures\+Country\+City}} (string country, string city="{}"{})
+\begin{DoxyCompactList}\small\item\em Prints the number of flights departing from a given city and/or country. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges of the graph respectively. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_afb621523d2141e143f5f175b9be7328a}{list\+Countries\+Most\+Airlines}} (int n)
+\begin{DoxyCompactList}\small\item\em Lists the countries, sorted in descending order of number of airlines. Complexity\+: O(n), n being the number of countries. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a6d6b98fc79efe5d14619884a1eebf051}{list\+Countries\+Most\+Airports}} (int n)
+\begin{DoxyCompactList}\small\item\em Lists the countries, sorted in descending order of number of airports. Complexity\+: O(n), n being the number of countries. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a69afee4d4e9a096282de1f0301a9f3b4}{list\+Cities\+Most\+Airports}} (int n)
+\begin{DoxyCompactList}\small\item\em Lists the cities, sorted in descending order of number of airports. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m), n being the number of countries and m the number of cities. \end{DoxyCompactList}\item 
 \Hypertarget{classManager_a82b20de3bae67eb07e0f06403d75a9f8}\label{classManager_a82b20de3bae67eb07e0f06403d75a9f8} 
 void {\bfseries articulation\+Points} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Lists all the airports that serve as articulation points for the flights graph. Complexity\+: O(n), n being the number of articulation points. \end{DoxyCompactList}\item 
 \Hypertarget{classManager_a55abbdb87bb2d3594fa8d1ef8cb6d805}\label{classManager_a55abbdb87bb2d3594fa8d1ef8cb6d805} 
 void {\bfseries diameter} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Prints the diameter of the flights graph. Complexity\+: O(1). \end{DoxyCompactList}\item 
 \Hypertarget{classManager_a89b1476de15802406ee7b6c089a32611}\label{classManager_a89b1476de15802406ee7b6c089a32611} 
 void {\bfseries longest\+Paths} ()
-\item 
-\Hypertarget{classManager_a0d96f5070adf0215391ad2f697668d29}\label{classManager_a0d96f5070adf0215391ad2f697668d29} 
-std\+::string {\bfseries get\+Airport\+Code} (const std\+::string \&name)
-\item 
-\Hypertarget{classManager_a90f8c3ca7cfc8ec32831da8c10526d70}\label{classManager_a90f8c3ca7cfc8ec32831da8c10526d70} 
-vector$<$ string $>$ {\bfseries get\+Airports\+Country\+City} (string country, string city)
-\item 
-\Hypertarget{classManager_a508ce86fd5d4b3cf9bdeef64a8da7688}\label{classManager_a508ce86fd5d4b3cf9bdeef64a8da7688} 
-vector$<$ string $>$ {\bfseries get\+Airports\+Country} (string country)
-\item 
-\Hypertarget{classManager_acae87676bc4cf4feea2055ad82f828c6}\label{classManager_acae87676bc4cf4feea2055ad82f828c6} 
-vector$<$ string $>$ {\bfseries get\+Airports\+Coordinates} (\mbox{\hyperlink{classCoordinate}{Coordinate}} coords)
-\item 
-\Hypertarget{classManager_a91a2eb156e7815d16a3ad9f9ed6fc7fb}\label{classManager_a91a2eb156e7815d16a3ad9f9ed6fc7fb} 
-void {\bfseries best\+Flight\+Option} (vector$<$ string $>$ \texorpdfstring{$\ast$}{*}sources, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}destinations, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airline\+Preferences, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airline\+Restrictions, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airport\+Restrictions)
-\item 
-\Hypertarget{classManager_abfd80b467aa024769a2e5ac07d1f89ce}\label{classManager_abfd80b467aa024769a2e5ac07d1f89ce} 
-int {\bfseries min\+Distance\+BFS} (string \&src, string \&dest, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airline\+Preferences, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airline\+Restrictions, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airport\+Restrictions)
-\item 
-\Hypertarget{classManager_a5bd67a0e089140478f5750af068d821b}\label{classManager_a5bd67a0e089140478f5750af068d821b} 
-void {\bfseries reconstruct\+Paths} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ \mbox{\hyperlink{classAirport}{Airport}} $>$ \texorpdfstring{$\ast$}{*}dest, int min\+Dist)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Lists the longest flights (paths) possible in the flights graph. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m), n being the number of origin airports and m the number of flights of each airport. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classManager_a0d96f5070adf0215391ad2f697668d29}{get\+Airport\+Code}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Searches for the code of an airport with a specific name.. Complexity\+: O(1). \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{classManager_a90f8c3ca7cfc8ec32831da8c10526d70}{get\+Airports\+Country\+City}} (string country, string city)
+\begin{DoxyCompactList}\small\item\em Searches for all airports in a given city and/or country. Complexity\+: O(n), n being the number of airports in the graph. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{classManager_a508ce86fd5d4b3cf9bdeef64a8da7688}{get\+Airports\+Country}} (string country)
+\begin{DoxyCompactList}\small\item\em Searches for all airports in a given country. Complexity\+: O(n), n being the number of airports in the graph. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{classManager_acae87676bc4cf4feea2055ad82f828c6}{get\+Airports\+Coordinates}} (\mbox{\hyperlink{classCoordinate}{Coordinate}} coords)
+\begin{DoxyCompactList}\small\item\em Searches for the closest airports to a given point. Complexity\+: O(n), n being the number of airports in the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a91a2eb156e7815d16a3ad9f9ed6fc7fb}{best\+Flight\+Option}} (vector$<$ string $>$ \texorpdfstring{$\ast$}{*}sources, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}destinations, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airline\+Preferences, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airline\+Restrictions, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airport\+Restrictions)
+\begin{DoxyCompactList}\small\item\em Prints the best flight option, considering a number of preferences. Complexity\+: O(\texorpdfstring{$\ast$}{*}). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classManager_abfd80b467aa024769a2e5ac07d1f89ce}{min\+Distance\+BFS}} (string \&src, string \&dest, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airline\+Preferences, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airline\+Restrictions, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airport\+Restrictions)
+\begin{DoxyCompactList}\small\item\em Conducts a breadth-\/first search of the graph from a source vertex.. Complexity\+: O(\texorpdfstring{$\ast$}{*}). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a5bd67a0e089140478f5750af068d821b}{reconstruct\+Paths}} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ \mbox{\hyperlink{classAirport}{Airport}} $>$ \texorpdfstring{$\ast$}{*}dest, int min\+Dist)
+\begin{DoxyCompactList}\small\item\em \texorpdfstring{$\ast$}{*}. Complexity\+: O(\texorpdfstring{$\ast$}{*}). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -167,6 +146,44 @@ Prints the information for a given airline. Complexity\+: O(1).
 
 \begin{DoxyParams}{Parameters}
 {\em airline} & -\/ Code of the airline to be analyzed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_a0ef6b81b3bcfcbed17b0a643c1ab57f3}\label{classManager_a0ef6b81b3bcfcbed17b0a643c1ab57f3} 
+\index{Manager@{Manager}!airportInfo@{airportInfo}}
+\index{airportInfo@{airportInfo}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{airportInfo()}{airportInfo()}}
+{\footnotesize\ttfamily void Manager\+::airport\+Info (\begin{DoxyParamCaption}\item[{string}]{airport }\end{DoxyParamCaption})}
+
+
+
+Prints the information for a given airport. Complexity\+: O(1). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em airport} & -\/ Code of the airport to be analyzed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_a91a2eb156e7815d16a3ad9f9ed6fc7fb}\label{classManager_a91a2eb156e7815d16a3ad9f9ed6fc7fb} 
+\index{Manager@{Manager}!bestFlightOption@{bestFlightOption}}
+\index{bestFlightOption@{bestFlightOption}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{bestFlightOption()}{bestFlightOption()}}
+{\footnotesize\ttfamily void Manager\+::best\+Flight\+Option (\begin{DoxyParamCaption}\item[{vector$<$ string $>$ \texorpdfstring{$\ast$}{*}}]{sources,  }\item[{vector$<$ string $>$ \texorpdfstring{$\ast$}{*}}]{destinations,  }\item[{vector$<$ string $>$ \texorpdfstring{$\ast$}{*}}]{airline\+Preferences,  }\item[{vector$<$ string $>$ \texorpdfstring{$\ast$}{*}}]{airline\+Restrictions,  }\item[{vector$<$ string $>$ \texorpdfstring{$\ast$}{*}}]{airport\+Restrictions }\end{DoxyParamCaption})}
+
+
+
+Prints the best flight option, considering a number of preferences. Complexity\+: O(\texorpdfstring{$\ast$}{*}). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sources} & \\
+\hline
+{\em destinations} & \\
+\hline
+{\em airline\+Preferences} & \\
+\hline
+{\em airline\+Restrictions} & \\
+\hline
+{\em airport\+Restrictions} & \\
 \hline
 \end{DoxyParams}
 \Hypertarget{classManager_ad513068f5235e0ddd17f3be1e3823638}\label{classManager_ad513068f5235e0ddd17f3be1e3823638} 
@@ -223,6 +240,80 @@ Extracts the contents of a file into the edges of the flight network graph. Comp
 \begin{DoxyReturn}{Returns}
 True if the operation was successful. 
 \end{DoxyReturn}
+\Hypertarget{classManager_a0d96f5070adf0215391ad2f697668d29}\label{classManager_a0d96f5070adf0215391ad2f697668d29} 
+\index{Manager@{Manager}!getAirportCode@{getAirportCode}}
+\index{getAirportCode@{getAirportCode}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{getAirportCode()}{getAirportCode()}}
+{\footnotesize\ttfamily std\+::string Manager\+::get\+Airport\+Code (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Searches for the code of an airport with a specific name.. Complexity\+: O(1). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ Name of airport. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Code of the airport. 
+\end{DoxyReturn}
+\Hypertarget{classManager_acae87676bc4cf4feea2055ad82f828c6}\label{classManager_acae87676bc4cf4feea2055ad82f828c6} 
+\index{Manager@{Manager}!getAirportsCoordinates@{getAirportsCoordinates}}
+\index{getAirportsCoordinates@{getAirportsCoordinates}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{getAirportsCoordinates()}{getAirportsCoordinates()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Manager\+::get\+Airports\+Coordinates (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCoordinate}{Coordinate}}}]{coords }\end{DoxyParamCaption})}
+
+
+
+Searches for the closest airports to a given point. Complexity\+: O(n), n being the number of airports in the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coords} & -\/ Coordinates for the point. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of codes of all airports closest to the given coordinates. 
+\end{DoxyReturn}
+\Hypertarget{classManager_a508ce86fd5d4b3cf9bdeef64a8da7688}\label{classManager_a508ce86fd5d4b3cf9bdeef64a8da7688} 
+\index{Manager@{Manager}!getAirportsCountry@{getAirportsCountry}}
+\index{getAirportsCountry@{getAirportsCountry}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{getAirportsCountry()}{getAirportsCountry()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Manager\+::get\+Airports\+Country (\begin{DoxyParamCaption}\item[{string}]{country }\end{DoxyParamCaption})}
+
+
+
+Searches for all airports in a given country. Complexity\+: O(n), n being the number of airports in the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & -\/ Name of country. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of codes of all airports in the given country. 
+\end{DoxyReturn}
+\Hypertarget{classManager_a90f8c3ca7cfc8ec32831da8c10526d70}\label{classManager_a90f8c3ca7cfc8ec32831da8c10526d70} 
+\index{Manager@{Manager}!getAirportsCountryCity@{getAirportsCountryCity}}
+\index{getAirportsCountryCity@{getAirportsCountryCity}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{getAirportsCountryCity()}{getAirportsCountryCity()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Manager\+::get\+Airports\+Country\+City (\begin{DoxyParamCaption}\item[{string}]{country,  }\item[{string}]{city }\end{DoxyParamCaption})}
+
+
+
+Searches for all airports in a given city and/or country. Complexity\+: O(n), n being the number of airports in the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & -\/ Name of country. \\
+\hline
+{\em city} & -\/ Name of city. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of codes of all airports in the given city and/or country. 
+\end{DoxyReturn}
 \Hypertarget{classManager_ab2c8809aed4d4e1ad06fa32125b1bbe0}\label{classManager_ab2c8809aed4d4e1ad06fa32125b1bbe0} 
 \index{Manager@{Manager}!listAirlinesAirport@{listAirlinesAirport}}
 \index{listAirlinesAirport@{listAirlinesAirport}!Manager@{Manager}}
@@ -251,6 +342,21 @@ Lists the available airlines for a given country. Complexity\+: O(n), having n a
 
 \begin{DoxyParams}{Parameters}
 {\em country} & -\/ Country to be analyzed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_a8a2bb210ada7a44623ecc95150bb9f9a}\label{classManager_a8a2bb210ada7a44623ecc95150bb9f9a} 
+\index{Manager@{Manager}!listAirportFlights@{listAirportFlights}}
+\index{listAirportFlights@{listAirportFlights}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{listAirportFlights()}{listAirportFlights()}}
+{\footnotesize\ttfamily void Manager\+::list\+Airport\+Flights (\begin{DoxyParamCaption}\item[{string}]{airport }\end{DoxyParamCaption})}
+
+
+
+Lists the available flights for a given airport. Complexity\+: O(n), n being the number of flights in an airport. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em airport} & -\/ \doxylink{classAirport}{Airport} to be analyzed. \\
 \hline
 \end{DoxyParams}
 \Hypertarget{classManager_a2b60891a387366ce467895306afa7a1d}\label{classManager_a2b60891a387366ce467895306afa7a1d} 
@@ -298,6 +404,243 @@ Lists the first n airports with the most flights. Complexity\+: O(n), having n a
 
 \begin{DoxyParams}{Parameters}
 {\em n} & -\/ number to be analyzed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_aa9bbdc47deeefc4cca72ad21b33e9381}\label{classManager_aa9bbdc47deeefc4cca72ad21b33e9381} 
+\index{Manager@{Manager}!listArrivalsCountryCity@{listArrivalsCountryCity}}
+\index{listArrivalsCountryCity@{listArrivalsCountryCity}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{listArrivalsCountryCity()}{listArrivalsCountryCity()}}
+{\footnotesize\ttfamily void Manager\+::list\+Arrivals\+Country\+City (\begin{DoxyParamCaption}\item[{string}]{country,  }\item[{string}]{city = {\ttfamily "{}"{}} }\end{DoxyParamCaption})}
+
+
+
+Lists the flights arriving to a given city and/or country. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges of the graph respectively. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & -\/ name of country to be analysed. \\
+\hline
+{\em city} & -\/ name of city to be analysed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_a69afee4d4e9a096282de1f0301a9f3b4}\label{classManager_a69afee4d4e9a096282de1f0301a9f3b4} 
+\index{Manager@{Manager}!listCitiesMostAirports@{listCitiesMostAirports}}
+\index{listCitiesMostAirports@{listCitiesMostAirports}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{listCitiesMostAirports()}{listCitiesMostAirports()}}
+{\footnotesize\ttfamily void Manager\+::list\+Cities\+Most\+Airports (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Lists the cities, sorted in descending order of number of airports. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m), n being the number of countries and m the number of cities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & -\/ number of countries to be listed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_afb621523d2141e143f5f175b9be7328a}\label{classManager_afb621523d2141e143f5f175b9be7328a} 
+\index{Manager@{Manager}!listCountriesMostAirlines@{listCountriesMostAirlines}}
+\index{listCountriesMostAirlines@{listCountriesMostAirlines}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{listCountriesMostAirlines()}{listCountriesMostAirlines()}}
+{\footnotesize\ttfamily void Manager\+::list\+Countries\+Most\+Airlines (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Lists the countries, sorted in descending order of number of airlines. Complexity\+: O(n), n being the number of countries. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & -\/ number of countries to be listed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_a6d6b98fc79efe5d14619884a1eebf051}\label{classManager_a6d6b98fc79efe5d14619884a1eebf051} 
+\index{Manager@{Manager}!listCountriesMostAirports@{listCountriesMostAirports}}
+\index{listCountriesMostAirports@{listCountriesMostAirports}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{listCountriesMostAirports()}{listCountriesMostAirports()}}
+{\footnotesize\ttfamily void Manager\+::list\+Countries\+Most\+Airports (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Lists the countries, sorted in descending order of number of airports. Complexity\+: O(n), n being the number of countries. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & -\/ number of countries to be listed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_a952a5078c1a0387f5247b7adff8b2028}\label{classManager_a952a5078c1a0387f5247b7adff8b2028} 
+\index{Manager@{Manager}!listDeparturesCountryCity@{listDeparturesCountryCity}}
+\index{listDeparturesCountryCity@{listDeparturesCountryCity}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{listDeparturesCountryCity()}{listDeparturesCountryCity()}}
+{\footnotesize\ttfamily void Manager\+::list\+Departures\+Country\+City (\begin{DoxyParamCaption}\item[{string}]{country,  }\item[{string}]{city = {\ttfamily "{}"{}} }\end{DoxyParamCaption})}
+
+
+
+Lists the flights departing from a given city and/or country. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges of the graph respectively. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & -\/ name of country to be analysed. \\
+\hline
+{\em city} & -\/ name of city to be analysed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_a46855e268bd351b79411c4d3dabb6ed1}\label{classManager_a46855e268bd351b79411c4d3dabb6ed1} 
+\index{Manager@{Manager}!listFlightsAirline@{listFlightsAirline}}
+\index{listFlightsAirline@{listFlightsAirline}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{listFlightsAirline()}{listFlightsAirline()}}
+{\footnotesize\ttfamily void Manager\+::list\+Flights\+Airline (\begin{DoxyParamCaption}\item[{string}]{airline }\end{DoxyParamCaption})}
+
+
+
+Lists all tbe available flights from a given airline. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges of the graph respectively. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em airline} & -\/ code of the airline to be analysed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_abfd80b467aa024769a2e5ac07d1f89ce}\label{classManager_abfd80b467aa024769a2e5ac07d1f89ce} 
+\index{Manager@{Manager}!minDistanceBFS@{minDistanceBFS}}
+\index{minDistanceBFS@{minDistanceBFS}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{minDistanceBFS()}{minDistanceBFS()}}
+{\footnotesize\ttfamily int Manager\+::min\+Distance\+BFS (\begin{DoxyParamCaption}\item[{string \&}]{src,  }\item[{string \&}]{dest,  }\item[{vector$<$ string $>$ \texorpdfstring{$\ast$}{*}}]{airline\+Preferences,  }\item[{vector$<$ string $>$ \texorpdfstring{$\ast$}{*}}]{airline\+Restrictions,  }\item[{vector$<$ string $>$ \texorpdfstring{$\ast$}{*}}]{airport\+Restrictions }\end{DoxyParamCaption})}
+
+
+
+Conducts a breadth-\/first search of the graph from a source vertex.. Complexity\+: O(\texorpdfstring{$\ast$}{*}). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & \\
+\hline
+{\em dest} & \\
+\hline
+{\em airline\+Preferences} & \\
+\hline
+{\em airline\+Restrictions} & \\
+\hline
+{\em airport\+Restrictions} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The minimum distance for a flight between two airports in the graph. 
+\end{DoxyReturn}
+\Hypertarget{classManager_ae55bd228b0a8867b3168199b362ba32b}\label{classManager_ae55bd228b0a8867b3168199b362ba32b} 
+\index{Manager@{Manager}!numberArrivalsCountryCity@{numberArrivalsCountryCity}}
+\index{numberArrivalsCountryCity@{numberArrivalsCountryCity}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{numberArrivalsCountryCity()}{numberArrivalsCountryCity()}}
+{\footnotesize\ttfamily void Manager\+::number\+Arrivals\+Country\+City (\begin{DoxyParamCaption}\item[{string}]{country,  }\item[{string}]{city = {\ttfamily "{}"{}} }\end{DoxyParamCaption})}
+
+
+
+Prints the number of flights arriving to a given city and/or country. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges of the graph respectively. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & -\/ name of country to be analysed. \\
+\hline
+{\em city} & -\/ name of city to be analysed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_ad791cb796ca8164eb077fdd01978c752}\label{classManager_ad791cb796ca8164eb077fdd01978c752} 
+\index{Manager@{Manager}!numberDeparturesCountryCity@{numberDeparturesCountryCity}}
+\index{numberDeparturesCountryCity@{numberDeparturesCountryCity}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{numberDeparturesCountryCity()}{numberDeparturesCountryCity()}}
+{\footnotesize\ttfamily void Manager\+::number\+Departures\+Country\+City (\begin{DoxyParamCaption}\item[{string}]{country,  }\item[{string}]{city = {\ttfamily "{}"{}} }\end{DoxyParamCaption})}
+
+
+
+Prints the number of flights departing from a given city and/or country. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges of the graph respectively. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & -\/ name of country to be analysed. \\
+\hline
+{\em city} & -\/ name of city to be analysed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_a6b44d0bd8f7980e6f8b8d420a0de42c0}\label{classManager_a6b44d0bd8f7980e6f8b8d420a0de42c0} 
+\index{Manager@{Manager}!numberFlightsAirline@{numberFlightsAirline}}
+\index{numberFlightsAirline@{numberFlightsAirline}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{numberFlightsAirline()}{numberFlightsAirline()}}
+{\footnotesize\ttfamily void Manager\+::number\+Flights\+Airline (\begin{DoxyParamCaption}\item[{string}]{airline }\end{DoxyParamCaption})}
+
+
+
+Prints the number of all available flights from a given airline. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges of the graph respectively. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em airline} & -\/ code of the airline to be analysed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_af9d72b14b38203bfb71823ea7320cd10}\label{classManager_af9d72b14b38203bfb71823ea7320cd10} 
+\index{Manager@{Manager}!reachableAirports@{reachableAirports}}
+\index{reachableAirports@{reachableAirports}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{reachableAirports()}{reachableAirports()}}
+{\footnotesize\ttfamily void Manager\+::reachable\+Airports (\begin{DoxyParamCaption}\item[{string}]{airport,  }\item[{int}]{n = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Lists the airports reachable from a given airport within a n number of flights. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges visited in the graph respectively. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em airport} & -\/ \doxylink{classAirport}{Airport} of origin. \\
+\hline
+{\em n} & -\/ Distance from the airport of origin in number of flights. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_a031cf21ab61ba603e04c96f9fb718c2c}\label{classManager_a031cf21ab61ba603e04c96f9fb718c2c} 
+\index{Manager@{Manager}!reachableCities@{reachableCities}}
+\index{reachableCities@{reachableCities}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{reachableCities()}{reachableCities()}}
+{\footnotesize\ttfamily void Manager\+::reachable\+Cities (\begin{DoxyParamCaption}\item[{string}]{airport,  }\item[{int}]{n = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Lists the cities reachable from a given airport within a n number of flights. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges visited in the graph respectively. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em airport} & -\/ \doxylink{classAirport}{Airport} of origin. \\
+\hline
+{\em n} & -\/ Distance from the airport of origin in number of flights. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_adc888be5db7dbd24bddb2d6334aad912}\label{classManager_adc888be5db7dbd24bddb2d6334aad912} 
+\index{Manager@{Manager}!reachableCountries@{reachableCountries}}
+\index{reachableCountries@{reachableCountries}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{reachableCountries()}{reachableCountries()}}
+{\footnotesize\ttfamily void Manager\+::reachable\+Countries (\begin{DoxyParamCaption}\item[{string}]{airport,  }\item[{int}]{n = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Lists the countries reachable from a given airport within a n number of flights. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges visited within the distance n. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em airport} & -\/ \doxylink{classAirport}{Airport} of origin. \\
+\hline
+{\em n} & -\/ Distance from the airport of origin in number of flights. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_a5bd67a0e089140478f5750af068d821b}\label{classManager_a5bd67a0e089140478f5750af068d821b} 
+\index{Manager@{Manager}!reconstructPaths@{reconstructPaths}}
+\index{reconstructPaths@{reconstructPaths}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{reconstructPaths()}{reconstructPaths()}}
+{\footnotesize\ttfamily void Manager\+::reconstruct\+Paths (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}}$<$ \mbox{\hyperlink{classAirport}{Airport}} $>$ \texorpdfstring{$\ast$}{*}}]{dest,  }\item[{int}]{min\+Dist }\end{DoxyParamCaption})}
+
+
+
+\texorpdfstring{$\ast$}{*}. Complexity\+: O(\texorpdfstring{$\ast$}{*}). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & \\
+\hline
+{\em min\+Dist} & \\
 \hline
 \end{DoxyParams}
 \Hypertarget{classManager_a0b73cbd00976d32748c75df036c7df55}\label{classManager_a0b73cbd00976d32748c75df036c7df55} 

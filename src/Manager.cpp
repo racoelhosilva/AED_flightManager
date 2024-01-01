@@ -311,12 +311,22 @@ void Manager::listAirportsMostFlights(int n){
     }
 }
 
+/**
+ * @brief Prints the information for a given airport.
+ * Complexity:  O(1).
+ * @param airport - Code of the airport to be analyzed.
+ */
 void Manager::airportInfo(const string airport){
     printAirportHeader();
     printAirport(*airports.find(Airport(airport)));
     printAirportFooter();
 }
 
+/**
+ * @brief Lists the available flights for a given airport.
+ * Complexity: O(n), n being the number of flights in an airport.
+ * @param airport - Airport to be analyzed.
+ */
 void Manager::listAirportFlights(string airport) {
     printDepartureHeader();
     double maxDist = 0;
@@ -331,6 +341,12 @@ void Manager::listAirportFlights(string airport) {
     printDouble(maxDist, "Longest Flight Distance [km]:");
 }
 
+/**
+ * @brief Lists the airports reachable from a given airport within a n number of flights.
+ * Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges visited in the graph respectively.
+ * @param airport - Airport of origin.
+ * @param n - Distance from the airport of origin in number of flights.
+ */
 void Manager::reachableAirports(string airport, int n){
     for (auto a : flightNet.getVertexSet()){
         a->setVisited(false);
@@ -364,6 +380,12 @@ void Manager::reachableAirports(string airport, int n){
     printCount(airportsReached.size(), "Number of Airports Reached:");
 }
 
+/**
+ * @brief Lists the cities reachable from a given airport within a n number of flights.
+ * Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges visited in the graph respectively.
+ * @param airport - Airport of origin.
+ * @param n - Distance from the airport of origin in number of flights.
+ */
 void Manager::reachableCities(string airport, int n){
     for (auto a : flightNet.getVertexSet()){
         a->setVisited(false);
@@ -397,6 +419,13 @@ void Manager::reachableCities(string airport, int n){
     }
     printCount(citiesReached.size(), "Number of Cities Reached:");
 }
+
+/**
+ * @brief Lists the countries reachable from a given airport within a n number of flights.
+ * Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges visited within the distance n.
+ * @param airport - Airport of origin.
+ * @param n - Distance from the airport of origin in number of flights.
+ */
 void Manager::reachableCountries(string airport, int n){
     for (auto a : flightNet.getVertexSet()){
         a->setVisited(false);
@@ -431,6 +460,10 @@ void Manager::reachableCountries(string airport, int n){
     printCount(countriesReached.size(), "Number of Countries Reached:");
 }
 
+/**
+ * @brief Lists all tbe available flights.
+ * Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges of the graph respectively.
+ */
 void Manager::listAllFlights() {
     printFlightHeader();
     double maxDist = 0;
@@ -448,6 +481,11 @@ void Manager::listAllFlights() {
     printCount(count, "Total Number of Flights:");
     printDouble(maxDist, "Longest Flight Distance [km]:");
 }
+
+/**
+ * @brief Prints the number of all available flights.
+ * Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges of the graph respectively.
+ */
 void Manager::numberFlights(){
     int count = 0;
     for (auto v : flightNet.getVertexSet()) {
@@ -457,6 +495,12 @@ void Manager::numberFlights(){
     }
     printCount(count, "Total Number of Flights:");
 }
+
+/**
+ * @brief Lists all tbe available flights from a given airline.
+ * Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges of the graph respectively.
+ * @param airline - code of the airline to be analysed.
+ */
 void Manager::listFlightsAirline(string airline){
     int count = 0;
     double maxDist = 0;
@@ -476,6 +520,12 @@ void Manager::listFlightsAirline(string airline){
     printCount(count, "Total Number of Flights:");
     printDouble(maxDist, "Longest Flight Distance [km]:");
 }
+
+/**
+ * @brief Prints the number of all available flights from a given airline.
+ * Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges of the graph respectively.
+ * @param airline - code of the airline to be analysed.
+ */
 void Manager::numberFlightsAirline(string airline){
     int count = 0;
     for (auto v : flightNet.getVertexSet()) {
@@ -487,6 +537,13 @@ void Manager::numberFlightsAirline(string airline){
     }
     printCount(count, "Number of Flights:");
 }
+
+/**
+ * @brief Lists the flights arriving to a given city and/or country.
+ * Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges of the graph respectively.
+ * @param country - name of country to be analysed.
+ * @param city - name of city to be analysed.
+ */
 void Manager::listArrivalsCountryCity(string country, string city){
     auto cityIt = cities.find(city);
     if (cityIt == cities.end()) city.erase();
@@ -515,6 +572,13 @@ void Manager::listArrivalsCountryCity(string country, string city){
     printCount(count, "Number of Arrivals:");
     printDouble(maxDist, "Longest Arrival Distance [km]:");
 }
+
+/**
+ * @brief Prints the number of flights arriving to a given city and/or country.
+ * Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges of the graph respectively.
+ * @param country - name of country to be analysed.
+ * @param city - name of city to be analysed.
+ */
 void Manager::numberArrivalsCountryCity(string country, string city){
     auto cityIt = cities.find(city);
     if (cityIt == cities.end()) city.erase();
@@ -531,6 +595,13 @@ void Manager::numberArrivalsCountryCity(string country, string city){
     }
     printCount(count, "Number of Arrivals:");
 }
+
+/**
+ * @brief Lists the flights departing from a given city and/or country.
+ * Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges of the graph respectively.
+ * @param country - name of country to be analysed.
+ * @param city - name of city to be analysed.
+ */
 void Manager::listDeparturesCountryCity(string country, string city){
     auto cityIt = cities.find(city);
     if (cityIt == cities.end()) city.erase();
@@ -560,6 +631,13 @@ void Manager::listDeparturesCountryCity(string country, string city){
     printCount(count, "Number of Departures:");
     printDouble(maxDist, "Longest Departure Distance [km]:");
 }
+
+/**
+ * @brief Prints the number of flights departing from a given city and/or country.
+ * Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges of the graph respectively.
+ * @param country - name of country to be analysed.
+ * @param city - name of city to be analysed.
+ */
 void Manager::numberDeparturesCountryCity(std::string country, std::string city) {
     auto cityIt = cities.find(city);
     if (cityIt == cities.end()) city.erase();
@@ -578,6 +656,11 @@ void Manager::numberDeparturesCountryCity(std::string country, std::string city)
     printCount(count, "Number of Departures:");
 }
 
+/**
+ * @brief Lists the countries, sorted in descending order of number of airlines.
+ * Complexity: O(n), n being the number of countries.
+ * @param n - number of countries to be listed.
+ */
 void Manager::listCountriesMostAirlines(int n){
     priority_queue<pair<int, string>> countryAirlineCount;
     for (const string &country : countries){
@@ -590,6 +673,12 @@ void Manager::listCountriesMostAirlines(int n){
         countryAirlineCount.pop();
     }
 }
+
+/**
+ * @brief Lists the countries, sorted in descending order of number of airports.
+ * Complexity: O(n), n being the number of countries.
+ * @param n - number of countries to be listed.
+ */
 void Manager::listCountriesMostAirports(int n){
     priority_queue<pair<int, string>> countryAirportCount;
     for (const string &country : countries){
@@ -602,6 +691,12 @@ void Manager::listCountriesMostAirports(int n){
         countryAirportCount.pop();
     }
 }
+
+/**
+ * @brief Lists the cities, sorted in descending order of number of airports.
+ * Complexity: O(n * m), n being the number of countries and m the number of cities.
+ * @param n - number of countries to be listed.
+ */
 void Manager::listCitiesMostAirports(int n){
     priority_queue<pair<int, pair<string,string>>> countryCityAirportCount;
     for (const string &country : countries){
@@ -618,6 +713,10 @@ void Manager::listCitiesMostAirports(int n){
     }
 }
 
+/**
+ * @brief Lists all the airports that serve as articulation points for the flights graph.
+ * Complexity: O(n), n being the number of articulation points.
+ */
 void Manager::articulationPoints(){
     auto articulationPoints = flightNet.articulationPoints();
     unordered_set<Airport, AirportHash, AirportHash> s;
@@ -631,10 +730,19 @@ void Manager::articulationPoints(){
     printAirportFooter();
     printCount(s.size(), "Number of Articulation Points:");
 }
+
+/**
+ * @brief Prints the diameter of the flights graph.
+ * Complexity: O(1).
+ */
 void Manager::diameter(){
     printCount(flightNet.diameter(), "Diameter of the graph:");
 }
 
+/**
+ * @brief Lists the longest flights (paths) possible in the flights graph.
+ * Complexity: O(n * m), n being the number of origin airports and m the number of flights of each airport.
+ */
 void Manager::longestPaths(){
     int distance;
     vector<pair<Vertex<Airport>*, vector<Vertex<Airport> *>>> result = flightNet.longestPaths(distance);
@@ -647,10 +755,23 @@ void Manager::longestPaths(){
     printCount(distance, "Longest Path Distance:");
 }
 
+/**
+ * @brief Searches for the code of an airport with a specific name..
+ * Complexity: O(1).
+ * @param name - Name of airport.
+ * @return Code of the airport.
+ */
 std::string Manager::getAirportCode(const std::string &name) {
     return airportNameToCode[name];
 }
 
+/**
+ * @brief Searches for all airports in a given city and/or country.
+ * Complexity: O(n), n being the number of airports in the graph.
+ * @param country - Name of country.
+ * @param city - Name of city.
+ * @return Vector of codes of all airports in the given city and/or country.
+ */
 vector<string> Manager::getAirportsCountryCity(string country, string city) {
     vector<string> res;
     for (const Airport &airport : airports) {
@@ -660,6 +781,12 @@ vector<string> Manager::getAirportsCountryCity(string country, string city) {
     return res;
 }
 
+/**
+ * @brief Searches for all airports in a given country.
+ * Complexity: O(n), n being the number of airports in the graph.
+ * @param country - Name of country.
+ * @return Vector of codes of all airports in the given country.
+ */
 vector<string> Manager::getAirportsCountry(string country) {
     vector<string> res;
     for (const Airport &airport : airports) {
@@ -669,6 +796,12 @@ vector<string> Manager::getAirportsCountry(string country) {
     return res;
 }
 
+/**
+ * @brief Searches for the closest airports to a given point.
+ * Complexity: O(n), n being the number of airports in the graph.
+ * @param coords - Coordinates for the point.
+ * @return Vector of codes of all airports closest to the given coordinates.
+ */
 vector<string> Manager::getAirportsCoordinates(Coordinate coords) {
     vector<string> res;
     double distance = INT_MAX;
@@ -687,6 +820,15 @@ vector<string> Manager::getAirportsCoordinates(Coordinate coords) {
     return res;
 }
 
+/**
+ * @brief Prints the best flight option, considering a number of preferences.
+ * Complexity: O(n * m * (|V| + |E|), n being the size of sources, m the size of destinations, |V| the number of vertices and |E| the number of edges in the graph.
+ * @param sources - vector of names and/or codes of the airports of departure.
+ * @param destinations - vector of names and/or codes of the airports of arrival.
+ * @param airlinePreferences - Vector of codes of preferred airlines.
+ * @param airlineRestrictions - Vector of codes of airlines to avoid.
+ * @param airportRestrictions - Vector of codes of airports to avoid.
+ */
 void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinations, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions){
     // Removing values from the source that are restricted
     auto It = sources->begin();
@@ -744,6 +886,12 @@ void Manager::bestFlightOption(vector<string> *sources, vector<string> *destinat
 
 }
 
+/**
+ * @brief Reconstructs paths from a destination vertex back to the source in the flights graph.
+ * Complexity: O(n * m), n being the number of flights of the destination vertex and m its minimum distance to the source vertex.
+ * @param dest - Vertex of destination.
+ * @param minDist - Minimum distance to source vertex.
+ */
 void Manager::reconstructPaths(Vertex<Airport> *dest, int minDist){
     if (minDist < 0){
         return;
@@ -764,6 +912,16 @@ void Manager::reconstructPaths(Vertex<Airport> *dest, int minDist){
     }
 }
 
+/**
+ * @brief Conducts a breadth-first search of the graph from a source vertex..
+ * Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges in the graph respectively..
+ * @param src - Code of departure airport.
+ * @param dest - Code of arrival airport.
+ * @param airlinePreferences - Vector of codes of preferred airlines.
+ * @param airlineRestrictions - Vector of codes of airlines to avoid.
+ * @param airportRestrictions - Vector of codes of airports to avoid.
+ * @return The minimum distance for a flight between two airports in the graph.
+ */
 // Calculates the minimum distance needed according to the restrictions
 int Manager::minDistanceBFS(string &src, string &dest, vector<string>* airlinePreferences, vector<string> *airlineRestrictions, vector<string> *airportRestrictions) {
 
@@ -822,41 +980,89 @@ int Manager::minDistanceBFS(string &src, string &dest, vector<string>* airlinePr
 }
 
 /************************************/
-
+/**
+ * @brief Formats and prints a specific (integer) value of a given item.
+ * Complexity: O(1).
+ * @param number - Value.
+ * @param text - Item.
+ */
 void Manager::printCount(int number, std::string text) {
     cout << "\n     " << BOLD << text << " " << MAGENTA << number << RESET;
 }
 
+/**
+ * @brief Formats and prints a specific (floating) value of a given item.
+ * Complexity: O(1).
+ * @param number - Value.
+ * @param text - Item.
+ */
 void Manager::printDouble(double number, std::string text) {
     cout << "\n     " << BOLD << text << " " << MAGENTA << number << RESET;
 }
 
+/**
+ * @brief Formats and prints the header for a list.
+ * Complexity: O(1).
+ * @param text - Name of list.
+ */
 void Manager::printListHeader(string text){
     cout << "\n       " << BOLD << text << RESET << '\n';
 }
 
+/**
+ * @brief Formats and prints a specific value from a list.
+ * Complexity: O(1).
+ * @param text - Value.
+ */
 void Manager::printListValue(string text){
     cout << "    " << BOLD << MAGENTA << "- " << RESET << text << '\n';
 }
 
+/**
+ * @brief Formats and prints the value of a given something in an ordered list format.
+ * Complexity: O(1).
+ * @param pos - Position of the item.
+ * @param count - Value.
+ * @param text - Item.
+ */
 void Manager::printOrderedValue(int pos, int count, string text){
     cout << "    " << BOLD << MAGENTA << right << setw(3) << pos << ")  " << RESET
          << left << setw(30) << text
          << BOLD << CYAN << count << RESET << '\n';
 }
 
+/**
+ * @brief Formats and prints an value for a given airport in an ordered list format.
+ * Complexity: O(1).
+ * @param pos - Position of the item.
+ * @param count - Value.
+ * @param text1 - Airport code.
+ * @param text2 - Airport name.
+ */
 void Manager::printOrderedValueAirport(int pos, int count, string text1, string text2){
     cout << "    " << BOLD << MAGENTA << right << setw(3) << pos << ")  " << RESET
          << text1 << "  (" << left << setw(36) << text2.append(")")
          << BOLD << CYAN << count << RESET << '\n';
 }
 
+/**
+ * @brief Formats and prints a value for a given city in an ordered list format.
+ * Complexity: O(1).
+ * @param pos - Position of the value.
+ * @param count - Value
+ * @param text1 - Country name.
+ * @param text2 - City name.
+ */
 void Manager::printOrderedValueCity(int pos, int count, string text1, string text2){
     cout << "    " << BOLD << MAGENTA << right << setw(3) << pos << ")  " << RESET
          << left << setw(20) << text1 << "  (" << left << setw(36) << text2.append(")")
          << BOLD << CYAN << count << RESET << '\n';
 }
 
+/**
+ * @brief Formats and prints the header for an airline table.
+ * Complexity: O(1).
+ */
 void Manager::printAirlineHeader(){
     cout << '\n' << INVERT << BOLD << left  << " "
          << setw(6) << " CODE " << " "
@@ -865,6 +1071,11 @@ void Manager::printAirlineHeader(){
          << setw(39) << " COUNTRY" << " " << '\n' << RESET;
 }
 
+/**
+ * @brief Formats and prints a line in an airline table.
+ * Complexity: O(1).
+ * @param airline - Airline.
+ */
 void Manager::printAirline(const Airline &airline){
     cout << left << "│"
          << " " << setw(5)  << airline.getCode() << "│"
@@ -873,10 +1084,18 @@ void Manager::printAirline(const Airline &airline){
          << " " << setw(38) << airline.getCountry() << "│" << '\n';
 }
 
+/**
+ * @brief Formats the footer for an airline table.
+ * Complexity: O(1).
+ */
 void Manager::printAirlineFooter() {
     cout << left << "└──────┴───────────────────────────────────────────┴───────────────────────────┴───────────────────────────────────────┘";
 }
 
+/**
+ * @brief Formats and prints the header for an airport table.
+ * Complexity: O(1).
+ */
 void Manager::printAirportHeader(){
     cout << '\n' << INVERT << BOLD << left  << " "
          << setw(6) << " CODE " << " "
@@ -885,6 +1104,11 @@ void Manager::printAirportHeader(){
          << setw(31) << " CITY" << " " << '\n' << RESET;
 }
 
+/**
+ * @brief Formats and prints a line in an airport table.
+ * Complexity: O(1).
+ * @param airline - Airport.
+ */
 void Manager::printAirport(const Airport &airport) {
     cout << left << "│"
          << " " << setw(5)  << airport.getCode() << "│"
@@ -893,10 +1117,18 @@ void Manager::printAirport(const Airport &airport) {
          << " " << setw(30) << airport.getCity() << "│" << '\n';
 }
 
+/**
+ * @brief Formats the footer for an airport table.
+ * Complexity: O(1).
+ */
 void Manager::printAirportFooter() {
     cout << left << "└──────┴────────────────────────────────────────────────────────┴─────────────────────────────────┴───────────────────────────────┘";
 }
 
+/**
+ * @brief Formats and prints the header for a departing flights table.
+ * Complexity: O(1).
+ */
 void Manager::printDepartureHeader(){
     cout << '\n' << INVERT << BOLD << left  << " "
          << setw(6) << " SRC " << " "
@@ -906,6 +1138,14 @@ void Manager::printDepartureHeader(){
          << setw(12) << "   DISTANCE" << " " << '\n' << RESET;
 }
 
+/**
+ * @brief Formats and prints a line in a departing flights table.
+ * Complexity: O(1).
+ * @param source - Code of the airport of departure.
+ * @param dest - Airport of arrival.
+ * @param airline - Airline of the flight.
+ * @param distance - Flight distance.
+ */
 void Manager::printDeparture(string source, const Airport &dest, string airline, double distance){
     cout << left << "│"
          << " " << setw(5)  << source << "│"
@@ -915,10 +1155,18 @@ void Manager::printDeparture(string source, const Airport &dest, string airline,
          << " " << right << setw(10) << distance << " │" << '\n';
 }
 
+/**
+ * @brief Formats the footer for a departing flights table.
+ * Complexity: O(1).
+ */
 void Manager::printDepartureFooter() {
     cout << left << "└──────┴──────┴────────────────────────────────────────────────────────┴───────┴────────────┘";
 }
 
+/**
+ * @brief Formats and prints the header for an arriving flights table.
+ * Complexity: O(1).
+ */
 void Manager::printArrivalHeader(){
     cout << '\n' << INVERT << BOLD << left  << " "
          << setw(6) << " SRC " << " "
@@ -928,6 +1176,14 @@ void Manager::printArrivalHeader(){
          << setw(12) << "   DISTANCE" << " " << '\n' << RESET;
 }
 
+/**
+ * @brief Formats and prints a line in an arriving flights table.
+ * Complexity: O(1).
+ * @param source - Airport of departure.
+ * @param dest - Code of airport of arrival.
+ * @param airline - Airline of the flight.
+ * @param distance - Flight distance.
+ */
 void Manager::printArrival(const Airport &source, string dest, string airline, double distance){
     cout << left << "│"
          << " " << setw(5)  << source.getCode() << "│"
@@ -937,10 +1193,18 @@ void Manager::printArrival(const Airport &source, string dest, string airline, d
          << " " << right << setw(10) << distance << " │" << '\n';
 }
 
+/**
+ * @brief Formats the footer for an arriving flights table.
+ * Complexity: O(1).
+ */
 void Manager::printArrivalFooter() {
     cout << left << "└──────┴────────────────────────────────────────────────────────┴──────┴───────┴────────────┘";
 }
 
+/**
+ * @brief Formats and prints the header for a flights table.
+ * Complexity: O(1).
+ */
 void Manager::printFlightHeader(){
     cout << '\n' << INVERT << BOLD << left  << " "
          << setw(6) << " SRC " << " "
@@ -950,6 +1214,15 @@ void Manager::printFlightHeader(){
          << setw(8) << " AIRLINE" << " "
          << setw(12) << "   DISTANCE" << " " << '\n' << RESET;
 }
+
+/**
+ * @brief Formats and prints a line in a flights table.
+ * Complexity: O(1).
+ * @param source - Airport of departure.
+ * @param dest - Airport of arrival.
+ * @param airline - Airline of the flight.
+ * @param distance - Flight distance.
+ */
 void Manager::printFlight(const Airport &source, const Airport &dest, string airline, double distance){
     cout << left << "│"
          << " " << setw(5)  << source.getCode() << "│"
@@ -959,10 +1232,22 @@ void Manager::printFlight(const Airport &source, const Airport &dest, string air
          << " " << setw(6) << airline << "│"
          << " " << right << setw(10) << distance << " │" << '\n';
 }
+
+/**
+ * @brief Formats the footer for a flights table.
+ * Complexity: O(1).
+ */
 void Manager::printFlightFooter(){
     cout << left << "└──────┴────────────────────────────────────────────────────────┴──────┴────────────────────────────────────────────────────────┴───────┴────────────┘";
 }
 
+/**
+ * @brief Formats and prints a path on the flights graph.
+ * Complexity: O(n * m), n being the number of paths available and m the number of flights in a given path.
+ * @param airlinePreferences - Vector of codes of preferred airlines.
+ * @param airlineRestrictions - Vector of code of airlines to avoid.
+ * @return The minimum size for a path of the graph, respecting the given preferences.
+ */
 int Manager::printPaths(vector<string>* airlinePreferences, vector<string> *airlineRestrictions){
     int min = INT_MAX;
     for (int pathIdx = 0; pathIdx < paths.size(); pathIdx++){
@@ -984,6 +1269,14 @@ int Manager::printPaths(vector<string>* airlinePreferences, vector<string> *airl
     return min;
 }
 
+/**
+ * @brief Formats and prints the airlines for a specific flight when printing a path.
+ * Complexity: O(n), n being the number of flights departing the airport of departure.
+ * @param currentAirport - Code of the airport of departure.
+ * @param nextAirport - Code of the airport of arrival.
+ * @param airlinePreferences - Vector of codes of preferred airlines.
+ * @param airlineRestrictions - Vector of codes of airlines to avoid.
+ */
 void Manager::printFlightAirlines(const string &currentAirport, const string &nextAirport, vector<string>* airlinePreferences, vector<string> *airlineRestrictions){
     cout << " [ ";
     for (const Edge<Airport> &e : airportCodeToVertex[currentAirport]->getAdj()){

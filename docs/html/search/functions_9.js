@@ -1,4 +1,21 @@
 var searchData=
 [
-  ['mainmenu_0',['mainMenu',['../classInterface.html#ae3c5680ac1fe3077ae7caffa54c737d3',1,'Interface']]]
+  ['listairlinesairport_0',['listAirlinesAirport',['../classManager.html#ab2c8809aed4d4e1ad06fa32125b1bbe0',1,'Manager']]],
+  ['listairlinescountry_1',['listAirlinesCountry',['../classManager.html#a04651dd743f2466c7015c3e396bd64f7',1,'Manager']]],
+  ['listairportflights_2',['listAirportFlights',['../classManager.html#a8a2bb210ada7a44623ecc95150bb9f9a',1,'Manager']]],
+  ['listairportscountrycity_3',['listAirportsCountryCity',['../classManager.html#a2b60891a387366ce467895306afa7a1d',1,'Manager']]],
+  ['listairportsmostairlines_4',['listAirportsMostAirlines',['../classManager.html#af9e8b1df4a37a09b4aeebbc03e27d069',1,'Manager']]],
+  ['listairportsmostflights_5',['listAirportsMostFlights',['../classManager.html#ac8491e9e93712a3aec5f94d31e645436',1,'Manager']]],
+  ['listallairlines_6',['listAllAirlines',['../classManager.html#a76fc37a96881cec7ef200056808d14f9',1,'Manager']]],
+  ['listallairports_7',['listAllAirports',['../classManager.html#a111b7a794b4b637ef29b63c3fd7894b6',1,'Manager']]],
+  ['listallflights_8',['listAllFlights',['../classManager.html#a2a8ea849e7e41e28dfed38122fe5377a',1,'Manager']]],
+  ['listarrivalscountrycity_9',['listArrivalsCountryCity',['../classManager.html#aa9bbdc47deeefc4cca72ad21b33e9381',1,'Manager']]],
+  ['listcitiesmostairports_10',['listCitiesMostAirports',['../classManager.html#a69afee4d4e9a096282de1f0301a9f3b4',1,'Manager']]],
+  ['listcountriesmostairlines_11',['listCountriesMostAirlines',['../classManager.html#afb621523d2141e143f5f175b9be7328a',1,'Manager']]],
+  ['listcountriesmostairports_12',['listCountriesMostAirports',['../classManager.html#a6d6b98fc79efe5d14619884a1eebf051',1,'Manager']]],
+  ['listdeparturescountrycity_13',['listDeparturesCountryCity',['../classManager.html#a952a5078c1a0387f5247b7adff8b2028',1,'Manager']]],
+  ['listflightsairline_14',['listFlightsAirline',['../classManager.html#a46855e268bd351b79411c4d3dabb6ed1',1,'Manager']]],
+  ['loaddata_15',['loadData',['../classInterface.html#abd7e1bd5e9639af2da21193076e8349f',1,'Interface']]],
+  ['locationstatisticsmenu_16',['locationStatisticsMenu',['../classInterface.html#add9fcf6d605aac170e10cf4159a7511d',1,'Interface']]],
+  ['longestpaths_17',['longestpaths',['../classGraph.html#a8c9e0f3f43659b4141994c26af406e96',1,'Graph::longestPaths()'],['../classManager.html#a89b1476de15802406ee7b6c089a32611',1,'Manager::longestPaths()']]]
 ];
