@@ -517,7 +517,17 @@ void Manager::listCitiesMostAirports(int n){
 }
 
 void Manager::articulationPoints(){
-    auto articulationPoints = flightNet.articulationPoints();
+    Graph<Airport> aux;
+    for (auto x : flightNet.getVertexSet()){
+        aux.addVertex(x->getInfo());
+    }
+    for (auto x : flightNet.getVertexSet()){
+        for (auto y : x->getAdj()){
+            aux.addEdge(aux.findVertex(x->getInfo()), aux.findVertex(y.getDest()->getInfo()), y.getWeight(), y.getInfo());
+            aux.addEdge(aux.findVertex(y.getDest()->getInfo()), aux.findVertex(x->getInfo()), y.getWeight(), y.getInfo());
+        }
+    }
+    auto articulationPoints = aux.articulationPoints();
     unordered_set<Airport, AirportHash, AirportHash> s;
     for (const Airport &v : articulationPoints){
         s.insert(v);
