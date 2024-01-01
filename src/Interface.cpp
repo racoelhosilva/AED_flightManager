@@ -6,16 +6,16 @@
  * @brief Prints the menu header.
  */
 void Interface::header() {
-    std::cout << "┌───────────────────────────────────────────────────────────────────────────────────┐\n"
-              << "├──────────────────────────── \033[1;34mFlight Manager (Group 15)\033[0m ────────────────────────────┤\n\n";
+    std::cout << BOLD << "┌─────────────────────────────────────────────────────────────────────────────────────────────────┐\n"
+              << "├" << RESET << "─────────────────────────────────── " << BOLD << BLUE << "Flight Manager (Group 15)" << RESET <<" ───────────────────────────────────" << BOLD << "┤\n\n" << RESET;
 }
 
 /**
  * @brief Prints the menu footer.
  */
 void Interface::footer() {
-    std::cout << "├──────────────────────────── \033[1;34mFlight Manager (Group 15)\033[0m ────────────────────────────┤\n"
-              << "└───────────────────────────────────────────────────────────────────────────────────┘\n";
+    std::cout << BOLD << "├" << RESET << "─────────────────────────────────── " << BOLD << BLUE << "Flight Manager (Group 15)" << RESET << " ───────────────────────────────────" << BOLD "┤\n"
+              << "└─────────────────────────────────────────────────────────────────────────────────────────────────┘\n" << RESET;
 }
 
 /**
@@ -30,7 +30,7 @@ void Interface::clear() {
  */
 void Interface::outputWait() {
     cin.clear();
-    cout << "                            \033[2m< Press \033[0m\033[1mENTER\033[0m\033[2m to Continue >\033[0m";
+    cout << "\n\n                                    " << FAINT << "< Press " << RESET << BOLD << "ENTER" << RESET << FAINT << " to Continue >" << RESET;
     cin.ignore();
 }
 
@@ -41,11 +41,12 @@ void Interface::init() {
     header();
     this->manager = Manager();
     if (loadData()){
-        std::cout << "Data Loaded... Starting flight manager!\n";
+        std::cout << YELLOW << BOLD << "        Data Loaded: " << GREEN
+                     "\n ✓ " << RESET << "Starting flight manager!\n";
         this->mainMenu();
     }
     else {
-        std::cout << "Problem loading data... Exiting!\n";
+        std::cout << RED << BOLD << " ✗ Problem loading data: Exiting!\n" << RESET;
     }
 }
 
@@ -55,7 +56,7 @@ void Interface::init() {
 void Interface::exitMenu() {
     clear();
 
-    std::cout << "\n                        \033[1mThanks for using our Flight Manager!\033[0m\n\n";
+    std::cout << "\n                               " << BOLD << UNDERLINE << "Thanks for using our Flight Manager!" << RESET << "\n\n";
 
     footer();
     exit(0);
@@ -66,19 +67,19 @@ void Interface::exitMenu() {
  * @return True if the operation was successful.
  */
 bool Interface::loadData() {
-    std::cout << "        Loading data (this may take a while):\n";
+    std::cout << "        " << BOLD << YELLOW << "Loading data (this may take a while):\n";
     if (!manager.extractAirports("../data/airports.csv")) {
         return false;
     }
-    std::cout << " - Airports loaded\n";
+    std::cout << GREEN << BOLD << " ✓ " << RESET << "Airports loaded\n";
     if (!manager.extractAirlines("../data/airlines.csv")) {
         return false;
     }
-    std::cout << " - Airlines loaded\n";
+    std::cout << GREEN << BOLD << " ✓ " << RESET << "Airlines loaded\n";
     if (!manager.extractFlights("../data/flights.csv")){
         return false;
     }
-    std::cout << " - Flights loaded\n";
+    std::cout << GREEN << BOLD << " ✓ " << RESET << "Flights loaded\n";
     return true;
 }
 
@@ -87,11 +88,11 @@ bool Interface::loadData() {
  * @param options - vector of available options.
  */
 void Interface::printOptions(const std::vector<std::string> &options) {
-    std::cout << "     \033[1m" << options[options.size()-1] << "\033[0m\n";
+    std::cout << "     " << BOLD << options[options.size()-1] << RESET << "\n";
     for (int idx = 1; idx < options.size() - 1; idx++ ){
-        std::cout << " \033[1;36m[" << idx << "]\033[0m " << options[idx] << '\n';
+        std::cout << CYAN << BOLD << " [" << idx << "] " << RESET << options[idx] << '\n';
     }
-    std::cout << " \033[31m[0]\033[0m " << options[0] << '\n';
+    std::cout << RED << " [0] " << RESET << options[0] << '\n';
 }
 
 /**
@@ -99,7 +100,36 @@ void Interface::printOptions(const std::vector<std::string> &options) {
  * @param s - Selected option.
  */
 void Interface::printSelected(const std::string &s) {
-    std::cout << "     \033[1m>  \033[33m" << s << "\033[0m selected\n\n";
+    std::cout << "     " <<  BOLD << "> " << YELLOW << s << RESET << " selected\n";
+}
+
+void Interface::printFilters(){
+    if (airlinePreferences.empty() && airlineRestrictions.empty() && airportRestrictions.empty()){
+        return;
+    }
+    std::cout << BOLD << "            Current Filters:" << RESET;
+    if (!airlinePreferences.empty()){
+        std::cout << GREEN << FAINT << BOLD << "\n        Airline Preferences" << RESET << ": ";
+        for (const string &t : airlinePreferences){
+            cout << t << "  ";
+        }
+
+    }
+
+    if (!airlineRestrictions.empty()){
+        std::cout << RED << FAINT << BOLD << "\n        Airline Restrictions" << RESET << ": ";
+        for (const string &t : airlineRestrictions){
+            cout << t << "  ";
+        }
+    }
+
+    if (!airportRestrictions.empty()){
+        std::cout << RED << FAINT << BOLD << "\n        Airport Restrictions" << RESET << ": ";
+        for (const string &t : airportRestrictions){
+            cout << t << "  ";
+        }
+    }
+    cout << RESET << '\n';
 }
 
 /**
@@ -110,7 +140,7 @@ void Interface::printSelected(const std::string &s) {
 int Interface::readOption(int max) {
     string choice;
     do {
-        std::cout << "  Option: ";
+        std::cout << FAINT << "  Option" << RESET << ": ";
         cin.clear();
         std::cin >> choice;
         cin.ignore();
@@ -135,7 +165,7 @@ bool Interface::validOption(unsigned long size, const std::string &choice) {
 std::string Interface::readAirline() {
     string choice;
     do {
-        std::cout << "  Airline Code: ";
+        std::cout << FAINT << "  Airline Code" << RESET << ": ";
         cin.clear();
         getline(cin, choice, '\n');
     } while (!manager.validateAirline(choice));
@@ -149,7 +179,7 @@ std::string Interface::readAirline() {
 std::string Interface::readAirportCode() {
     string choice;
     do {
-        std::cout << "  Airport Code: ";
+        std::cout << FAINT << "  Airport Code" << RESET << ": ";
         cin.clear();
         getline(cin, choice, '\n');
     } while (!manager.validateAirport(choice));
@@ -163,7 +193,7 @@ std::string Interface::readAirportCode() {
 std::string Interface::readAirportName() {
     string choice;
     do {
-        std::cout << "  Airport Name: ";
+        std::cout << FAINT << "  Airport Name" << RESET << ": ";
         cin.clear();
         getline(cin, choice, '\n');
     } while (!manager.validateAirportName(choice));
@@ -174,13 +204,13 @@ std::string Interface::readAirportName() {
  * @brief Reads and requests the manager to validate user inputted cities.
  * @return - Name of the inputted city.
  */
-std::string Interface::readCity() {
+std::string Interface::readCity(string country) {
     string choice;
     do {
-        std::cout << "  City: ";
+        std::cout << FAINT << "  City" << RESET << ": ";
         cin.clear();
         getline(cin, choice, '\n');
-    } while (!manager.validateCity(choice));
+    } while (!manager.validateCity(choice, country));
     return choice;
 }
 
@@ -190,7 +220,7 @@ std::string Interface::readCity() {
  */
 std::string Interface::readCityOptional() {
     string choice;
-    std::cout << "  City (Optional): ";
+    std::cout << FAINT << "  City (Optional)" << RESET << ": ";
     cin.clear();
     getline(cin, choice, '\n');
     return choice;
@@ -203,7 +233,7 @@ std::string Interface::readCityOptional() {
 std::string Interface::readCountry() {
     string choice;
     do {
-        std::cout << "  Country: ";
+        std::cout << FAINT << "  Country" << RESET << ": ";
         cin.clear();
         getline(cin, choice, '\n');
     } while (!manager.validateCountry(choice));
@@ -214,16 +244,16 @@ std::string Interface::readCountry() {
  * @brief Reads and requests the manager to validate user inputted coordinates.
  * @return - Inputted coordinates.
  */
-pair<double, double> Interface::readCoordinates() {
+Coordinate Interface::readCoordinates() {
     double latitude;
     do {
-        std::cout << "  Latitude: ";
+        std::cout << FAINT << "  Latitude:" << RESET << ": ";
         cin.clear();
         std::cin >> latitude;
     } while (cin.fail() || latitude < -90 || latitude > 90);
     double longitude;
     do {
-        std::cout << "  Longitude: ";
+        std::cout << FAINT << "  Longitude:" << RESET << ": ";
         cin.clear();
         std::cin >> longitude;
     } while (cin.fail() || latitude < -180 || latitude > 180);
@@ -246,9 +276,9 @@ bool stringIsNumeric(const string &s){
 int Interface::readNumber() {
     string choice;
     do {
-        std::cout << "  Number: ";
+        std::cout << FAINT << "  Number" << RESET << ": ";
         cin.clear();
-        std::cin >> choice;
+        getline(cin, choice, '\n');
     } while (!stringIsNumeric(choice));
     return stoi(choice);
 }
@@ -297,6 +327,7 @@ void Interface::statisticsMenu() {
              "Countries/Cities",
              "Articulation Points",
              "Graph Diameter",
+             "Paths with Most Stops",
              "Choose type of Statistics:"};
     printOptions(options);
 
@@ -322,6 +353,10 @@ void Interface::statisticsMenu() {
             break;
         case 6:
             manager.diameter();
+            outputWait();
+            break;
+        case 7:
+            manager.longestPaths();
             outputWait();
             break;
         case 0:
@@ -539,8 +574,10 @@ void Interface::flightStatisticsMenu() {
              "Number of Flights",
              "Flights by Airline",
              "Number of Flights by Airline",
-             "Flights by Country/City",
-             "Number of Flights by Country/City",
+             "Arrivals by Country/City",
+             "Number of Arrivals by Country/City",
+             "Departures by Country/City",
+             "Number of Departures by Country/City",
              "Choose type of Flight Statistics:"};
     printOptions(options);
 
@@ -571,14 +608,28 @@ void Interface::flightStatisticsMenu() {
         case 5: {
             string country = readCountry();
             string city = readCityOptional();
-            manager.listFlightsCountryCity(country, city);
+            manager.listArrivalsCountryCity(country, city);
             outputWait();
             break;
         }
         case 6: {
             string country = readCountry();
             string city = readCityOptional();
-            manager.numberFlightsCountryCity(country, city);
+            manager.numberArrivalsCountryCity(country, city);
+            outputWait();
+            break;
+        }
+        case 7: {
+            string country = readCountry();
+            string city = readCityOptional();
+            manager.listDeparturesCountryCity(country, city);
+            outputWait();
+            break;
+        }
+        case 8: {
+            string country = readCountry();
+            string city = readCityOptional();
+            manager.numberDeparturesCountryCity(country, city);
             outputWait();
             break;
         }
@@ -635,7 +686,7 @@ void Interface::locationStatisticsMenu() {
         }
         case 5: {
             string country = readCountry();
-            string city = readCity();
+            string city = readCity(country);
             manager.listAirportsCountryCity(country, city);
             outputWait();
             break;
@@ -680,9 +731,12 @@ void Interface::flightSourceMenu() {
         case 2:
             sourceCodes.push_back(manager.getAirportCode(readAirportName()));
             break;
-        case 3:
-            sourceCodes = manager.getAirportsCountryCity(readCountry(), readCity());
+        case 3: {
+            string country = readCountry();
+            string city = readCity(country);
+            sourceCodes = manager.getAirportsCountryCity(country, city);
             break;
+        }
         case 4:
             sourceCodes = manager.getAirportsCoordinates(readCoordinates());
             break;
@@ -719,9 +773,12 @@ void Interface::flightDestinationMenu() {
         case 2:
             destinationCodes.push_back(manager.getAirportCode(readAirportName()));
             break;
-        case 3:
-            destinationCodes = manager.getAirportsCountryCity(readCountry(), readCity());
+        case 3:{
+            string country = readCountry();
+            string city = readCity(country);
+            destinationCodes = manager.getAirportsCountryCity(country, city);
             break;
+        }
         case 4:
             destinationCodes = manager.getAirportsCoordinates(readCoordinates());
             break;
@@ -745,9 +802,13 @@ void Interface::flightFilterMenu() {
              "Add Airline Preference",
              "Add Airline Restriction",
              "Add Airport Restriction",
+             "Add City Restriction",
+             "Add Country Restriction",
              "Clear Filters",
              "Choose the Filters:"};
     printOptions(options);
+
+    printFilters();
 
     int choice = readOption(int(options.size()));
 
@@ -768,7 +829,24 @@ void Interface::flightFilterMenu() {
         case 4:
             airportRestrictions.push_back(readAirportCode());
             break;
-        case 5:
+        case 5:{
+            string country = readCountry();
+            string city = readCity(country);
+            vector<string> airports = manager.getAirportsCountryCity(country, city);
+            for (const string &airport : airports){
+                airportRestrictions.push_back(airport);
+            }
+            break;
+        }
+        case 6:{
+            string country = readCountry();
+            vector<string> airports = manager.getAirportsCountry(country);
+            for (const string &airport : airports){
+                airportRestrictions.push_back(airport);
+            }
+            break;
+        }
+        case 7:
             airlinePreferences.clear();
             airlineRestrictions.clear();
             airportRestrictions.clear();

@@ -8,12 +8,18 @@
 #include <vector>
 #include <queue>
 #include <iostream>
+#include <unordered_set>
+#include <stack>
 
 using namespace std;
 
 template <class T> class Edge;
 template <class T> class Graph;
 template <class T> class Vertex;
+
+// Auxiliar function declaration (used in the articulation points algorithm)
+template <typename T>
+bool stackSearch(stack<T> s, T i);
 
 
 /****************** Provided structures  ********************/
@@ -29,10 +35,12 @@ class Vertex {
 	vector<Edge<T> > adj;  // list of outgoing edges
 	bool visited;          // auxiliary field
     bool processing;       // auxiliary field
-    int steps;             // auxiliary field
-    vector<pair<Vertex<T>*, Edge<T>>> previous;    // auxiliary field
 
-    void addEdge(Vertex<T> *dest, Airline w);
+    int lowest = 0;
+    int visitIndex = 0;
+    int auxiliar = 0;
+
+    void addEdge(Vertex<T> *dest, double w, string code);
 	bool removeEdgeTo(Vertex<T> *d);
 public:
 	Vertex(T in);
@@ -42,11 +50,15 @@ public:
     void setVisited(bool v);
     bool isProcessing() const;
     void setProcessing(bool p);
-    vector<pair<Vertex<T>*, Edge<T>>> getPrevious() const;
-    void clearPrevious();
-    void addPrevious(pair<Vertex<T>*, Edge<T>>);
-    int getSteps() const;
-    void setSteps(int s);
+    int getLowest() const;
+    void setLowest(int low);
+    int getVisitIndex() const;
+    void setVisitIndex(int visIdx);
+    int getAuxiliar() const;
+    void setAuxiliar(int aux);
+    vector<Edge<T> > &getAdj();
+
+    unordered_set<string> parents;
 
     const vector<Edge<T> > &getAdj() const;
     void setAdj(const vector<Edge<T> > &adj);
@@ -61,13 +73,16 @@ public:
 template <class T>
 class Edge {
 	Vertex<T> * dest;      // destination vertex
-	Airline weight;         // edge weight
+	double weight;         // edge weight
+    string info;
 public:
-	Edge(Vertex<T> *d, Airline w);
+	Edge(Vertex<T> *d, double w, string code);
     Vertex<T> *getDest() const;
     void setDest(Vertex<T> *dest);
-    Airline getWeight() const;
-    void setWeight(Airline weight);
+    double getWeight() const;
+    void setWeight(double weight);
+    string getInfo() const;
+    void setInfo(string code);
     friend class Graph<T>;
 	friend class Vertex<T>;
 };
@@ -86,12 +101,21 @@ public:
     int getNumVertex() const;
 	Vertex<T>* addVertex(const T &in);
 	bool removeVertex(const T &in);
-	bool addEdge(Vertex<T> *sourc, Vertex<T> *dest, Airline w);
+	bool addEdge(Vertex<T> *sourc, Vertex<T> *dest, double w, string code);
 	bool removeEdge(const T &sourc, const T &dest);
     vector<Vertex<T> * > getVertexSet() const;
 	vector<T> dfs() const;
 	vector<T> dfs(const T & source) const;
 	vector<T> bfs(const T &source) const;
+
+    int diameter();
+    vector<pair<Vertex<T>*, vector<Vertex<T> *>>> longestPaths(int &diameter);
+    int bfs_diameter(Vertex<T> *v);
+
+    vector<T> articulationPoints();
+    void dfs_art(Vertex<T> *v, stack<T> &s, vector<T> &l, int &i);
+
+
 };
 
 /****************** Provided constructors and functions ********************/
@@ -102,7 +126,7 @@ Vertex<T>::Vertex(T in): info(in) {}
 
 /// All parameter constructor
 template <class T>
-Edge<T>::Edge(Vertex<T> *d, Airline w): dest(d), weight(w) {}
+Edge<T>::Edge(Vertex<T> *d, double w, string code): dest(d), weight(w), info(code) {}
 
 
 template <class T>
@@ -135,6 +159,31 @@ void Vertex<T>::setProcessing(bool p) {
     Vertex::processing = p;
 }
 
+template <class T>
+int Vertex<T>::getLowest() const{
+    return lowest;
+}
+template <class T>
+void Vertex<T>::setLowest(int low){
+    Vertex::lowest = low;
+}
+template <class T>
+int Vertex<T>::getVisitIndex() const{
+    return visitIndex;
+}
+template <class T>
+void Vertex<T>::setVisitIndex(int visIdx){
+    Vertex::visitIndex = visIdx;
+}
+template <class T>
+int Vertex<T>::getAuxiliar() const {
+    return auxiliar;
+}
+template <class T>
+void Vertex<T>::setAuxiliar(int aux) {
+    Vertex::auxiliar = aux;
+}
+
 template<class T>
 Vertex<T> *Edge<T>::getDest() const {
     return dest;
@@ -146,14 +195,24 @@ void Edge<T>::setDest(Vertex<T> *d) {
 }
 
 template<class T>
-Airline Edge<T>::getWeight() const {
+double Edge<T>::getWeight() const {
     return weight;
 }
 
 template<class T>
-void Edge<T>::setWeight(Airline weight) {
+void Edge<T>::setWeight(double weight) {
     Edge::weight = weight;
 }
+
+template <class T>
+string Edge<T>::getInfo() const {
+    return info;
+}
+template <class T>
+void Edge<T>::setInfo(string code) {
+    Edge::info = code;
+}
+
 
 /**
  * @brief Auxiliary function to find a vertex with a given content.
@@ -177,38 +236,13 @@ void Vertex<T>::setVisited(bool v) {
 }
 
 template<class T>
-const vector<Edge<T> > &Vertex<T>::getAdj() const {
+vector<Edge<T> > &Vertex<T>::getAdj() {
     return adj;
 }
 
 template <class T>
 void Vertex<T>::setAdj(const vector<Edge<T> > &adj) {
     Vertex::adj = adj;
-}
-
-template<class T>
-void Vertex<T>::setSteps(int s) {
-    steps = s;
-}
-
-template<class T>
-int Vertex<T>::getSteps() const {
-    return steps;
-}
-
-template<class T>
-void Vertex<T>::addPrevious(pair<Vertex<T>*, Edge<T>> prev) {
-    previous.push_back(prev);
-}
-
-template<class T>
-vector<pair<Vertex<T>*, Edge<T>>> Vertex<T>::getPrevious() const {
-    return previous;
-}
-
-template<class T>
-void Vertex<T>::clearPrevious() {
-    previous.clear();
 }
 
 /**
@@ -229,8 +263,8 @@ Vertex<T>* Graph<T>::addVertex(const T &in) {
  * @return Returns true if successful, and false if the source or destination vertex does not exist.
  */
 template <class T>
-bool Graph<T>::addEdge(Vertex<T> *sourc, Vertex<T> *dest, Airline w) {
-	sourc->addEdge(dest,w);
+bool Graph<T>::addEdge(Vertex<T> *sourc, Vertex<T> *dest, double w, string code) {
+	sourc->addEdge(dest,w,code);
 	return true;
 }
 
@@ -239,8 +273,8 @@ bool Graph<T>::addEdge(Vertex<T> *sourc, Vertex<T> *dest, Airline w) {
  * with a given destination vertex (d) and edge weight (w).
  */
 template <class T>
-void Vertex<T>::addEdge(Vertex<T> *d, Airline w) {
-	adj.push_back(Edge<T>(d, w));
+void Vertex<T>::addEdge(Vertex<T> *d, double w, string code) {
+	adj.push_back(Edge<T>(d, w, code));
 }
 
 
@@ -369,6 +403,149 @@ vector<T> Graph<T>::bfs(const T & source) const {
 		}
 	}
 	return res;
+}
+
+// DIAMETER BFS
+template <class T>
+int Graph<T>::diameter(){
+    int diameter = 0;
+    for (Vertex<T> *w : vertexSet){
+        w->setVisited(false);
+    }
+    for (Vertex<T> *v : vertexSet){
+        if (!v->isVisited()){
+            v->setVisited(true);
+            int result = bfs_diameter(v);
+            diameter = max(result, diameter);
+        }
+    }
+    return diameter;
+}
+
+template <class T>
+int Graph<T>::bfs_diameter(Vertex<T> *v) {
+    for (Vertex<T> *w : vertexSet){
+        w->setVisited(false);
+        w->setVisitIndex(-1);
+    }
+    int diameter = 0;
+    queue<Vertex<T> *> remaining;
+    v->setVisited(true);
+    v->setVisitIndex(0);
+    remaining.push(v);
+
+    while (!remaining.empty()){
+        Vertex<T> *current = remaining.front();
+        remaining.pop();
+
+        for (const Edge<T> &e : current->getAdj()){
+            Vertex<T> *next = e.getDest();
+            if (!next->isVisited()){
+                remaining.push(next);
+                next->setVisited(true);
+                next->setVisitIndex(current->getVisitIndex()+1);
+                if (next->getVisitIndex() > diameter){
+                    diameter = next->getVisitIndex();
+                }
+            }
+        }
+
+    }
+    return diameter;
+}
+
+// LONGEST PAIRS
+template <class T>
+vector<pair<Vertex<T>*, vector<Vertex<T> *>>> Graph<T>::longestPaths(int &diameter){
+    diameter = 0;
+    for (Vertex<T> *w : vertexSet){
+        w->setVisited(false);
+    }
+    vector<pair<Vertex<T>*, vector<Vertex<T> *>>> longest;
+    for (Vertex<T> *v : vertexSet){
+        int result = bfs_diameter(v);
+        if (result > diameter){
+            diameter = result;
+            longest.clear();
+        }
+        if (result == diameter){
+            vector<Vertex<T> *> ends;
+            for (Vertex<T> *w : vertexSet){
+                if (w->getVisitIndex() == diameter){
+                    ends.push_back(w);
+                }
+            }
+            longest.push_back(make_pair(v, ends));
+        }
+    }
+    return longest;
+}
+
+// ARTICULATION POINTS
+template <class T>
+vector<T> Graph<T>::articulationPoints() {
+    vector<T> res;
+
+    for (auto vx : this->getVertexSet()){
+        vx->setLowest(0);
+        vx->setVisitIndex(0);
+        vx->setVisited(false);
+    }
+
+    stack<T> s;
+    int idx = 1;
+    for (auto v : this->getVertexSet()){
+        if (!v->isVisited()){
+            this->dfs_art(v, s, res, idx);
+        }
+    }
+
+    if (this->getVertexSet().front()->getAuxiliar() > 2){
+        res.push_back(this->getVertexSet().front()->getInfo());
+    }
+    else {
+        res.pop_back();
+    }
+
+    return res;
+}
+
+template <class T>
+void Graph<T>::dfs_art(Vertex<T> *v, stack<T> &s, vector<T> &l, int &i){
+    v->setLowest(i);
+    v->setVisitIndex(i);
+    v->setAuxiliar(0);
+    v->setVisited(true);
+    s.push(v->getInfo());
+    i++;
+
+    for (auto e : v->getAdj()){
+        Vertex<T> *w = e.getDest();
+        if (!w->isVisited()){
+            v->setAuxiliar(v->getAuxiliar()+1);
+            dfs_art(w, s, l, i);
+            v->setLowest(min(v->getLowest(), w->getLowest()));
+            if (w->getLowest() >= v->getVisitIndex()){
+                l.push_back(v->getInfo());
+            }
+        }
+        else if (stackSearch(s, w->getInfo())){
+            v->setLowest(min(v->getLowest(), w->getVisitIndex()));
+        }
+    }
+    s.pop();
+}
+
+template <typename T>
+bool stackSearch(stack<T> s, const T i){
+    while (!s.empty()){
+        T x = s.top();
+        s.pop();
+        if (x == i){
+            return true;
+        }
+    }
+    return false;
 }
 
 #endif /* GRAPH_H_ */
