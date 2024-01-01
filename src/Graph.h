@@ -17,11 +17,6 @@ template <class T> class Edge;
 template <class T> class Graph;
 template <class T> class Vertex;
 
-// Auxiliar function declaration (used in the articulation points algorithm)
-template <typename T>
-bool stackSearch(stack<T> s, T i);
-
-
 /****************** Provided structures  ********************/
 
 /**
@@ -523,7 +518,7 @@ void Graph<T>::dfs_art(Vertex<T> *v, unordered_set<Vertex<T> *> &l, int &i){
         Vertex<T> *w = e.getDest();
         if (!w->isVisited()){
             v->setAuxiliar(v->getAuxiliar()+1);
-            dfs_art(w, s, l, i);
+            dfs_art(w, l, i);
             v->setLowest(min(v->getLowest(), w->getLowest()));
             if (w->getLowest() >= v->getVisitIndex()){
                 l.insert(v);
