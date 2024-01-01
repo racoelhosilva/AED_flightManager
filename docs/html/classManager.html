@@ -228,13 +228,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>longestPaths</b> ()</
 <tr class="memdesc:acae87676bc4cf4feea2055ad82f828c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches for the closest airports to a given point. Complexity: O(n), n being the number of airports in the graph.  <br /></td></tr>
 <tr class="separator:acae87676bc4cf4feea2055ad82f828c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91a2eb156e7815d16a3ad9f9ed6fc7fb" id="r_a91a2eb156e7815d16a3ad9f9ed6fc7fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91a2eb156e7815d16a3ad9f9ed6fc7fb">bestFlightOption</a> (vector&lt; string &gt; *sources, vector&lt; string &gt; *destinations, vector&lt; string &gt; *airlinePreferences, vector&lt; string &gt; *airlineRestrictions, vector&lt; string &gt; *airportRestrictions)</td></tr>
-<tr class="memdesc:a91a2eb156e7815d16a3ad9f9ed6fc7fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the best flight option, considering a number of preferences. Complexity: O(*).  <br /></td></tr>
+<tr class="memdesc:a91a2eb156e7815d16a3ad9f9ed6fc7fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the best flight option, considering a number of preferences. Complexity: O(n * m * (|V| + |E|), n being the size of sources, m the size of destinations, |V| the number of vertices and |E| the number of edges in the graph.  <br /></td></tr>
 <tr class="separator:a91a2eb156e7815d16a3ad9f9ed6fc7fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfd80b467aa024769a2e5ac07d1f89ce" id="r_abfd80b467aa024769a2e5ac07d1f89ce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfd80b467aa024769a2e5ac07d1f89ce">minDistanceBFS</a> (string &amp;src, string &amp;dest, vector&lt; string &gt; *airlinePreferences, vector&lt; string &gt; *airlineRestrictions, vector&lt; string &gt; *airportRestrictions)</td></tr>
-<tr class="memdesc:abfd80b467aa024769a2e5ac07d1f89ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conducts a breadth-first search of the graph from a source vertex.. Complexity: O(*).  <br /></td></tr>
+<tr class="memdesc:abfd80b467aa024769a2e5ac07d1f89ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conducts a breadth-first search of the graph from a source vertex.. Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges in the graph respectively..  <br /></td></tr>
 <tr class="separator:abfd80b467aa024769a2e5ac07d1f89ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bd67a0e089140478f5750af068d821b" id="r_a5bd67a0e089140478f5750af068d821b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bd67a0e089140478f5750af068d821b">reconstructPaths</a> (<a class="el" href="classVertex.html">Vertex</a>&lt; <a class="el" href="classAirport.html">Airport</a> &gt; *dest, int minDist)</td></tr>
-<tr class="memdesc:a5bd67a0e089140478f5750af068d821b"><td class="mdescLeft">&#160;</td><td class="mdescRight">*. Complexity: O(*).  <br /></td></tr>
+<tr class="memdesc:a5bd67a0e089140478f5750af068d821b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstructs paths from a destination vertex back to the source in the flights graph. Complexity: O(n * m), n being the number of flights of the destination vertex and m its minimum distance to the source vertex.  <br /></td></tr>
 <tr class="separator:a5bd67a0e089140478f5750af068d821b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -345,14 +345,14 @@ vector&lt; vector&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign
       </table>
 </div><div class="memdoc">
 
-<p>Prints the best flight option, considering a number of preferences. Complexity: O(*). </p>
+<p>Prints the best flight option, considering a number of preferences. Complexity: O(n * m * (|V| + |E|), n being the size of sources, m the size of destinations, |V| the number of vertices and |E| the number of edges in the graph. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sources</td><td></td></tr>
-    <tr><td class="paramname">destinations</td><td></td></tr>
-    <tr><td class="paramname">airlinePreferences</td><td></td></tr>
-    <tr><td class="paramname">airlineRestrictions</td><td></td></tr>
-    <tr><td class="paramname">airportRestrictions</td><td></td></tr>
+    <tr><td class="paramname">sources</td><td>- vector of names and/or codes of the airports of departure. </td></tr>
+    <tr><td class="paramname">destinations</td><td>- vector of names and/or codes of the airports of arrival. </td></tr>
+    <tr><td class="paramname">airlinePreferences</td><td>- Vector of codes of preferred airlines. </td></tr>
+    <tr><td class="paramname">airlineRestrictions</td><td>- Vector of codes of airlines to avoid. </td></tr>
+    <tr><td class="paramname">airportRestrictions</td><td>- Vector of codes of airports to avoid. </td></tr>
   </table>
   </dd>
 </dl>
@@ -948,14 +948,14 @@ vector&lt; vector&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign
       </table>
 </div><div class="memdoc">
 
-<p>Conducts a breadth-first search of the graph from a source vertex.. Complexity: O(*). </p>
+<p>Conducts a breadth-first search of the graph from a source vertex.. Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges in the graph respectively.. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">src</td><td></td></tr>
-    <tr><td class="paramname">dest</td><td></td></tr>
-    <tr><td class="paramname">airlinePreferences</td><td></td></tr>
-    <tr><td class="paramname">airlineRestrictions</td><td></td></tr>
-    <tr><td class="paramname">airportRestrictions</td><td></td></tr>
+    <tr><td class="paramname">src</td><td>- Code of departure airport. </td></tr>
+    <tr><td class="paramname">dest</td><td>- Code of arrival airport. </td></tr>
+    <tr><td class="paramname">airlinePreferences</td><td>- Vector of codes of preferred airlines. </td></tr>
+    <tr><td class="paramname">airlineRestrictions</td><td>- Vector of codes of airlines to avoid. </td></tr>
+    <tr><td class="paramname">airportRestrictions</td><td>- Vector of codes of airports to avoid. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1200,11 +1200,11 @@ vector&lt; vector&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign
       </table>
 </div><div class="memdoc">
 
-<p>*. Complexity: O(*). </p>
+<p>Reconstructs paths from a destination vertex back to the source in the flights graph. Complexity: O(n * m), n being the number of flights of the destination vertex and m its minimum distance to the source vertex. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dest</td><td></td></tr>
-    <tr><td class="paramname">minDist</td><td></td></tr>
+    <tr><td class="paramname">dest</td><td>- <a class="el" href="classVertex.html" title="Class that defines a Vertex of a Graph. Each vertex has contents, a list of outgoing edges,...">Vertex</a> of destination. </td></tr>
+    <tr><td class="paramname">minDist</td><td>- Minimum distance to source vertex. </td></tr>
   </table>
   </dd>
 </dl>

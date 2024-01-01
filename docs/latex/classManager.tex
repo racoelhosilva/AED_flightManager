@@ -113,11 +113,11 @@ vector$<$ string $>$ \mbox{\hyperlink{classManager_a508ce86fd5d4b3cf9bdeef64a8da
 vector$<$ string $>$ \mbox{\hyperlink{classManager_acae87676bc4cf4feea2055ad82f828c6}{get\+Airports\+Coordinates}} (\mbox{\hyperlink{classCoordinate}{Coordinate}} coords)
 \begin{DoxyCompactList}\small\item\em Searches for the closest airports to a given point. Complexity\+: O(n), n being the number of airports in the graph. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classManager_a91a2eb156e7815d16a3ad9f9ed6fc7fb}{best\+Flight\+Option}} (vector$<$ string $>$ \texorpdfstring{$\ast$}{*}sources, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}destinations, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airline\+Preferences, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airline\+Restrictions, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airport\+Restrictions)
-\begin{DoxyCompactList}\small\item\em Prints the best flight option, considering a number of preferences. Complexity\+: O(\texorpdfstring{$\ast$}{*}). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Prints the best flight option, considering a number of preferences. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m \texorpdfstring{$\ast$}{*} (\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), n being the size of sources, m the size of destinations, \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} the number of vertices and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} the number of edges in the graph. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classManager_abfd80b467aa024769a2e5ac07d1f89ce}{min\+Distance\+BFS}} (string \&src, string \&dest, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airline\+Preferences, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airline\+Restrictions, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airport\+Restrictions)
-\begin{DoxyCompactList}\small\item\em Conducts a breadth-\/first search of the graph from a source vertex.. Complexity\+: O(\texorpdfstring{$\ast$}{*}). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Conducts a breadth-\/first search of the graph from a source vertex.. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges in the graph respectively.. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classManager_a5bd67a0e089140478f5750af068d821b}{reconstruct\+Paths}} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ \mbox{\hyperlink{classAirport}{Airport}} $>$ \texorpdfstring{$\ast$}{*}dest, int min\+Dist)
-\begin{DoxyCompactList}\small\item\em \texorpdfstring{$\ast$}{*}. Complexity\+: O(\texorpdfstring{$\ast$}{*}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Reconstructs paths from a destination vertex back to the source in the flights graph. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m), n being the number of flights of the destination vertex and m its minimum distance to the source vertex. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -171,19 +171,19 @@ Prints the information for a given airport. Complexity\+: O(1).
 
 
 
-Prints the best flight option, considering a number of preferences. Complexity\+: O(\texorpdfstring{$\ast$}{*}). 
+Prints the best flight option, considering a number of preferences. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m \texorpdfstring{$\ast$}{*} (\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), n being the size of sources, m the size of destinations, \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} the number of vertices and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} the number of edges in the graph. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em sources} & \\
+{\em sources} & -\/ vector of names and/or codes of the airports of departure. \\
 \hline
-{\em destinations} & \\
+{\em destinations} & -\/ vector of names and/or codes of the airports of arrival. \\
 \hline
-{\em airline\+Preferences} & \\
+{\em airline\+Preferences} & -\/ Vector of codes of preferred airlines. \\
 \hline
-{\em airline\+Restrictions} & \\
+{\em airline\+Restrictions} & -\/ Vector of codes of airlines to avoid. \\
 \hline
-{\em airport\+Restrictions} & \\
+{\em airport\+Restrictions} & -\/ Vector of codes of airports to avoid. \\
 \hline
 \end{DoxyParams}
 \Hypertarget{classManager_ad513068f5235e0ddd17f3be1e3823638}\label{classManager_ad513068f5235e0ddd17f3be1e3823638} 
@@ -508,19 +508,19 @@ Lists all tbe available flights from a given airline. Complexity\+: O(\texorpdfs
 
 
 
-Conducts a breadth-\/first search of the graph from a source vertex.. Complexity\+: O(\texorpdfstring{$\ast$}{*}). 
+Conducts a breadth-\/first search of the graph from a source vertex.. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges in the graph respectively.. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em src} & \\
+{\em src} & -\/ Code of departure airport. \\
 \hline
-{\em dest} & \\
+{\em dest} & -\/ Code of arrival airport. \\
 \hline
-{\em airline\+Preferences} & \\
+{\em airline\+Preferences} & -\/ Vector of codes of preferred airlines. \\
 \hline
-{\em airline\+Restrictions} & \\
+{\em airline\+Restrictions} & -\/ Vector of codes of airlines to avoid. \\
 \hline
-{\em airport\+Restrictions} & \\
+{\em airport\+Restrictions} & -\/ Vector of codes of airports to avoid. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -634,13 +634,13 @@ Lists the countries reachable from a given airport within a n number of flights.
 
 
 
-\texorpdfstring{$\ast$}{*}. Complexity\+: O(\texorpdfstring{$\ast$}{*}). 
+Reconstructs paths from a destination vertex back to the source in the flights graph. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m), n being the number of flights of the destination vertex and m its minimum distance to the source vertex. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em dest} & \\
+{\em dest} & -\/ \doxylink{classVertex}{Vertex} of destination. \\
 \hline
-{\em min\+Dist} & \\
+{\em min\+Dist} & -\/ Minimum distance to source vertex. \\
 \hline
 \end{DoxyParams}
 \Hypertarget{classManager_a0b73cbd00976d32748c75df036c7df55}\label{classManager_a0b73cbd00976d32748c75df036c7df55} 

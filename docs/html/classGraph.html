@@ -117,13 +117,13 @@ vector&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; T &gt; * &gt;&#1
 <tr class="memdesc:aa47a4130165550e208e7a063fce6983a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conducts a breadth-first search of the graph from a source vertex.  <br /></td></tr>
 <tr class="separator:aa47a4130165550e208e7a063fce6983a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a960a9fe88b32bdf7da895decabc76c60" id="r_a960a9fe88b32bdf7da895decabc76c60"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a960a9fe88b32bdf7da895decabc76c60">diameter</a> ()</td></tr>
-<tr class="memdesc:a960a9fe88b32bdf7da895decabc76c60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complexity: O(*)  <br /></td></tr>
+<tr class="memdesc:a960a9fe88b32bdf7da895decabc76c60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the diameter of the graph. Complexity: O(|V|), where |V| is the number of vertices in the graph.  <br /></td></tr>
 <tr class="separator:a960a9fe88b32bdf7da895decabc76c60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c9e0f3f43659b4141994c26af406e96" id="r_a8c9e0f3f43659b4141994c26af406e96"><td class="memItemLeft" align="right" valign="top">vector&lt; pair&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; T &gt; *, vector&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; T &gt; * &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c9e0f3f43659b4141994c26af406e96">longestPaths</a> (int &amp;<a class="el" href="#a960a9fe88b32bdf7da895decabc76c60">diameter</a>)</td></tr>
 <tr class="memdesc:a8c9e0f3f43659b4141994c26af406e96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complexity: O(*)  <br /></td></tr>
 <tr class="separator:a8c9e0f3f43659b4141994c26af406e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21163663a9910cde3d9fb99230433aa2" id="r_a21163663a9910cde3d9fb99230433aa2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21163663a9910cde3d9fb99230433aa2">bfs_diameter</a> (<a class="el" href="classVertex.html">Vertex</a>&lt; T &gt; *v)</td></tr>
-<tr class="memdesc:a21163663a9910cde3d9fb99230433aa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complexity: O(*)  <br /></td></tr>
+<tr class="memdesc:a21163663a9910cde3d9fb99230433aa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges in the graph respectively.  <br /></td></tr>
 <tr class="separator:a21163663a9910cde3d9fb99230433aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a298540bc9c5798bc83b3bd32ed79ddf9" id="r_a298540bc9c5798bc83b3bd32ed79ddf9"><td class="memItemLeft" align="right" valign="top">vector&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a298540bc9c5798bc83b3bd32ed79ddf9">articulationPoints</a> ()</td></tr>
 <tr class="memdesc:a298540bc9c5798bc83b3bd32ed79ddf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complexity: O(*)  <br /></td></tr>
@@ -273,8 +273,14 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Complexity: O(*) </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<p>Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges in the graph respectively. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>- Source vertex. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The distance of the biggest path for the given vertex in the graph. </dd></dl>
 
 </div>
 </div>
@@ -385,8 +391,8 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Complexity: O(*) </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<p>Calculates the diameter of the graph. Complexity: O(|V|), where |V| is the number of vertices in the graph. </p>
+<dl class="section return"><dt>Returns</dt><dd>The diameter of the graph. </dd></dl>
 
 </div>
 </div>

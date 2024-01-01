@@ -272,7 +272,7 @@ void Manager::listAirportsCountryCity(std::string country, std::string city) {
 
 /**
  * @brief Lists the first n airports with the most airlines.
- * Complexity: O(n * m), having n as the number of airports and m the number of flights in an airport.
+ * Complexity: O(log(n * m)), having n as the number of airports and m the number of flights in an airport.
  * @param n - number to be analyzed.
  */
 void Manager::listAirportsMostAirlines(int n) {
@@ -295,7 +295,7 @@ void Manager::listAirportsMostAirlines(int n) {
 
 /**
  * @brief Lists the first n airports with the most flights.
- * Complexity: O(n), having n as the number of airports.
+ * Complexity: O(log(n)), having n as the number of airports.
  * @param n - number to be analyzed.
  */
 void Manager::listAirportsMostFlights(int n){
@@ -658,7 +658,7 @@ void Manager::numberDeparturesCountryCity(std::string country, std::string city)
 
 /**
  * @brief Lists the countries, sorted in descending order of number of airlines.
- * Complexity: O(n), n being the number of countries.
+ * Complexity: O(log(n)), n being the number of countries.
  * @param n - number of countries to be listed.
  */
 void Manager::listCountriesMostAirlines(int n){
@@ -676,7 +676,7 @@ void Manager::listCountriesMostAirlines(int n){
 
 /**
  * @brief Lists the countries, sorted in descending order of number of airports.
- * Complexity: O(n), n being the number of countries.
+ * Complexity: O(log(n)), n being the number of countries.
  * @param n - number of countries to be listed.
  */
 void Manager::listCountriesMostAirports(int n){
@@ -694,7 +694,7 @@ void Manager::listCountriesMostAirports(int n){
 
 /**
  * @brief Lists the cities, sorted in descending order of number of airports.
- * Complexity: O(n * m), n being the number of countries and m the number of cities.
+ * Complexity: O(log(n * m)), n being the number of countries and m the number of cities.
  * @param n - number of countries to be listed.
  */
 void Manager::listCitiesMostAirports(int n){
