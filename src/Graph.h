@@ -401,6 +401,11 @@ vector<T> Graph<T>::bfs(const T & source) const {
 }
 
 // DIAMETER BFS
+/**
+ * @brief Calculates the diameter of the graph.
+ * Complexity: O(|V|), where |V| is the number of vertices in the graph.
+ * @return The diameter of the graph.
+ */
 template <class T>
 int Graph<T>::diameter(){
     int diameter = 0;
@@ -417,6 +422,12 @@ int Graph<T>::diameter(){
     return diameter;
 }
 
+/**
+ * @brief Conducts a breadth-first search of the graph in order to calculate the size of the biggest possible path starting from a given vertex.
+ * Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges in the graph respectively.
+ * @param v - Source vertex.
+ * @return The distance of the biggest path for the given vertex in the graph.
+ */
 template <class T>
 int Graph<T>::bfs_diameter(Vertex<T> *v) {
     for (Vertex<T> *w : vertexSet){
@@ -450,6 +461,12 @@ int Graph<T>::bfs_diameter(Vertex<T> *v) {
 }
 
 // LONGEST PAIRS
+/**
+ * @brief Finds the longest possible paths in the graph.
+ * Complexity: O((|V|)²), |V| being the number of vertices in the graph.
+ * @param diameter - Diameter of the graph.
+ * @return A vector of pairs of vertices, corresponding to the longest paths in the graph.
+ */
 template <class T>
 vector<pair<Vertex<T>*, vector<Vertex<T> *>>> Graph<T>::longestPaths(int &diameter){
     diameter = 0;
@@ -477,6 +494,11 @@ vector<pair<Vertex<T>*, vector<Vertex<T> *>>> Graph<T>::longestPaths(int &diamet
 }
 
 // ARTICULATION POINTS
+/**
+ * @brief Finds all articulation points in the graph.
+ * Complexity: O(|V|), |V| being the number of vertices in the graph.
+ * @return A Vector of all articulation points in the graph.
+ */
 template <class T>
 unordered_set<Vertex<T> *> Graph<T>::articulationPoints() {
     unordered_set<Vertex<T> *> res;
@@ -505,6 +527,13 @@ unordered_set<Vertex<T> *> Graph<T>::articulationPoints() {
     return res;
 }
 
+/**
+ * @brief Conducts a depth-first search of the graph in order to find articulation points in the graph.
+ * Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges in the graph respectively.
+ * @param v - Vertex of origin.
+ * @param l - List of articulated components found in the graph.
+ * @param i - Index of search.
+ */
 template <class T>
 void Graph<T>::dfs_art(Vertex<T> *v, unordered_set<Vertex<T> *> &l, int &i){
     v->setLowest(i);

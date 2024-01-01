@@ -1,0 +1,309 @@
+\doxysection{Interface Class Reference}
+\hypertarget{classInterface}{}\label{classInterface}\index{Interface@{Interface}}
+
+
+Class that defines the graphical \doxylink{classInterface}{Interface}. The interface contains the \doxylink{classManager}{Manager} which processes the user requests.  
+
+
+
+
+{\ttfamily \#include $<$Interface.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classInterface_a4cae6ec8b7fd4a857f80cea5adb4ff35}\label{classInterface_a4cae6ec8b7fd4a857f80cea5adb4ff35} 
+void {\bfseries init} ()
+\begin{DoxyCompactList}\small\item\em Initializes the interface. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_a1796714b9aff059595df108bb0d952f0}\label{classInterface_a1796714b9aff059595df108bb0d952f0} 
+void {\bfseries exit\+Menu} ()
+\begin{DoxyCompactList}\small\item\em Prints the exit menu. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInterface_abd7e1bd5e9639af2da21193076e8349f}{load\+Data}} ()
+\begin{DoxyCompactList}\small\item\em Requests the loading of the data from the manager. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInterface_a92ad63bc04107fa96378fcbec019871e}{valid\+Option}} (unsigned long size, const std\+::string \&choice)
+\begin{DoxyCompactList}\small\item\em Validates the user chosen option. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classInterface_a483b3b38be1f2334e681c79990003430}{read\+Option}} (int i)
+\begin{DoxyCompactList}\small\item\em Reads and filters the user chosen option. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInterface_a6c47f459c7075dcc511d5f11efc15ae3}{print\+Selected}} (const string \&s)
+\begin{DoxyCompactList}\small\item\em Prints selected option. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_af00c4a43915b69e5767fc57405d02044}\label{classInterface_af00c4a43915b69e5767fc57405d02044} 
+void {\bfseries print\+Filters} ()
+\item 
+std\+::string \mbox{\hyperlink{classInterface_a56f8e08a9fc72800396b2ae04cd47c81}{read\+Airline}} ()
+\begin{DoxyCompactList}\small\item\em Reads and requests the manager to validate user inputted airlines. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classInterface_aab084eda68fb7cf2b085f2fab3c5b924}{read\+Airport\+Code}} ()
+\begin{DoxyCompactList}\small\item\em Reads and requests the manager to validate user inputted airport codes. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classInterface_a52c4d61a169e3ffccf011874ded92e8d}{read\+Airport\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Reads and requests the manager to validate user inputted airport names. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classInterface_a81d8417000c6557d99cc6710e8c2d616}{read\+City}} (string country)
+\begin{DoxyCompactList}\small\item\em Reads and requests the manager to validate user inputted cities. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classInterface_a53370cd03320486a39d0980c715c1b67}{read\+City\+Optional}} ()
+\begin{DoxyCompactList}\small\item\em Reads and requests the manager to validate user inputted cities. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classInterface_a4119be7e701677fd11e0e7dbfb5dd3a8}{read\+Country}} ()
+\begin{DoxyCompactList}\small\item\em Reads and requests the manager to validate user inputted countries. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCoordinate}{Coordinate}} \mbox{\hyperlink{classInterface_a55fd9920d16f540de21d383b20fd0eae}{read\+Coordinates}} ()
+\begin{DoxyCompactList}\small\item\em Reads and requests the manager to validate user inputted coordinates. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classInterface_a3ed481e4e61d4328d3bc34084fc1b8fc}{read\+Number}} ()
+\begin{DoxyCompactList}\small\item\em Reads and requests the manager to validate user inputted numbers. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_ae3c5680ac1fe3077ae7caffa54c737d3}\label{classInterface_ae3c5680ac1fe3077ae7caffa54c737d3} 
+void {\bfseries main\+Menu} ()
+\begin{DoxyCompactList}\small\item\em Prints the main menu. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_a879b4f946f8e6ac0a1d4215910343fc8}\label{classInterface_a879b4f946f8e6ac0a1d4215910343fc8} 
+void {\bfseries statistics\+Menu} ()
+\begin{DoxyCompactList}\small\item\em Prints the flight statistics menu. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_afe69ef4effd777265d202b921dbd868e}\label{classInterface_afe69ef4effd777265d202b921dbd868e} 
+void {\bfseries airline\+Statistics\+Menu} ()
+\begin{DoxyCompactList}\small\item\em Prints the airline statistics menu. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_a04c4a49fb74f5ef9ad37687456ce613e}\label{classInterface_a04c4a49fb74f5ef9ad37687456ce613e} 
+void {\bfseries airport\+Statistics\+Menu} ()
+\begin{DoxyCompactList}\small\item\em Prints the airport statistics menu. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_a2087de2e1388167fef0cd80659e820fe}\label{classInterface_a2087de2e1388167fef0cd80659e820fe} 
+void {\bfseries airport\+Information\+Menu} ()
+\begin{DoxyCompactList}\small\item\em Prints the airport information menu. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_a65f5bdcba7c6ae1824c4d2ca38a4842e}\label{classInterface_a65f5bdcba7c6ae1824c4d2ca38a4842e} 
+void {\bfseries flight\+Statistics\+Menu} ()
+\begin{DoxyCompactList}\small\item\em Prints the flight statistics menu. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_add9fcf6d605aac170e10cf4159a7511d}\label{classInterface_add9fcf6d605aac170e10cf4159a7511d} 
+void {\bfseries location\+Statistics\+Menu} ()
+\begin{DoxyCompactList}\small\item\em Prints location statistics menu. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_af9e12eb1cafc0cfe77a4bce0229cec93}\label{classInterface_af9e12eb1cafc0cfe77a4bce0229cec93} 
+void {\bfseries flight\+Source\+Menu} ()
+\begin{DoxyCompactList}\small\item\em Prints the flight source menu. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_a016eaf1cec6267911a2230a6126d7d6f}\label{classInterface_a016eaf1cec6267911a2230a6126d7d6f} 
+void {\bfseries flight\+Destination\+Menu} ()
+\begin{DoxyCompactList}\small\item\em Prints the flight destination menu. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_a283db646c6e44d3b4f5fd9f0f11464a7}\label{classInterface_a283db646c6e44d3b4f5fd9f0f11464a7} 
+void {\bfseries flight\+Filter\+Menu} ()
+\begin{DoxyCompactList}\small\item\em Prints the flight filter menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classInterface_a1e6958f5941b3237990746d50efee50e}\label{classInterface_a1e6958f5941b3237990746d50efee50e} 
+static void {\bfseries header} ()
+\begin{DoxyCompactList}\small\item\em Prints the menu header. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_a44c67dcf9b8763d4da30499f2ff788e1}\label{classInterface_a44c67dcf9b8763d4da30499f2ff788e1} 
+static void {\bfseries footer} ()
+\begin{DoxyCompactList}\small\item\em Prints the menu footer. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_a87d3550f0bbed28adaabbbcf6fd3eb1b}\label{classInterface_a87d3550f0bbed28adaabbbcf6fd3eb1b} 
+static void {\bfseries clear} ()
+\begin{DoxyCompactList}\small\item\em Clears the screen. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_ac1a1129cd78bf2c5f2b58438a1cbb5fd}\label{classInterface_ac1a1129cd78bf2c5f2b58438a1cbb5fd} 
+static void {\bfseries output\+Wait} ()
+\begin{DoxyCompactList}\small\item\em Waits for user input to continue. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classInterface_acfe2749eec1f305e167b49a74982bb88}{print\+Options}} (const std\+::vector$<$ std\+::string $>$ \&options)
+\begin{DoxyCompactList}\small\item\em Prints available options. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classInterface_ac0181df0c575dc0ffaecdc86c517327c}\label{classInterface_ac0181df0c575dc0ffaecdc86c517327c} 
+vector$<$ string $>$ {\bfseries source\+Codes}
+\begin{DoxyCompactList}\small\item\em Vector of available source airports for a trip. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_a5912b3fb7ee3265099aed537501c25a1}\label{classInterface_a5912b3fb7ee3265099aed537501c25a1} 
+vector$<$ string $>$ {\bfseries destination\+Codes}
+\begin{DoxyCompactList}\small\item\em Vector of available destination airports for a trip. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_a9bda15aeec861dcbedad29fdbfba0594}\label{classInterface_a9bda15aeec861dcbedad29fdbfba0594} 
+vector$<$ string $>$ {\bfseries airline\+Preferences}
+\begin{DoxyCompactList}\small\item\em Vector of user preferred airlines for a trip. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_a56857ea983bc7131931f18f6d1cf18ed}\label{classInterface_a56857ea983bc7131931f18f6d1cf18ed} 
+vector$<$ string $>$ {\bfseries airline\+Restrictions}
+\begin{DoxyCompactList}\small\item\em Vector of user restricted airlines for a trip. \end{DoxyCompactList}\item 
+\Hypertarget{classInterface_abd486695e503b810792dffe01c823746}\label{classInterface_abd486695e503b810792dffe01c823746} 
+vector$<$ string $>$ {\bfseries airport\+Restrictions}
+\begin{DoxyCompactList}\small\item\em Vector of user restricted airports for a trip. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that defines the graphical \doxylink{classInterface}{Interface}. The interface contains the \doxylink{classManager}{Manager} which processes the user requests. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classInterface_abd7e1bd5e9639af2da21193076e8349f}\label{classInterface_abd7e1bd5e9639af2da21193076e8349f} 
+\index{Interface@{Interface}!loadData@{loadData}}
+\index{loadData@{loadData}!Interface@{Interface}}
+\doxysubsubsection{\texorpdfstring{loadData()}{loadData()}}
+{\footnotesize\ttfamily bool Interface\+::load\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Requests the loading of the data from the manager. 
+
+\begin{DoxyReturn}{Returns}
+True if the operation was successful. 
+\end{DoxyReturn}
+\Hypertarget{classInterface_acfe2749eec1f305e167b49a74982bb88}\label{classInterface_acfe2749eec1f305e167b49a74982bb88} 
+\index{Interface@{Interface}!printOptions@{printOptions}}
+\index{printOptions@{printOptions}!Interface@{Interface}}
+\doxysubsubsection{\texorpdfstring{printOptions()}{printOptions()}}
+{\footnotesize\ttfamily void Interface\+::print\+Options (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{options }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Prints available options. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & -\/ vector of available options. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classInterface_a6c47f459c7075dcc511d5f11efc15ae3}\label{classInterface_a6c47f459c7075dcc511d5f11efc15ae3} 
+\index{Interface@{Interface}!printSelected@{printSelected}}
+\index{printSelected@{printSelected}!Interface@{Interface}}
+\doxysubsubsection{\texorpdfstring{printSelected()}{printSelected()}}
+{\footnotesize\ttfamily void Interface\+::print\+Selected (\begin{DoxyParamCaption}\item[{const string \&}]{s }\end{DoxyParamCaption})}
+
+
+
+Prints selected option. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & -\/ Selected option. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classInterface_a56f8e08a9fc72800396b2ae04cd47c81}\label{classInterface_a56f8e08a9fc72800396b2ae04cd47c81} 
+\index{Interface@{Interface}!readAirline@{readAirline}}
+\index{readAirline@{readAirline}!Interface@{Interface}}
+\doxysubsubsection{\texorpdfstring{readAirline()}{readAirline()}}
+{\footnotesize\ttfamily std\+::string Interface\+::read\+Airline (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads and requests the manager to validate user inputted airlines. 
+
+\begin{DoxyReturn}{Returns}
+-\/ Code of the inputted airline. 
+\end{DoxyReturn}
+\Hypertarget{classInterface_aab084eda68fb7cf2b085f2fab3c5b924}\label{classInterface_aab084eda68fb7cf2b085f2fab3c5b924} 
+\index{Interface@{Interface}!readAirportCode@{readAirportCode}}
+\index{readAirportCode@{readAirportCode}!Interface@{Interface}}
+\doxysubsubsection{\texorpdfstring{readAirportCode()}{readAirportCode()}}
+{\footnotesize\ttfamily std\+::string Interface\+::read\+Airport\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads and requests the manager to validate user inputted airport codes. 
+
+\begin{DoxyReturn}{Returns}
+-\/ Code of the inputted airport. 
+\end{DoxyReturn}
+\Hypertarget{classInterface_a52c4d61a169e3ffccf011874ded92e8d}\label{classInterface_a52c4d61a169e3ffccf011874ded92e8d} 
+\index{Interface@{Interface}!readAirportName@{readAirportName}}
+\index{readAirportName@{readAirportName}!Interface@{Interface}}
+\doxysubsubsection{\texorpdfstring{readAirportName()}{readAirportName()}}
+{\footnotesize\ttfamily std\+::string Interface\+::read\+Airport\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads and requests the manager to validate user inputted airport names. 
+
+\begin{DoxyReturn}{Returns}
+-\/ Name of the inputted airport. 
+\end{DoxyReturn}
+\Hypertarget{classInterface_a81d8417000c6557d99cc6710e8c2d616}\label{classInterface_a81d8417000c6557d99cc6710e8c2d616} 
+\index{Interface@{Interface}!readCity@{readCity}}
+\index{readCity@{readCity}!Interface@{Interface}}
+\doxysubsubsection{\texorpdfstring{readCity()}{readCity()}}
+{\footnotesize\ttfamily std\+::string Interface\+::read\+City (\begin{DoxyParamCaption}\item[{string}]{country }\end{DoxyParamCaption})}
+
+
+
+Reads and requests the manager to validate user inputted cities. 
+
+\begin{DoxyReturn}{Returns}
+-\/ Name of the inputted city. 
+\end{DoxyReturn}
+\Hypertarget{classInterface_a53370cd03320486a39d0980c715c1b67}\label{classInterface_a53370cd03320486a39d0980c715c1b67} 
+\index{Interface@{Interface}!readCityOptional@{readCityOptional}}
+\index{readCityOptional@{readCityOptional}!Interface@{Interface}}
+\doxysubsubsection{\texorpdfstring{readCityOptional()}{readCityOptional()}}
+{\footnotesize\ttfamily std\+::string Interface\+::read\+City\+Optional (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads and requests the manager to validate user inputted cities. 
+
+\begin{DoxyReturn}{Returns}
+-\/ Name of the inputted city. 
+\end{DoxyReturn}
+\Hypertarget{classInterface_a55fd9920d16f540de21d383b20fd0eae}\label{classInterface_a55fd9920d16f540de21d383b20fd0eae} 
+\index{Interface@{Interface}!readCoordinates@{readCoordinates}}
+\index{readCoordinates@{readCoordinates}!Interface@{Interface}}
+\doxysubsubsection{\texorpdfstring{readCoordinates()}{readCoordinates()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCoordinate}{Coordinate}} Interface\+::read\+Coordinates (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads and requests the manager to validate user inputted coordinates. 
+
+\begin{DoxyReturn}{Returns}
+-\/ Inputted coordinates. 
+\end{DoxyReturn}
+\Hypertarget{classInterface_a4119be7e701677fd11e0e7dbfb5dd3a8}\label{classInterface_a4119be7e701677fd11e0e7dbfb5dd3a8} 
+\index{Interface@{Interface}!readCountry@{readCountry}}
+\index{readCountry@{readCountry}!Interface@{Interface}}
+\doxysubsubsection{\texorpdfstring{readCountry()}{readCountry()}}
+{\footnotesize\ttfamily std\+::string Interface\+::read\+Country (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads and requests the manager to validate user inputted countries. 
+
+\begin{DoxyReturn}{Returns}
+-\/ Name of the inputted country. 
+\end{DoxyReturn}
+\Hypertarget{classInterface_a3ed481e4e61d4328d3bc34084fc1b8fc}\label{classInterface_a3ed481e4e61d4328d3bc34084fc1b8fc} 
+\index{Interface@{Interface}!readNumber@{readNumber}}
+\index{readNumber@{readNumber}!Interface@{Interface}}
+\doxysubsubsection{\texorpdfstring{readNumber()}{readNumber()}}
+{\footnotesize\ttfamily int Interface\+::read\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads and requests the manager to validate user inputted numbers. 
+
+\begin{DoxyReturn}{Returns}
+-\/ Inputted number. 
+\end{DoxyReturn}
+\Hypertarget{classInterface_a483b3b38be1f2334e681c79990003430}\label{classInterface_a483b3b38be1f2334e681c79990003430} 
+\index{Interface@{Interface}!readOption@{readOption}}
+\index{readOption@{readOption}!Interface@{Interface}}
+\doxysubsubsection{\texorpdfstring{readOption()}{readOption()}}
+{\footnotesize\ttfamily int Interface\+::read\+Option (\begin{DoxyParamCaption}\item[{int}]{max }\end{DoxyParamCaption})}
+
+
+
+Reads and filters the user chosen option. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max} & -\/ Maximum number of options. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ Number of the chosen option. 
+\end{DoxyReturn}
+\Hypertarget{classInterface_a92ad63bc04107fa96378fcbec019871e}\label{classInterface_a92ad63bc04107fa96378fcbec019871e} 
+\index{Interface@{Interface}!validOption@{validOption}}
+\index{validOption@{validOption}!Interface@{Interface}}
+\doxysubsubsection{\texorpdfstring{validOption()}{validOption()}}
+{\footnotesize\ttfamily bool Interface\+::valid\+Option (\begin{DoxyParamCaption}\item[{unsigned long}]{size,  }\item[{const std\+::string \&}]{choice }\end{DoxyParamCaption})}
+
+
+
+Validates the user chosen option. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & -\/ Maximum number of options. \\
+\hline
+{\em choice} & -\/ User chosen option. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the option is valid. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Interface.\+h\item 
+src/Interface.\+cpp\end{DoxyCompactItemize}

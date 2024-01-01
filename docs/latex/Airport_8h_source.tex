@@ -1,0 +1,42 @@
+\doxysection{Airport.\+h}
+\hypertarget{Airport_8h_source}{}\label{Airport_8h_source}\index{src/Airport.h@{src/Airport.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ AED2324\_PRJ2\_G15\_AIRPORT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ AED2324\_PRJ2\_G15\_AIRPORT\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Coordinate.h"{}}}
+\DoxyCodeLine{00006\ }
+
+
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classAirport}{Airport}}\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ std::string\ code;}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ std::string\ name;}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ std::string\ city;}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ std::string\ country;}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ latitude;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ longitude;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCoordinate}{Coordinate}}\ coordinates;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAirport_a2fc0f2402c94225b9deaf76176bb887f}{Airport}}()\ \{code\ =\ \textcolor{stringliteral}{"{}noCode"{}};\}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAirport_aedf45b7ca3d9f315e858e5979c4af1e4}{Airport}}(std::string\ code\_)\ :\ code(code\_)\ \{\}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAirport_af449b791d00b04d194b5a9ea491a1695}{Airport}}(std::string\ code\_,\ std::string\ name\_,\ std::string\ city\_,\ std::string\ country\_,\ \mbox{\hyperlink{classCoordinate}{Coordinate}}\ coords)\ :}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ code(code\_),\ name(name\_),\ city(city\_),\ country(country\_),\ coordinates(coords)\ \{\}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ std::string\ getCode()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ code;\}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ std::string\ getName()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ name;\}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ std::string\ getCity()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ city;\}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ std::string\ getCountry()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ country;\}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCoordinate}{Coordinate}}\ getCoordinate()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ coordinates;\}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ getLatitiude()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ coordinates.getLatitude();\}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ getLongitude()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ coordinates.getLongitude();\}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAirport_a2d93e2cadbdb3ed9114aff48aa0bac5c}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAirport}{Airport}}\&\ other)\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ code\ ==\ other.code\ \&\&\ name\ ==\ other.name\ \&\&\ city\ ==\ other.city\ \&\&\ country\ ==\ other.country\ \&\&\ latitude\ ==\ other.latitude\ \&\&\ longitude\ ==\ other.longitude;\}}
+\DoxyCodeLine{00038\ \};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//AED2324\_PRJ2\_G15\_AIRPORT\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,45 @@
+\doxysection{Coordinate.\+h}
+\hypertarget{Coordinate_8h_source}{}\label{Coordinate_8h_source}\index{src/Coordinate.h@{src/Coordinate.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ rodrigo\ on\ 12/29/23.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ AED2324\_PRJ2\_G15\_COORDINATE\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ AED2324\_PRJ2\_G15\_COORDINATE\_H}}
+\DoxyCodeLine{00007\ }
+
+
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCoordinate}{Coordinate}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{double}\ latitude;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{double}\ longitude;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{classCoordinate_aac6f323a685fc1e88fbea9c86f1e600d}{Coordinate}}()\ :\ latitude(0),\ longitude(0)\ \{\};}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classCoordinate_aecff97f601cf2ffa294f6b6cd44f80ad}{Coordinate}}(\textcolor{keywordtype}{double}\ lat,\ \textcolor{keywordtype}{double}\ lon)\ :\ latitude(lat),\ longitude(lon)\ \{\};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{double}\ getLatitude()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ latitude;}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ setLatitude(\textcolor{keywordtype}{double}\ lat)\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ latitude\ =\ lat;}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{double}\ getLongitude()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ longitude;}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ setLongitude(\textcolor{keywordtype}{double}\ lon)\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ longitude\ =\ lon;}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classCoordinate_a64a8d7d2fee7818797f45912cd4754eb}{distance}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classCoordinate}{Coordinate}}\ \&c2);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classCoordinate_a803c20b0c173a04886ace0c4f6b14361}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classCoordinate}{Coordinate}}\&\ other)\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ latitude\ ==\ other.getLatitude()\ \&\&\ longitude\ ==\ other.getLongitude();\}}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//AED2324\_PRJ2\_G15\_COORDINATE\_H}}
+
+\end{DoxyCode}
