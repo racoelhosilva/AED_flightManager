@@ -619,17 +619,25 @@ void Manager::listCitiesMostAirports(int n){
 }
 
 void Manager::articulationPoints(){
-    auto articulationPoints = flightNet.articulationPoints();
-    unordered_set<Airport, AirportHash, AirportHash> s;
-    for (const Airport &v : articulationPoints){
-        s.insert(v);
+    Graph<Airport> aux;
+    unordered_map<string, Vertex<Airport> *> auxNameToVertex;
+    for (const Vertex<Airport> *x : flightNet.getVertexSet()){
+        auxNameToVertex[x->getInfo().getCode()] = aux.addVertex(x->getInfo());
     }
+    for (auto *x : flightNet.getVertexSet()){
+        for (const auto &y : x->getAdj()){
+            aux.addEdge(auxNameToVertex[x->getInfo().getCode()], auxNameToVertex[y.getDest()->getInfo().getCode()], y.getWeight(), y.getInfo());
+            aux.addEdge(auxNameToVertex[y.getDest()->getInfo().getCode()], auxNameToVertex[x->getInfo().getCode()], y.getWeight(), y.getInfo());
+        }
+    }
+    auto articulationPoints = aux.articulationPoints();
+
     printAirportHeader();
-    for (const Airport &ap : s){
-        printAirport(ap);
+    for (const auto *ap : articulationPoints){
+        printAirport(ap->getInfo());
     }
     printAirportFooter();
-    printCount(s.size(), "Number of Articulation Points:");
+    printCount(articulationPoints.size(), "Number of Articulation Points:");
 }
 void Manager::diameter(){
     printCount(flightNet.diameter(), "Diameter of the graph:");
