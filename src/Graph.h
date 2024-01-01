@@ -113,7 +113,7 @@ public:
     int bfs_diameter(Vertex<T> *v);
 
     unordered_set<Vertex<T> *> articulationPoints();
-    void dfs_art(Vertex<T> *v, stack<T> &s, unordered_set<Vertex<T> *> &l, int &i);
+    void dfs_art(Vertex<T> *v, unordered_set<Vertex<T> *> &l, int &i);
 
 
 };
@@ -490,17 +490,17 @@ unordered_set<Vertex<T> *> Graph<T>::articulationPoints() {
         vx->setLowest(0);
         vx->setVisitIndex(0);
         vx->setVisited(false);
+        vx->setProcessing(false);
     }
 
-    stack<T> s;
     int idx = 1;
     for (auto v : this->getVertexSet()){
         if (!v->isVisited()){
-            this->dfs_art(v, s, res, idx);
+            this->dfs_art(v, res, idx);
         }
     }
 
-    if (this->getVertexSet().front()->getAuxiliar() > 2){
+    if (this->getVertexSet().front()->getAuxiliar() > 1){
         res.insert(this->getVertexSet().front());
     }
     else {
@@ -511,12 +511,12 @@ unordered_set<Vertex<T> *> Graph<T>::articulationPoints() {
 }
 
 template <class T>
-void Graph<T>::dfs_art(Vertex<T> *v, stack<T> &s, unordered_set<Vertex<T> *> &l, int &i){
+void Graph<T>::dfs_art(Vertex<T> *v, unordered_set<Vertex<T> *> &l, int &i){
     v->setLowest(i);
     v->setVisitIndex(i);
     v->setAuxiliar(0);
     v->setVisited(true);
-    s.push(v->getInfo());
+    v->setProcessing(true);
     i++;
 
     for (auto e : v->getAdj()){
@@ -529,23 +529,11 @@ void Graph<T>::dfs_art(Vertex<T> *v, stack<T> &s, unordered_set<Vertex<T> *> &l,
                 l.insert(v);
             }
         }
-        else if (stackSearch(s, w->getInfo())){
+        else if (w->isProcessing()){
             v->setLowest(min(v->getLowest(), w->getVisitIndex()));
         }
     }
-    s.pop();
-}
-
-template <typename T>
-bool stackSearch(stack<T> s, const T i){
-    while (!s.empty()){
-        T x = s.top();
-        s.pop();
-        if (x == i){
-            return true;
-        }
-    }
-    return false;
+    v->setProcessing(false);
 }
 
 #endif /* GRAPH_H_ */

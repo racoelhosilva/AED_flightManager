@@ -531,7 +531,7 @@ void Manager::articulationPoints(){
     auto articulationPoints = aux.articulationPoints();
 
     printAirportHeader();
-    for (auto ap : articulationPoints){
+    for (const auto *ap : articulationPoints){
         printAirport(ap->getInfo());
     }
     printAirportFooter();
