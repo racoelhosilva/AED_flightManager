@@ -120,17 +120,17 @@ vector&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; T &gt; * &gt;&#1
 <tr class="memdesc:a960a9fe88b32bdf7da895decabc76c60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the diameter of the graph. Complexity: O(|V|), where |V| is the number of vertices in the graph.  <br /></td></tr>
 <tr class="separator:a960a9fe88b32bdf7da895decabc76c60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c9e0f3f43659b4141994c26af406e96" id="r_a8c9e0f3f43659b4141994c26af406e96"><td class="memItemLeft" align="right" valign="top">vector&lt; pair&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; T &gt; *, vector&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; T &gt; * &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c9e0f3f43659b4141994c26af406e96">longestPaths</a> (int &amp;<a class="el" href="#a960a9fe88b32bdf7da895decabc76c60">diameter</a>)</td></tr>
-<tr class="memdesc:a8c9e0f3f43659b4141994c26af406e96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complexity: O(*)  <br /></td></tr>
+<tr class="memdesc:a8c9e0f3f43659b4141994c26af406e96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the longest possible paths in the graph. Complexity: O((|V|)²), |V| being the number of vertices in the graph.  <br /></td></tr>
 <tr class="separator:a8c9e0f3f43659b4141994c26af406e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21163663a9910cde3d9fb99230433aa2" id="r_a21163663a9910cde3d9fb99230433aa2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21163663a9910cde3d9fb99230433aa2">bfs_diameter</a> (<a class="el" href="classVertex.html">Vertex</a>&lt; T &gt; *v)</td></tr>
-<tr class="memdesc:a21163663a9910cde3d9fb99230433aa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges in the graph respectively.  <br /></td></tr>
+<tr class="memdesc:a21163663a9910cde3d9fb99230433aa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conducts a breadth-first search of the graph in order to calculate the size of the biggest possible path starting from a given vertex. Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges in the graph respectively.  <br /></td></tr>
 <tr class="separator:a21163663a9910cde3d9fb99230433aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a298540bc9c5798bc83b3bd32ed79ddf9" id="r_a298540bc9c5798bc83b3bd32ed79ddf9"><td class="memItemLeft" align="right" valign="top">vector&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a298540bc9c5798bc83b3bd32ed79ddf9">articulationPoints</a> ()</td></tr>
-<tr class="memdesc:a298540bc9c5798bc83b3bd32ed79ddf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complexity: O(*)  <br /></td></tr>
-<tr class="separator:a298540bc9c5798bc83b3bd32ed79ddf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade5170615527043882739d60a8cea356" id="r_ade5170615527043882739d60a8cea356"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade5170615527043882739d60a8cea356">dfs_art</a> (<a class="el" href="classVertex.html">Vertex</a>&lt; T &gt; *v, stack&lt; T &gt; &amp;s, vector&lt; T &gt; &amp;l, int &amp;i)</td></tr>
-<tr class="memdesc:ade5170615527043882739d60a8cea356"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complexity: O(*)  <br /></td></tr>
-<tr class="separator:ade5170615527043882739d60a8cea356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94cfefda6292f0b536ae946680955005" id="r_a94cfefda6292f0b536ae946680955005"><td class="memItemLeft" align="right" valign="top">unordered_set&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; T &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94cfefda6292f0b536ae946680955005">articulationPoints</a> ()</td></tr>
+<tr class="memdesc:a94cfefda6292f0b536ae946680955005"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds all articulation points in the graph. Complexity: O(|V|), |V| being the number of vertices in the graph.  <br /></td></tr>
+<tr class="separator:a94cfefda6292f0b536ae946680955005"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3e5f1a955a96179024699df817be7aa" id="r_aa3e5f1a955a96179024699df817be7aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3e5f1a955a96179024699df817be7aa">dfs_art</a> (<a class="el" href="classVertex.html">Vertex</a>&lt; T &gt; *v, unordered_set&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; T &gt; * &gt; &amp;l, int &amp;i)</td></tr>
+<tr class="memdesc:aa3e5f1a955a96179024699df817be7aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conducts a depth-first search of the graph in order to find articulation points in the graph. Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges in the graph respectively.  <br /></td></tr>
+<tr class="separator:aa3e5f1a955a96179024699df817be7aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class T&gt;<br />
@@ -210,8 +210,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="a298540bc9c5798bc83b3bd32ed79ddf9" name="a298540bc9c5798bc83b3bd32ed79ddf9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a298540bc9c5798bc83b3bd32ed79ddf9">&#9670;&#160;</a></span>articulationPoints()</h2>
+<a id="a94cfefda6292f0b536ae946680955005" name="a94cfefda6292f0b536ae946680955005"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94cfefda6292f0b536ae946680955005">&#9670;&#160;</a></span>articulationPoints()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -219,7 +219,7 @@ template&lt;class T &gt; </div>
 template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">vector&lt; T &gt; <a class="el" href="classGraph.html">Graph</a>&lt; T &gt;::articulationPoints </td>
+          <td class="memname">unordered_set&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; T &gt; * &gt; <a class="el" href="classGraph.html">Graph</a>&lt; T &gt;::articulationPoints </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -227,8 +227,8 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Complexity: O(*) </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<p>Finds all articulation points in the graph. Complexity: O(|V|), |V| being the number of vertices in the graph. </p>
+<dl class="section return"><dt>Returns</dt><dd>A Vector of all articulation points in the graph. </dd></dl>
 
 </div>
 </div>
@@ -273,7 +273,7 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges in the graph respectively. </p>
+<p>Conducts a breadth-first search of the graph in order to calculate the size of the biggest possible path starting from a given vertex. Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges in the graph respectively. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>- Source vertex. </td></tr>
@@ -329,8 +329,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="ade5170615527043882739d60a8cea356" name="ade5170615527043882739d60a8cea356"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade5170615527043882739d60a8cea356">&#9670;&#160;</a></span>dfs_art()</h2>
+<a id="aa3e5f1a955a96179024699df817be7aa" name="aa3e5f1a955a96179024699df817be7aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3e5f1a955a96179024699df817be7aa">&#9670;&#160;</a></span>dfs_art()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -346,13 +346,7 @@ template&lt;class T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">stack&lt; T &gt; &amp;&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramtype">unordered_set&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; T &gt; * &gt; &amp;&#160;</td>
           <td class="paramname"><em>l</em>, </td>
         </tr>
         <tr>
@@ -369,8 +363,15 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Complexity: O(*) </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<p>Conducts a depth-first search of the graph in order to find articulation points in the graph. Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges in the graph respectively. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>- <a class="el" href="classVertex.html" title="Class that defines a Vertex of a Graph. Each vertex has contents, a list of outgoing edges,...">Vertex</a> of origin. </td></tr>
+    <tr><td class="paramname">l</td><td>- List of articulated components found in the graph. </td></tr>
+    <tr><td class="paramname">i</td><td>- Index of search. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -414,8 +415,14 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Complexity: O(*) </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<p>Finds the longest possible paths in the graph. Complexity: O((|V|)²), |V| being the number of vertices in the graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">diameter</td><td>- Diameter of the graph. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of pairs of vertices, corresponding to the longest paths in the graph. </dd></dl>
 
 </div>
 </div>

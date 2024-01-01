@@ -27,9 +27,9 @@ class Airline {
         std::string getCountry() const {return country;}
 
         /// Equality operator. Returns true if airports have the same code.
-        bool operator==(const Airline& other) const {return code == other.code;}
+        bool operator==(const Airline& other) const;
         /// Comparison operator. Compares airport codes alphabetically.
-        bool operator<(const Airline& other) const {return code < other.code;}
+        bool operator<(const Airline& other) const;
 };
 
 

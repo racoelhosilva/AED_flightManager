@@ -14,5 +14,5 @@ var searchData=
   ['airportinformationmenu_11',['airportInformationMenu',['../classInterface.html#a2087de2e1388167fef0cd80659e820fe',1,'Interface']]],
   ['airportrestrictions_12',['airportRestrictions',['../classInterface.html#abd486695e503b810792dffe01c823746',1,'Interface']]],
   ['airportstatisticsmenu_13',['airportStatisticsMenu',['../classInterface.html#a04c4a49fb74f5ef9ad37687456ce613e',1,'Interface']]],
-  ['articulationpoints_14',['articulationpoints',['../classGraph.html#a298540bc9c5798bc83b3bd32ed79ddf9',1,'Graph::articulationPoints()'],['../classManager.html#a82b20de3bae67eb07e0f06403d75a9f8',1,'Manager::articulationPoints()']]]
+  ['articulationpoints_14',['articulationpoints',['../classGraph.html#a94cfefda6292f0b536ae946680955005',1,'Graph::articulationPoints()'],['../classManager.html#a82b20de3bae67eb07e0f06403d75a9f8',1,'Manager::articulationPoints()']]]
 ];

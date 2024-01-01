@@ -9,5 +9,5 @@ var searchData=
   ['airportinfo_6',['airportInfo',['../classManager.html#a0ef6b81b3bcfcbed17b0a643c1ab57f3',1,'Manager']]],
   ['airportinformationmenu_7',['airportInformationMenu',['../classInterface.html#a2087de2e1388167fef0cd80659e820fe',1,'Interface']]],
   ['airportstatisticsmenu_8',['airportStatisticsMenu',['../classInterface.html#a04c4a49fb74f5ef9ad37687456ce613e',1,'Interface']]],
-  ['articulationpoints_9',['articulationpoints',['../classGraph.html#a298540bc9c5798bc83b3bd32ed79ddf9',1,'Graph::articulationPoints()'],['../classManager.html#a82b20de3bae67eb07e0f06403d75a9f8',1,'Manager::articulationPoints()']]]
+  ['articulationpoints_9',['articulationpoints',['../classGraph.html#a94cfefda6292f0b536ae946680955005',1,'Graph::articulationPoints()'],['../classManager.html#a82b20de3bae67eb07e0f06403d75a9f8',1,'Manager::articulationPoints()']]]
 ];

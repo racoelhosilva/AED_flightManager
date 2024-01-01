@@ -177,7 +177,7 @@ void Manager::numberAirlines() {
 
 /**
  * @brief Lists the airlines available at a given airport.
- * Complexity: O(n), having n as the number of airports.
+ * Complexity: O(n), having n as the number of flights at the given airport.
  * @param airport - Code of the airport to be analyzed.
  */
 void Manager::listAirlinesAirport(string airport) {

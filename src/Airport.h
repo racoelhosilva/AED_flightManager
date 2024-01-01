@@ -34,7 +34,7 @@ class Airport {
         double getLongitude() const {return coordinates.getLongitude();}
 
         /// Equality operator. Returns true if all of the airports' elements are equal.
-        bool operator==(const Airport& other) const {return code == other.code && name == other.name && city == other.city && country == other.country && latitude == other.latitude && longitude == other.longitude;}
+        bool operator==(const Airport& other) const;
 };
 
 

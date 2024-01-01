@@ -148,10 +148,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>numberAirports</b> ()
 <tr class="memdesc:a2b60891a387366ce467895306afa7a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the airports in a given city, in a given country. Complexity: O(n), having n as the number of airports.  <br /></td></tr>
 <tr class="separator:a2b60891a387366ce467895306afa7a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9e8b1df4a37a09b4aeebbc03e27d069" id="r_af9e8b1df4a37a09b4aeebbc03e27d069"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9e8b1df4a37a09b4aeebbc03e27d069">listAirportsMostAirlines</a> (int n)</td></tr>
-<tr class="memdesc:af9e8b1df4a37a09b4aeebbc03e27d069"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the first n airports with the most airlines. Complexity: O(n * m), having n as the number of airports and m the number of flights in an airport.  <br /></td></tr>
+<tr class="memdesc:af9e8b1df4a37a09b4aeebbc03e27d069"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the first n airports with the most airlines. Complexity: O(n * m * log(n * m)), having n as the number of airports and m the number of flights in an airport.  <br /></td></tr>
 <tr class="separator:af9e8b1df4a37a09b4aeebbc03e27d069"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8491e9e93712a3aec5f94d31e645436" id="r_ac8491e9e93712a3aec5f94d31e645436"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8491e9e93712a3aec5f94d31e645436">listAirportsMostFlights</a> (int n)</td></tr>
-<tr class="memdesc:ac8491e9e93712a3aec5f94d31e645436"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the first n airports with the most flights. Complexity: O(n), having n as the number of airports.  <br /></td></tr>
+<tr class="memdesc:ac8491e9e93712a3aec5f94d31e645436"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the first n airports with the most flights. Complexity: O(n * log(n)), having n as the number of airports.  <br /></td></tr>
 <tr class="separator:ac8491e9e93712a3aec5f94d31e645436"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ef6b81b3bcfcbed17b0a643c1ab57f3" id="r_a0ef6b81b3bcfcbed17b0a643c1ab57f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ef6b81b3bcfcbed17b0a643c1ab57f3">airportInfo</a> (string airport)</td></tr>
 <tr class="memdesc:a0ef6b81b3bcfcbed17b0a643c1ab57f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the information for a given airport. Complexity: O(1).  <br /></td></tr>
@@ -195,13 +195,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>numberFlights</b> ()<
 <tr class="memdesc:ad791cb796ca8164eb077fdd01978c752"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the number of flights departing from a given city and/or country. Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges of the graph respectively.  <br /></td></tr>
 <tr class="separator:ad791cb796ca8164eb077fdd01978c752"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb621523d2141e143f5f175b9be7328a" id="r_afb621523d2141e143f5f175b9be7328a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb621523d2141e143f5f175b9be7328a">listCountriesMostAirlines</a> (int n)</td></tr>
-<tr class="memdesc:afb621523d2141e143f5f175b9be7328a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the countries, sorted in descending order of number of airlines. Complexity: O(n), n being the number of countries.  <br /></td></tr>
+<tr class="memdesc:afb621523d2141e143f5f175b9be7328a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the countries, sorted in descending order of number of airlines. Complexity: O(n * log(n)), n being the number of countries.  <br /></td></tr>
 <tr class="separator:afb621523d2141e143f5f175b9be7328a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d6b98fc79efe5d14619884a1eebf051" id="r_a6d6b98fc79efe5d14619884a1eebf051"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d6b98fc79efe5d14619884a1eebf051">listCountriesMostAirports</a> (int n)</td></tr>
-<tr class="memdesc:a6d6b98fc79efe5d14619884a1eebf051"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the countries, sorted in descending order of number of airports. Complexity: O(n), n being the number of countries.  <br /></td></tr>
+<tr class="memdesc:a6d6b98fc79efe5d14619884a1eebf051"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the countries, sorted in descending order of number of airports. Complexity: O(n * log(n)), n being the number of countries.  <br /></td></tr>
 <tr class="separator:a6d6b98fc79efe5d14619884a1eebf051"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69afee4d4e9a096282de1f0301a9f3b4" id="r_a69afee4d4e9a096282de1f0301a9f3b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69afee4d4e9a096282de1f0301a9f3b4">listCitiesMostAirports</a> (int n)</td></tr>
-<tr class="memdesc:a69afee4d4e9a096282de1f0301a9f3b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the cities, sorted in descending order of number of airports. Complexity: O(n * m), n being the number of countries and m the number of cities.  <br /></td></tr>
+<tr class="memdesc:a69afee4d4e9a096282de1f0301a9f3b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the cities, sorted in descending order of number of airports. Complexity: O(n * m * log(n * m)), n being the number of countries and m the number of cities.  <br /></td></tr>
 <tr class="separator:a69afee4d4e9a096282de1f0301a9f3b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82b20de3bae67eb07e0f06403d75a9f8" id="r_a82b20de3bae67eb07e0f06403d75a9f8"><td class="memItemLeft" align="right" valign="top"><a id="a82b20de3bae67eb07e0f06403d75a9f8" name="a82b20de3bae67eb07e0f06403d75a9f8"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>articulationPoints</b> ()</td></tr>
@@ -690,7 +690,7 @@ vector&lt; vector&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign
       </table>
 </div><div class="memdoc">
 
-<p>Lists the first n airports with the most airlines. Complexity: O(n * m), having n as the number of airports and m the number of flights in an airport. </p>
+<p>Lists the first n airports with the most airlines. Complexity: O(n * m * log(n * m)), having n as the number of airports and m the number of flights in an airport. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">n</td><td>- number to be analyzed. </td></tr>
@@ -716,7 +716,7 @@ vector&lt; vector&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign
       </table>
 </div><div class="memdoc">
 
-<p>Lists the first n airports with the most flights. Complexity: O(n), having n as the number of airports. </p>
+<p>Lists the first n airports with the most flights. Complexity: O(n * log(n)), having n as the number of airports. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">n</td><td>- number to be analyzed. </td></tr>
@@ -779,7 +779,7 @@ vector&lt; vector&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign
       </table>
 </div><div class="memdoc">
 
-<p>Lists the cities, sorted in descending order of number of airports. Complexity: O(n * m), n being the number of countries and m the number of cities. </p>
+<p>Lists the cities, sorted in descending order of number of airports. Complexity: O(n * m * log(n * m)), n being the number of countries and m the number of cities. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">n</td><td>- number of countries to be listed. </td></tr>
@@ -805,7 +805,7 @@ vector&lt; vector&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign
       </table>
 </div><div class="memdoc">
 
-<p>Lists the countries, sorted in descending order of number of airlines. Complexity: O(n), n being the number of countries. </p>
+<p>Lists the countries, sorted in descending order of number of airlines. Complexity: O(n * log(n)), n being the number of countries. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">n</td><td>- number of countries to be listed. </td></tr>
@@ -831,7 +831,7 @@ vector&lt; vector&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign
       </table>
 </div><div class="memdoc">
 
-<p>Lists the countries, sorted in descending order of number of airports. Complexity: O(n), n being the number of countries. </p>
+<p>Lists the countries, sorted in descending order of number of airports. Complexity: O(n * log(n)), n being the number of countries. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">n</td><td>- number of countries to be listed. </td></tr>

@@ -58,9 +58,9 @@ void {\bfseries number\+Airports} ()
 void \mbox{\hyperlink{classManager_a2b60891a387366ce467895306afa7a1d}{list\+Airports\+Country\+City}} (string country, string city="{}"{})
 \begin{DoxyCompactList}\small\item\em Lists the airports in a given city, in a given country. Complexity\+: O(n), having n as the number of airports. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classManager_af9e8b1df4a37a09b4aeebbc03e27d069}{list\+Airports\+Most\+Airlines}} (int n)
-\begin{DoxyCompactList}\small\item\em Lists the first n airports with the most airlines. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m), having n as the number of airports and m the number of flights in an airport. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Lists the first n airports with the most airlines. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m \texorpdfstring{$\ast$}{*} log(n \texorpdfstring{$\ast$}{*} m)), having n as the number of airports and m the number of flights in an airport. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classManager_ac8491e9e93712a3aec5f94d31e645436}{list\+Airports\+Most\+Flights}} (int n)
-\begin{DoxyCompactList}\small\item\em Lists the first n airports with the most flights. Complexity\+: O(n), having n as the number of airports. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Lists the first n airports with the most flights. Complexity\+: O(n \texorpdfstring{$\ast$}{*} log(n)), having n as the number of airports. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classManager_a0ef6b81b3bcfcbed17b0a643c1ab57f3}{airport\+Info}} (string airport)
 \begin{DoxyCompactList}\small\item\em Prints the information for a given airport. Complexity\+: O(1). \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classManager_a8a2bb210ada7a44623ecc95150bb9f9a}{list\+Airport\+Flights}} (string airport)
@@ -90,11 +90,11 @@ void \mbox{\hyperlink{classManager_a952a5078c1a0387f5247b7adff8b2028}{list\+Depa
 void \mbox{\hyperlink{classManager_ad791cb796ca8164eb077fdd01978c752}{number\+Departures\+Country\+City}} (string country, string city="{}"{})
 \begin{DoxyCompactList}\small\item\em Prints the number of flights departing from a given city and/or country. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges of the graph respectively. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classManager_afb621523d2141e143f5f175b9be7328a}{list\+Countries\+Most\+Airlines}} (int n)
-\begin{DoxyCompactList}\small\item\em Lists the countries, sorted in descending order of number of airlines. Complexity\+: O(n), n being the number of countries. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Lists the countries, sorted in descending order of number of airlines. Complexity\+: O(n \texorpdfstring{$\ast$}{*} log(n)), n being the number of countries. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classManager_a6d6b98fc79efe5d14619884a1eebf051}{list\+Countries\+Most\+Airports}} (int n)
-\begin{DoxyCompactList}\small\item\em Lists the countries, sorted in descending order of number of airports. Complexity\+: O(n), n being the number of countries. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Lists the countries, sorted in descending order of number of airports. Complexity\+: O(n \texorpdfstring{$\ast$}{*} log(n)), n being the number of countries. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classManager_a69afee4d4e9a096282de1f0301a9f3b4}{list\+Cities\+Most\+Airports}} (int n)
-\begin{DoxyCompactList}\small\item\em Lists the cities, sorted in descending order of number of airports. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m), n being the number of countries and m the number of cities. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Lists the cities, sorted in descending order of number of airports. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m \texorpdfstring{$\ast$}{*} log(n \texorpdfstring{$\ast$}{*} m)), n being the number of countries and m the number of cities. \end{DoxyCompactList}\item 
 \Hypertarget{classManager_a82b20de3bae67eb07e0f06403d75a9f8}\label{classManager_a82b20de3bae67eb07e0f06403d75a9f8} 
 void {\bfseries articulation\+Points} ()
 \begin{DoxyCompactList}\small\item\em Lists all the airports that serve as articulation points for the flights graph. Complexity\+: O(n), n being the number of articulation points. \end{DoxyCompactList}\item 
@@ -384,7 +384,7 @@ Lists the airports in a given city, in a given country. Complexity\+: O(n), havi
 
 
 
-Lists the first n airports with the most airlines. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m), having n as the number of airports and m the number of flights in an airport. 
+Lists the first n airports with the most airlines. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m \texorpdfstring{$\ast$}{*} log(n \texorpdfstring{$\ast$}{*} m)), having n as the number of airports and m the number of flights in an airport. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -399,7 +399,7 @@ Lists the first n airports with the most airlines. Complexity\+: O(n \texorpdfst
 
 
 
-Lists the first n airports with the most flights. Complexity\+: O(n), having n as the number of airports. 
+Lists the first n airports with the most flights. Complexity\+: O(n \texorpdfstring{$\ast$}{*} log(n)), having n as the number of airports. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -431,7 +431,7 @@ Lists the flights arriving to a given city and/or country. Complexity\+: O(\texo
 
 
 
-Lists the cities, sorted in descending order of number of airports. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m), n being the number of countries and m the number of cities. 
+Lists the cities, sorted in descending order of number of airports. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m \texorpdfstring{$\ast$}{*} log(n \texorpdfstring{$\ast$}{*} m)), n being the number of countries and m the number of cities. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -446,7 +446,7 @@ Lists the cities, sorted in descending order of number of airports. Complexity\+
 
 
 
-Lists the countries, sorted in descending order of number of airlines. Complexity\+: O(n), n being the number of countries. 
+Lists the countries, sorted in descending order of number of airlines. Complexity\+: O(n \texorpdfstring{$\ast$}{*} log(n)), n being the number of countries. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -461,7 +461,7 @@ Lists the countries, sorted in descending order of number of airlines. Complexit
 
 
 
-Lists the countries, sorted in descending order of number of airports. Complexity\+: O(n), n being the number of countries. 
+Lists the countries, sorted in descending order of number of airports. Complexity\+: O(n \texorpdfstring{$\ast$}{*} log(n)), n being the number of countries. 
 
 
 \begin{DoxyParams}{Parameters}

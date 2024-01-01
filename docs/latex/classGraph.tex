@@ -38,13 +38,13 @@ vector$<$ T $>$ \mbox{\hyperlink{classGraph_aa47a4130165550e208e7a063fce6983a}{b
 int \mbox{\hyperlink{classGraph_a960a9fe88b32bdf7da895decabc76c60}{diameter}} ()
 \begin{DoxyCompactList}\small\item\em Calculates the diameter of the graph. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|}), where \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} is the number of vertices in the graph. \end{DoxyCompactList}\item 
 vector$<$ pair$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}, vector$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} $>$ $>$ $>$ \mbox{\hyperlink{classGraph_a8c9e0f3f43659b4141994c26af406e96}{longest\+Paths}} (int \&\mbox{\hyperlink{classGraph_a960a9fe88b32bdf7da895decabc76c60}{diameter}})
-\begin{DoxyCompactList}\small\item\em Complexity\+: O(\texorpdfstring{$\ast$}{*}) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Finds the longest possible paths in the graph. Complexity\+: O((\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|})²), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} being the number of vertices in the graph. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classGraph_a21163663a9910cde3d9fb99230433aa2}{bfs\+\_\+diameter}} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}v)
-\begin{DoxyCompactList}\small\item\em Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges in the graph respectively. \end{DoxyCompactList}\item 
-vector$<$ T $>$ \mbox{\hyperlink{classGraph_a298540bc9c5798bc83b3bd32ed79ddf9}{articulation\+Points}} ()
-\begin{DoxyCompactList}\small\item\em Complexity\+: O(\texorpdfstring{$\ast$}{*}) \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classGraph_ade5170615527043882739d60a8cea356}{dfs\+\_\+art}} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}v, stack$<$ T $>$ \&s, vector$<$ T $>$ \&l, int \&i)
-\begin{DoxyCompactList}\small\item\em Complexity\+: O(\texorpdfstring{$\ast$}{*}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Conducts a breadth-\/first search of the graph in order to calculate the size of the biggest possible path starting from a given vertex. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges in the graph respectively. \end{DoxyCompactList}\item 
+unordered\+\_\+set$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classGraph_a94cfefda6292f0b536ae946680955005}{articulation\+Points}} ()
+\begin{DoxyCompactList}\small\item\em Finds all articulation points in the graph. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} being the number of vertices in the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_aa3e5f1a955a96179024699df817be7aa}{dfs\+\_\+art}} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}v, unordered\+\_\+set$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} $>$ \&l, int \&i)
+\begin{DoxyCompactList}\small\item\em Conducts a depth-\/first search of the graph in order to find articulation points in the graph. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges in the graph respectively. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -88,19 +88,19 @@ Adds a vertex with a given content or info (in) to a graph (this).
 \begin{DoxyReturn}{Returns}
 Returns true if successful, and false if a vertex with that content already exists. 
 \end{DoxyReturn}
-\Hypertarget{classGraph_a298540bc9c5798bc83b3bd32ed79ddf9}\label{classGraph_a298540bc9c5798bc83b3bd32ed79ddf9} 
+\Hypertarget{classGraph_a94cfefda6292f0b536ae946680955005}\label{classGraph_a94cfefda6292f0b536ae946680955005} 
 \index{Graph$<$ T $>$@{Graph$<$ T $>$}!articulationPoints@{articulationPoints}}
 \index{articulationPoints@{articulationPoints}!Graph$<$ T $>$@{Graph$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{articulationPoints()}{articulationPoints()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
-vector$<$ T $>$ \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::articulation\+Points (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+unordered\+\_\+set$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::articulation\+Points (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-Complexity\+: O(\texorpdfstring{$\ast$}{*}) 
+Finds all articulation points in the graph. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} being the number of vertices in the graph. 
 
 \begin{DoxyReturn}{Returns}
-
+A Vector of all articulation points in the graph. 
 \end{DoxyReturn}
 \Hypertarget{classGraph_aa47a4130165550e208e7a063fce6983a}\label{classGraph_aa47a4130165550e208e7a063fce6983a} 
 \index{Graph$<$ T $>$@{Graph$<$ T $>$}!bfs@{bfs}}
@@ -125,7 +125,7 @@ int \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::bfs\+\_\+diameter (\begin{D
 
 
 
-Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges in the graph respectively. 
+Conducts a breadth-\/first search of the graph in order to calculate the size of the biggest possible path starting from a given vertex. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges in the graph respectively. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -163,20 +163,26 @@ Conducts a depth-\/first search of the graph from a source vertex.
 \begin{DoxyReturn}{Returns}
 Vector of the contents of the vertices of the graph traversed by the DFS. 
 \end{DoxyReturn}
-\Hypertarget{classGraph_ade5170615527043882739d60a8cea356}\label{classGraph_ade5170615527043882739d60a8cea356} 
+\Hypertarget{classGraph_aa3e5f1a955a96179024699df817be7aa}\label{classGraph_aa3e5f1a955a96179024699df817be7aa} 
 \index{Graph$<$ T $>$@{Graph$<$ T $>$}!dfs\_art@{dfs\_art}}
 \index{dfs\_art@{dfs\_art}!Graph$<$ T $>$@{Graph$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{dfs\_art()}{dfs\_art()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
-void \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::dfs\+\_\+art (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{v,  }\item[{stack$<$ T $>$ \&}]{s,  }\item[{vector$<$ T $>$ \&}]{l,  }\item[{int \&}]{i }\end{DoxyParamCaption})}
+void \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::dfs\+\_\+art (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{v,  }\item[{unordered\+\_\+set$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} $>$ \&}]{l,  }\item[{int \&}]{i }\end{DoxyParamCaption})}
 
 
 
-Complexity\+: O(\texorpdfstring{$\ast$}{*}) 
+Conducts a depth-\/first search of the graph in order to find articulation points in the graph. Complexity\+: O(\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} + \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|}), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} and \texorpdfstring{$\vert$}{|}\+E\texorpdfstring{$\vert$}{|} being the number of vertices and edges in the graph respectively. 
 
-\begin{DoxyReturn}{Returns}
 
-\end{DoxyReturn}
+\begin{DoxyParams}{Parameters}
+{\em v} & -\/ \doxylink{classVertex}{Vertex} of origin. \\
+\hline
+{\em l} & -\/ List of articulated components found in the graph. \\
+\hline
+{\em i} & -\/ Index of search. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classGraph_a960a9fe88b32bdf7da895decabc76c60}\label{classGraph_a960a9fe88b32bdf7da895decabc76c60} 
 \index{Graph$<$ T $>$@{Graph$<$ T $>$}!diameter@{diameter}}
 \index{diameter@{diameter}!Graph$<$ T $>$@{Graph$<$ T $>$}}
@@ -200,10 +206,15 @@ vector$<$ pair$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstrin
 
 
 
-Complexity\+: O(\texorpdfstring{$\ast$}{*}) 
+Finds the longest possible paths in the graph. Complexity\+: O((\texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|})²), \texorpdfstring{$\vert$}{|}\+V\texorpdfstring{$\vert$}{|} being the number of vertices in the graph. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em diameter} & -\/ Diameter of the graph. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+A vector of pairs of vertices, corresponding to the longest paths in the graph. 
 \end{DoxyReturn}
 \Hypertarget{classGraph_a1106092a37366486cf55576f9ec01692}\label{classGraph_a1106092a37366486cf55576f9ec01692} 
 \index{Graph$<$ T $>$@{Graph$<$ T $>$}!removeEdge@{removeEdge}}
