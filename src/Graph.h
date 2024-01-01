@@ -112,8 +112,8 @@ public:
     vector<pair<Vertex<T>*, vector<Vertex<T> *>>> longestPaths(int &diameter);
     int bfs_diameter(Vertex<T> *v);
 
-    vector<T> articulationPoints();
-    void dfs_art(Vertex<T> *v, stack<T> &s, vector<T> &l, int &i);
+    unordered_set<Vertex<T> *> articulationPoints();
+    void dfs_art(Vertex<T> *v, stack<T> &s, unordered_set<Vertex<T> *> &l, int &i);
 
 
 };
@@ -483,8 +483,8 @@ vector<pair<Vertex<T>*, vector<Vertex<T> *>>> Graph<T>::longestPaths(int &diamet
 
 // ARTICULATION POINTS
 template <class T>
-vector<T> Graph<T>::articulationPoints() {
-    vector<T> res;
+unordered_set<Vertex<T> *> Graph<T>::articulationPoints() {
+    unordered_set<Vertex<T> *> res;
 
     for (auto vx : this->getVertexSet()){
         vx->setLowest(0);
@@ -501,17 +501,17 @@ vector<T> Graph<T>::articulationPoints() {
     }
 
     if (this->getVertexSet().front()->getAuxiliar() > 2){
-        res.push_back(this->getVertexSet().front()->getInfo());
+        res.insert(this->getVertexSet().front());
     }
     else {
-        res.pop_back();
+        res.erase(this->getVertexSet().front());
     }
 
     return res;
 }
 
 template <class T>
-void Graph<T>::dfs_art(Vertex<T> *v, stack<T> &s, vector<T> &l, int &i){
+void Graph<T>::dfs_art(Vertex<T> *v, stack<T> &s, unordered_set<Vertex<T> *> &l, int &i){
     v->setLowest(i);
     v->setVisitIndex(i);
     v->setAuxiliar(0);
@@ -526,7 +526,7 @@ void Graph<T>::dfs_art(Vertex<T> *v, stack<T> &s, vector<T> &l, int &i){
             dfs_art(w, s, l, i);
             v->setLowest(min(v->getLowest(), w->getLowest()));
             if (w->getLowest() >= v->getVisitIndex()){
-                l.push_back(v->getInfo());
+                l.insert(v);
             }
         }
         else if (stackSearch(s, w->getInfo())){

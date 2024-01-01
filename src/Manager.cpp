@@ -518,26 +518,24 @@ void Manager::listCitiesMostAirports(int n){
 
 void Manager::articulationPoints(){
     Graph<Airport> aux;
-    for (auto x : flightNet.getVertexSet()){
-        aux.addVertex(x->getInfo());
+    unordered_map<string, Vertex<Airport> *> auxNameToVertex;
+    for (const Vertex<Airport> *x : flightNet.getVertexSet()){
+        auxNameToVertex[x->getInfo().getCode()] = aux.addVertex(x->getInfo());
     }
-    for (auto x : flightNet.getVertexSet()){
-        for (auto y : x->getAdj()){
-            aux.addEdge(aux.findVertex(x->getInfo()), aux.findVertex(y.getDest()->getInfo()), y.getWeight(), y.getInfo());
-            aux.addEdge(aux.findVertex(y.getDest()->getInfo()), aux.findVertex(x->getInfo()), y.getWeight(), y.getInfo());
+    for (auto *x : flightNet.getVertexSet()){
+        for (const auto &y : x->getAdj()){
+            aux.addEdge(auxNameToVertex[x->getInfo().getCode()], auxNameToVertex[y.getDest()->getInfo().getCode()], y.getWeight(), y.getInfo());
+            aux.addEdge(auxNameToVertex[y.getDest()->getInfo().getCode()], auxNameToVertex[x->getInfo().getCode()], y.getWeight(), y.getInfo());
         }
     }
     auto articulationPoints = aux.articulationPoints();
-    unordered_set<Airport, AirportHash, AirportHash> s;
-    for (const Airport &v : articulationPoints){
-        s.insert(v);
-    }
+
     printAirportHeader();
-    for (const Airport &ap : s){
-        printAirport(ap);
+    for (auto ap : articulationPoints){
+        printAirport(ap->getInfo());
     }
     printAirportFooter();
-    printCount(s.size(), "Number of Articulation Points:");
+    printCount(articulationPoints.size(), "Number of Articulation Points:");
 }
 void Manager::diameter(){
     printCount(flightNet.diameter(), "Diameter of the graph:");
