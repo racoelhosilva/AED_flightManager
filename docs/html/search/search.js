@@ -22,6 +22,8 @@
 
  @licend  The above is the entire license notice for the JavaScript code in this file
  */
+var search_cookie_name = 'search_grp';
+
 function convertToId(search)
 {
   var result = '';
@@ -239,6 +241,25 @@ function SearchBox(name, resultsPath, extension)
     return count;
   }
 
+  this.GetSelectionIdByName = function(name)
+  {
+    var i=0,j=0;
+    var win=this.DOMSearchSelectWindow();
+    for (i=0;i<win.childNodes.length;i++)
+    {
+      var child = win.childNodes[i];
+      if (child.className=='SelectItem')
+      {
+        if (child.childNodes[1].nodeValue==name)
+        {
+          return j;
+        }
+        j++;
+      }
+    }
+    return 0;
+  }
+
   this.SelectItemSet = function(id)
   {
     var i,j=0;
@@ -252,6 +273,7 @@ function SearchBox(name, resultsPath, extension)
         if (j==id)
         {
           node.innerHTML='&#8226;';
+          Cookie.writeSetting(search_cookie_name, child.childNodes[1].nodeValue)
         }
         else
         {
@@ -810,6 +832,7 @@ function createResults(resultsPath)
 function init_search()
 {
   var results = document.getElementById("MSearchSelectWindow");
+
   results.tabIndex=0;
   for (var key in indexSectionLabels)
   {
@@ -820,7 +843,6 @@ function init_search()
     link.innerHTML='<span class="SelectionMark">&#160;</span>'+indexSectionLabels[key];
     results.appendChild(link);
   }
-  searchBox.OnSelectItem(0);
 
   var input = document.getElementById("MSearchSelect");
   var searchSelectWindow = document.getElementById("MSearchSelectWindow");
@@ -836,5 +858,8 @@ function init_search()
       }
     }
   });
+  var name = Cookie.readSetting(search_cookie_name,0);
+  var id = searchBox.GetSelectionIdByName(name);
+  searchBox.OnSelectItem(id);
 }
 /* @license-end */

@@ -1,0 +1,398 @@
+\doxysection{Manager Class Reference}
+\hypertarget{classManager}{}\label{classManager}\index{Manager@{Manager}}
+
+
+Class that defines the flight \doxylink{classManager}{Manager}. The manager contains a graph that represents the flight network, as well as a series of unordered sets and maps to facilitate data manipulation.  
+
+
+
+
+{\ttfamily \#include $<$Manager.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classManager_a6a4cf87d13fd52a4af649109d0cd8d23}{extract\+Airports}} (std\+::string fname)
+\begin{DoxyCompactList}\small\item\em Extracts the contents of a file into a set of airports and the graph of the flight network. Complexity\+: O(n), having n as the number of lines in the file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classManager_ad513068f5235e0ddd17f3be1e3823638}{extract\+Airlines}} (std\+::string fname)
+\begin{DoxyCompactList}\small\item\em Extracts the contents of a file into a set of Airlines. Complexity\+: O(n), having n as the number of lines in the file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classManager_aab763ac2c1847a4f236f5224e22cafe0}{extract\+Flights}} (std\+::string fname)
+\begin{DoxyCompactList}\small\item\em Extracts the contents of a file into the edges of the flight network graph. Complexity\+: O(n), having n as the number of lines in the file. \end{DoxyCompactList}\item 
+\Hypertarget{classManager_a7fe58478bc437ac3316e0f0a7e0a0584}\label{classManager_a7fe58478bc437ac3316e0f0a7e0a0584} 
+unordered\+\_\+set$<$ \mbox{\hyperlink{classAirport}{Airport}}, \mbox{\hyperlink{structAirportHash}{Airport\+Hash}}, \mbox{\hyperlink{structAirportHash}{Airport\+Hash}} $>$ {\bfseries get\+Airports} () const
+\item 
+\Hypertarget{classManager_ac650fe6747ca4a443ee262f795a4718d}\label{classManager_ac650fe6747ca4a443ee262f795a4718d} 
+unordered\+\_\+set$<$ \mbox{\hyperlink{classAirline}{Airline}}, \mbox{\hyperlink{structAirlineHash}{Airline\+Hash}}, \mbox{\hyperlink{structAirlineHash}{Airline\+Hash}} $>$ {\bfseries get\+Airlines} () const
+\item 
+\Hypertarget{classManager_a31b87a5f0e054279ef3d90b1f40f596f}\label{classManager_a31b87a5f0e054279ef3d90b1f40f596f} 
+\mbox{\hyperlink{classGraph}{Graph}}$<$ \mbox{\hyperlink{classAirport}{Airport}} $>$ {\bfseries get\+Flight\+Net} () const
+\item 
+bool \mbox{\hyperlink{classManager_a0b73cbd00976d32748c75df036c7df55}{validate\+Airline}} (const std\+::string \&airline)
+\begin{DoxyCompactList}\small\item\em Verifies if there is an airline for a given code. Complexity\+: O(1). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classManager_a131a380be17d48427f05b6b279b04ce6}{validate\+Airport}} (const std\+::string \&code)
+\begin{DoxyCompactList}\small\item\em Verifies if there is an airport for a given code. Complexity\+: O(1). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classManager_a3361447d12d9db80cb78fa1998ae5880}{validate\+Airport\+Name}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Verifies if there is an airport for a given name. Complexity\+: O(1). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classManager_ac636063abf4e873fe333516627d3d076}{validate\+Country}} (const std\+::string \&country)
+\begin{DoxyCompactList}\small\item\em Verifies if there is a country for a given name. Complexity\+: O(1). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classManager_aeef83b8d42e87ce181111c56b04f6142}{validate\+City}} (const string \&city, const string \&country)
+\begin{DoxyCompactList}\small\item\em Verifies if there is a city for a given name. Complexity\+: O(1). \end{DoxyCompactList}\item 
+\Hypertarget{classManager_a76fc37a96881cec7ef200056808d14f9}\label{classManager_a76fc37a96881cec7ef200056808d14f9} 
+void {\bfseries list\+All\+Airlines} ()
+\begin{DoxyCompactList}\small\item\em Lists all existent airlines. Complexity\+: O(n), having n as the number of airlines. \end{DoxyCompactList}\item 
+\Hypertarget{classManager_aa4bec539f9db925ecb517a31f90c9637}\label{classManager_aa4bec539f9db925ecb517a31f90c9637} 
+void {\bfseries number\+Airlines} ()
+\begin{DoxyCompactList}\small\item\em Prints the number of existent airlines. Complexity\+: O(1). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_ab2c8809aed4d4e1ad06fa32125b1bbe0}{list\+Airlines\+Airport}} (string airport)
+\begin{DoxyCompactList}\small\item\em Lists the airlines available at a given airport. Complexity\+: O(n), having n as the number of airports. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a04651dd743f2466c7015c3e396bd64f7}{list\+Airlines\+Country}} (string country)
+\begin{DoxyCompactList}\small\item\em Lists the available airlines for a given country. Complexity\+: O(n), having n as the number of airlines. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a0ad43ecd5588bac75730f2f53b02a350}{airline\+Info}} (string airline)
+\begin{DoxyCompactList}\small\item\em Prints the information for a given airline. Complexity\+: O(1). \end{DoxyCompactList}\item 
+\Hypertarget{classManager_a111b7a794b4b637ef29b63c3fd7894b6}\label{classManager_a111b7a794b4b637ef29b63c3fd7894b6} 
+void {\bfseries list\+All\+Airports} ()
+\begin{DoxyCompactList}\small\item\em Lists all existent airports. Complexity\+: O(n), having n as the number of airports. \end{DoxyCompactList}\item 
+\Hypertarget{classManager_a986cf6875402bfbb258cbf8b4fa126e1}\label{classManager_a986cf6875402bfbb258cbf8b4fa126e1} 
+void {\bfseries number\+Airports} ()
+\begin{DoxyCompactList}\small\item\em Prints the number of existent airports. Complexity\+: O(1). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a2b60891a387366ce467895306afa7a1d}{list\+Airports\+Country\+City}} (string country, string city="{}"{})
+\begin{DoxyCompactList}\small\item\em Lists the airports in a given city, in a given country. Complexity\+: O(n), having n as the number of airports. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_af9e8b1df4a37a09b4aeebbc03e27d069}{list\+Airports\+Most\+Airlines}} (int n)
+\begin{DoxyCompactList}\small\item\em Lists the first n airports with the most airlines. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m), having n as the number of airports and m the number of flights in an airport. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_ac8491e9e93712a3aec5f94d31e645436}{list\+Airports\+Most\+Flights}} (int n)
+\begin{DoxyCompactList}\small\item\em Lists the first n airports with the most flights. Complexity\+: O(n), having n as the number of airports. \end{DoxyCompactList}\item 
+\Hypertarget{classManager_a0ef6b81b3bcfcbed17b0a643c1ab57f3}\label{classManager_a0ef6b81b3bcfcbed17b0a643c1ab57f3} 
+void {\bfseries airport\+Info} (string airport)
+\item 
+\Hypertarget{classManager_a8a2bb210ada7a44623ecc95150bb9f9a}\label{classManager_a8a2bb210ada7a44623ecc95150bb9f9a} 
+void {\bfseries list\+Airport\+Flights} (string airport)
+\item 
+\Hypertarget{classManager_af9d72b14b38203bfb71823ea7320cd10}\label{classManager_af9d72b14b38203bfb71823ea7320cd10} 
+void {\bfseries reachable\+Airports} (string airport, int n=1)
+\item 
+\Hypertarget{classManager_a031cf21ab61ba603e04c96f9fb718c2c}\label{classManager_a031cf21ab61ba603e04c96f9fb718c2c} 
+void {\bfseries reachable\+Cities} (string airport, int n=1)
+\item 
+\Hypertarget{classManager_adc888be5db7dbd24bddb2d6334aad912}\label{classManager_adc888be5db7dbd24bddb2d6334aad912} 
+void {\bfseries reachable\+Countries} (string airport, int n=1)
+\item 
+\Hypertarget{classManager_a2a8ea849e7e41e28dfed38122fe5377a}\label{classManager_a2a8ea849e7e41e28dfed38122fe5377a} 
+void {\bfseries list\+All\+Flights} ()
+\item 
+\Hypertarget{classManager_a81384ba7a67484735cc7b51c171388d5}\label{classManager_a81384ba7a67484735cc7b51c171388d5} 
+void {\bfseries number\+Flights} ()
+\item 
+\Hypertarget{classManager_a46855e268bd351b79411c4d3dabb6ed1}\label{classManager_a46855e268bd351b79411c4d3dabb6ed1} 
+void {\bfseries list\+Flights\+Airline} (string airline)
+\item 
+\Hypertarget{classManager_a6b44d0bd8f7980e6f8b8d420a0de42c0}\label{classManager_a6b44d0bd8f7980e6f8b8d420a0de42c0} 
+void {\bfseries number\+Flights\+Airline} (string airline)
+\item 
+\Hypertarget{classManager_aa9bbdc47deeefc4cca72ad21b33e9381}\label{classManager_aa9bbdc47deeefc4cca72ad21b33e9381} 
+void {\bfseries list\+Arrivals\+Country\+City} (string country, string city="{}"{})
+\item 
+\Hypertarget{classManager_ae55bd228b0a8867b3168199b362ba32b}\label{classManager_ae55bd228b0a8867b3168199b362ba32b} 
+void {\bfseries number\+Arrivals\+Country\+City} (string country, string city="{}"{})
+\item 
+\Hypertarget{classManager_a952a5078c1a0387f5247b7adff8b2028}\label{classManager_a952a5078c1a0387f5247b7adff8b2028} 
+void {\bfseries list\+Departures\+Country\+City} (string country, string city="{}"{})
+\item 
+\Hypertarget{classManager_ad791cb796ca8164eb077fdd01978c752}\label{classManager_ad791cb796ca8164eb077fdd01978c752} 
+void {\bfseries number\+Departures\+Country\+City} (string country, string city="{}"{})
+\item 
+\Hypertarget{classManager_afb621523d2141e143f5f175b9be7328a}\label{classManager_afb621523d2141e143f5f175b9be7328a} 
+void {\bfseries list\+Countries\+Most\+Airlines} (int n)
+\item 
+\Hypertarget{classManager_a6d6b98fc79efe5d14619884a1eebf051}\label{classManager_a6d6b98fc79efe5d14619884a1eebf051} 
+void {\bfseries list\+Countries\+Most\+Airports} (int n)
+\item 
+\Hypertarget{classManager_a69afee4d4e9a096282de1f0301a9f3b4}\label{classManager_a69afee4d4e9a096282de1f0301a9f3b4} 
+void {\bfseries list\+Cities\+Most\+Airports} (int n)
+\item 
+\Hypertarget{classManager_a82b20de3bae67eb07e0f06403d75a9f8}\label{classManager_a82b20de3bae67eb07e0f06403d75a9f8} 
+void {\bfseries articulation\+Points} ()
+\item 
+\Hypertarget{classManager_a55abbdb87bb2d3594fa8d1ef8cb6d805}\label{classManager_a55abbdb87bb2d3594fa8d1ef8cb6d805} 
+void {\bfseries diameter} ()
+\item 
+\Hypertarget{classManager_a89b1476de15802406ee7b6c089a32611}\label{classManager_a89b1476de15802406ee7b6c089a32611} 
+void {\bfseries longest\+Paths} ()
+\item 
+\Hypertarget{classManager_a0d96f5070adf0215391ad2f697668d29}\label{classManager_a0d96f5070adf0215391ad2f697668d29} 
+std\+::string {\bfseries get\+Airport\+Code} (const std\+::string \&name)
+\item 
+\Hypertarget{classManager_a90f8c3ca7cfc8ec32831da8c10526d70}\label{classManager_a90f8c3ca7cfc8ec32831da8c10526d70} 
+vector$<$ string $>$ {\bfseries get\+Airports\+Country\+City} (string country, string city)
+\item 
+\Hypertarget{classManager_a508ce86fd5d4b3cf9bdeef64a8da7688}\label{classManager_a508ce86fd5d4b3cf9bdeef64a8da7688} 
+vector$<$ string $>$ {\bfseries get\+Airports\+Country} (string country)
+\item 
+\Hypertarget{classManager_acae87676bc4cf4feea2055ad82f828c6}\label{classManager_acae87676bc4cf4feea2055ad82f828c6} 
+vector$<$ string $>$ {\bfseries get\+Airports\+Coordinates} (\mbox{\hyperlink{classCoordinate}{Coordinate}} coords)
+\item 
+\Hypertarget{classManager_a91a2eb156e7815d16a3ad9f9ed6fc7fb}\label{classManager_a91a2eb156e7815d16a3ad9f9ed6fc7fb} 
+void {\bfseries best\+Flight\+Option} (vector$<$ string $>$ \texorpdfstring{$\ast$}{*}sources, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}destinations, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airline\+Preferences, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airline\+Restrictions, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airport\+Restrictions)
+\item 
+\Hypertarget{classManager_abfd80b467aa024769a2e5ac07d1f89ce}\label{classManager_abfd80b467aa024769a2e5ac07d1f89ce} 
+int {\bfseries min\+Distance\+BFS} (string \&src, string \&dest, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airline\+Preferences, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airline\+Restrictions, vector$<$ string $>$ \texorpdfstring{$\ast$}{*}airport\+Restrictions)
+\item 
+\Hypertarget{classManager_a5bd67a0e089140478f5750af068d821b}\label{classManager_a5bd67a0e089140478f5750af068d821b} 
+void {\bfseries reconstruct\+Paths} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ \mbox{\hyperlink{classAirport}{Airport}} $>$ \texorpdfstring{$\ast$}{*}dest, int min\+Dist)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classManager_a85bd43c83056691e28bd7bbf59d49d1f}\label{classManager_a85bd43c83056691e28bd7bbf59d49d1f} 
+vector$<$ string $>$ {\bfseries path}
+\item 
+\Hypertarget{classManager_ae821eee30d49c58131854d997931e564}\label{classManager_ae821eee30d49c58131854d997931e564} 
+vector$<$ vector$<$ string $>$ $>$ {\bfseries paths}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that defines the flight \doxylink{classManager}{Manager}. The manager contains a graph that represents the flight network, as well as a series of unordered sets and maps to facilitate data manipulation. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classManager_a0ad43ecd5588bac75730f2f53b02a350}\label{classManager_a0ad43ecd5588bac75730f2f53b02a350} 
+\index{Manager@{Manager}!airlineInfo@{airlineInfo}}
+\index{airlineInfo@{airlineInfo}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{airlineInfo()}{airlineInfo()}}
+{\footnotesize\ttfamily void Manager\+::airline\+Info (\begin{DoxyParamCaption}\item[{string}]{airline }\end{DoxyParamCaption})}
+
+
+
+Prints the information for a given airline. Complexity\+: O(1). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em airline} & -\/ Code of the airline to be analyzed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_ad513068f5235e0ddd17f3be1e3823638}\label{classManager_ad513068f5235e0ddd17f3be1e3823638} 
+\index{Manager@{Manager}!extractAirlines@{extractAirlines}}
+\index{extractAirlines@{extractAirlines}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{extractAirlines()}{extractAirlines()}}
+{\footnotesize\ttfamily bool Manager\+::extract\+Airlines (\begin{DoxyParamCaption}\item[{std\+::string}]{fname }\end{DoxyParamCaption})}
+
+
+
+Extracts the contents of a file into a set of Airlines. Complexity\+: O(n), having n as the number of lines in the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & -\/ Name of the file to be extracted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the operation was successful. 
+\end{DoxyReturn}
+\Hypertarget{classManager_a6a4cf87d13fd52a4af649109d0cd8d23}\label{classManager_a6a4cf87d13fd52a4af649109d0cd8d23} 
+\index{Manager@{Manager}!extractAirports@{extractAirports}}
+\index{extractAirports@{extractAirports}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{extractAirports()}{extractAirports()}}
+{\footnotesize\ttfamily bool Manager\+::extract\+Airports (\begin{DoxyParamCaption}\item[{std\+::string}]{fname }\end{DoxyParamCaption})}
+
+
+
+Extracts the contents of a file into a set of airports and the graph of the flight network. Complexity\+: O(n), having n as the number of lines in the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & -\/ Name of the file to be extracted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the operation was successful. 
+\end{DoxyReturn}
+\Hypertarget{classManager_aab763ac2c1847a4f236f5224e22cafe0}\label{classManager_aab763ac2c1847a4f236f5224e22cafe0} 
+\index{Manager@{Manager}!extractFlights@{extractFlights}}
+\index{extractFlights@{extractFlights}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{extractFlights()}{extractFlights()}}
+{\footnotesize\ttfamily bool Manager\+::extract\+Flights (\begin{DoxyParamCaption}\item[{std\+::string}]{fname }\end{DoxyParamCaption})}
+
+
+
+Extracts the contents of a file into the edges of the flight network graph. Complexity\+: O(n), having n as the number of lines in the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & -\/ Name of the file to be extracted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the operation was successful. 
+\end{DoxyReturn}
+\Hypertarget{classManager_ab2c8809aed4d4e1ad06fa32125b1bbe0}\label{classManager_ab2c8809aed4d4e1ad06fa32125b1bbe0} 
+\index{Manager@{Manager}!listAirlinesAirport@{listAirlinesAirport}}
+\index{listAirlinesAirport@{listAirlinesAirport}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{listAirlinesAirport()}{listAirlinesAirport()}}
+{\footnotesize\ttfamily void Manager\+::list\+Airlines\+Airport (\begin{DoxyParamCaption}\item[{string}]{airport }\end{DoxyParamCaption})}
+
+
+
+Lists the airlines available at a given airport. Complexity\+: O(n), having n as the number of airports. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em airport} & -\/ Code of the airport to be analyzed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_a04651dd743f2466c7015c3e396bd64f7}\label{classManager_a04651dd743f2466c7015c3e396bd64f7} 
+\index{Manager@{Manager}!listAirlinesCountry@{listAirlinesCountry}}
+\index{listAirlinesCountry@{listAirlinesCountry}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{listAirlinesCountry()}{listAirlinesCountry()}}
+{\footnotesize\ttfamily void Manager\+::list\+Airlines\+Country (\begin{DoxyParamCaption}\item[{string}]{country }\end{DoxyParamCaption})}
+
+
+
+Lists the available airlines for a given country. Complexity\+: O(n), having n as the number of airlines. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & -\/ Country to be analyzed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_a2b60891a387366ce467895306afa7a1d}\label{classManager_a2b60891a387366ce467895306afa7a1d} 
+\index{Manager@{Manager}!listAirportsCountryCity@{listAirportsCountryCity}}
+\index{listAirportsCountryCity@{listAirportsCountryCity}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{listAirportsCountryCity()}{listAirportsCountryCity()}}
+{\footnotesize\ttfamily void Manager\+::list\+Airports\+Country\+City (\begin{DoxyParamCaption}\item[{string}]{country,  }\item[{string}]{city = {\ttfamily "{}"{}} }\end{DoxyParamCaption})}
+
+
+
+Lists the airports in a given city, in a given country. Complexity\+: O(n), having n as the number of airports. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & -\/ Name of the country to be analyzed. \\
+\hline
+{\em city} & -\/ Name of the city to be analyzed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_af9e8b1df4a37a09b4aeebbc03e27d069}\label{classManager_af9e8b1df4a37a09b4aeebbc03e27d069} 
+\index{Manager@{Manager}!listAirportsMostAirlines@{listAirportsMostAirlines}}
+\index{listAirportsMostAirlines@{listAirportsMostAirlines}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{listAirportsMostAirlines()}{listAirportsMostAirlines()}}
+{\footnotesize\ttfamily void Manager\+::list\+Airports\+Most\+Airlines (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Lists the first n airports with the most airlines. Complexity\+: O(n \texorpdfstring{$\ast$}{*} m), having n as the number of airports and m the number of flights in an airport. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & -\/ number to be analyzed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_ac8491e9e93712a3aec5f94d31e645436}\label{classManager_ac8491e9e93712a3aec5f94d31e645436} 
+\index{Manager@{Manager}!listAirportsMostFlights@{listAirportsMostFlights}}
+\index{listAirportsMostFlights@{listAirportsMostFlights}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{listAirportsMostFlights()}{listAirportsMostFlights()}}
+{\footnotesize\ttfamily void Manager\+::list\+Airports\+Most\+Flights (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Lists the first n airports with the most flights. Complexity\+: O(n), having n as the number of airports. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & -\/ number to be analyzed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classManager_a0b73cbd00976d32748c75df036c7df55}\label{classManager_a0b73cbd00976d32748c75df036c7df55} 
+\index{Manager@{Manager}!validateAirline@{validateAirline}}
+\index{validateAirline@{validateAirline}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{validateAirline()}{validateAirline()}}
+{\footnotesize\ttfamily bool Manager\+::validate\+Airline (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{airline }\end{DoxyParamCaption})}
+
+
+
+Verifies if there is an airline for a given code. Complexity\+: O(1). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em airline} & -\/ Code to be assessed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if there exists an airline with the given code. 
+\end{DoxyReturn}
+\Hypertarget{classManager_a131a380be17d48427f05b6b279b04ce6}\label{classManager_a131a380be17d48427f05b6b279b04ce6} 
+\index{Manager@{Manager}!validateAirport@{validateAirport}}
+\index{validateAirport@{validateAirport}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{validateAirport()}{validateAirport()}}
+{\footnotesize\ttfamily bool Manager\+::validate\+Airport (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{code }\end{DoxyParamCaption})}
+
+
+
+Verifies if there is an airport for a given code. Complexity\+: O(1). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & -\/ Code to be assessed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if there exists an airport with the given code. 
+\end{DoxyReturn}
+\Hypertarget{classManager_a3361447d12d9db80cb78fa1998ae5880}\label{classManager_a3361447d12d9db80cb78fa1998ae5880} 
+\index{Manager@{Manager}!validateAirportName@{validateAirportName}}
+\index{validateAirportName@{validateAirportName}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{validateAirportName()}{validateAirportName()}}
+{\footnotesize\ttfamily bool Manager\+::validate\+Airport\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Verifies if there is an airport for a given name. Complexity\+: O(1). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ Name to be assessed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if there exists an airport with the given name. 
+\end{DoxyReturn}
+\Hypertarget{classManager_aeef83b8d42e87ce181111c56b04f6142}\label{classManager_aeef83b8d42e87ce181111c56b04f6142} 
+\index{Manager@{Manager}!validateCity@{validateCity}}
+\index{validateCity@{validateCity}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{validateCity()}{validateCity()}}
+{\footnotesize\ttfamily bool Manager\+::validate\+City (\begin{DoxyParamCaption}\item[{const string \&}]{city,  }\item[{const string \&}]{country }\end{DoxyParamCaption})}
+
+
+
+Verifies if there is a city for a given name. Complexity\+: O(1). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em city} & -\/ Name to be assessed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if there exists a city with the given name. 
+\end{DoxyReturn}
+\Hypertarget{classManager_ac636063abf4e873fe333516627d3d076}\label{classManager_ac636063abf4e873fe333516627d3d076} 
+\index{Manager@{Manager}!validateCountry@{validateCountry}}
+\index{validateCountry@{validateCountry}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{validateCountry()}{validateCountry()}}
+{\footnotesize\ttfamily bool Manager\+::validate\+Country (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{country }\end{DoxyParamCaption})}
+
+
+
+Verifies if there is a country for a given name. Complexity\+: O(1). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & -\/ Name to be assessed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if there exists a country with the given name. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Manager.\+h\item 
+src/Manager.\+cpp\end{DoxyCompactItemize}

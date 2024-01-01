@@ -1,0 +1,55 @@
+\doxysection{Airport Class Reference}
+\hypertarget{classAirport}{}\label{classAirport}\index{Airport@{Airport}}
+
+
+Class that defines an \doxylink{classAirport}{Airport}. Each airport contains a unique code, a name, a city a country, and its coordinates.  
+
+
+
+
+{\ttfamily \#include $<$Airport.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classAirport_a2fc0f2402c94225b9deaf76176bb887f}\label{classAirport_a2fc0f2402c94225b9deaf76176bb887f} 
+{\bfseries Airport} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Sets airport code to "{}no\+Code"{}. \end{DoxyCompactList}\item 
+\Hypertarget{classAirport_aedf45b7ca3d9f315e858e5979c4af1e4}\label{classAirport_aedf45b7ca3d9f315e858e5979c4af1e4} 
+{\bfseries Airport} (std\+::string code\+\_\+)
+\begin{DoxyCompactList}\small\item\em Code constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classAirport_af449b791d00b04d194b5a9ea491a1695}\label{classAirport_af449b791d00b04d194b5a9ea491a1695} 
+{\bfseries Airport} (std\+::string code\+\_\+, std\+::string name\+\_\+, std\+::string city\+\_\+, std\+::string country\+\_\+, \mbox{\hyperlink{classCoordinate}{Coordinate}} coords)
+\begin{DoxyCompactList}\small\item\em All parameter constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classAirport_a715d0628f3540a1a65917d55b0311757}\label{classAirport_a715d0628f3540a1a65917d55b0311757} 
+std\+::string {\bfseries get\+Code} () const
+\item 
+\Hypertarget{classAirport_a5f6d1d66d9d1b5af15b67c500e444f9f}\label{classAirport_a5f6d1d66d9d1b5af15b67c500e444f9f} 
+std\+::string {\bfseries get\+Name} () const
+\item 
+\Hypertarget{classAirport_a4f8fbb5b1c5250bf0aaa77dfc25897dc}\label{classAirport_a4f8fbb5b1c5250bf0aaa77dfc25897dc} 
+std\+::string {\bfseries get\+City} () const
+\item 
+\Hypertarget{classAirport_aefabe22c551403c9ca291404eba2323b}\label{classAirport_aefabe22c551403c9ca291404eba2323b} 
+std\+::string {\bfseries get\+Country} () const
+\item 
+\Hypertarget{classAirport_abc8883ffdb864b0d444454e67f76226f}\label{classAirport_abc8883ffdb864b0d444454e67f76226f} 
+\mbox{\hyperlink{classCoordinate}{Coordinate}} {\bfseries get\+Coordinate} () const
+\item 
+\Hypertarget{classAirport_a2e111eac20ade1f4c16aaeb8a682387f}\label{classAirport_a2e111eac20ade1f4c16aaeb8a682387f} 
+double {\bfseries get\+Latitiude} () const
+\item 
+\Hypertarget{classAirport_ad8cd931389b14d63e5933a1658b653a3}\label{classAirport_ad8cd931389b14d63e5933a1658b653a3} 
+double {\bfseries get\+Longitude} () const
+\item 
+\Hypertarget{classAirport_a2d93e2cadbdb3ed9114aff48aa0bac5c}\label{classAirport_a2d93e2cadbdb3ed9114aff48aa0bac5c} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classAirport}{Airport}} \&other) const
+\begin{DoxyCompactList}\small\item\em Equality operator. Returns true if all of the airports\textquotesingle{} elements are equal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that defines an \doxylink{classAirport}{Airport}. Each airport contains a unique code, a name, a city a country, and its coordinates. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/Airport.\+h\end{DoxyCompactItemize}

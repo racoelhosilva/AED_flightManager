@@ -3,7 +3,12 @@
 #include <set>
 #include "Manager.h"
 
-
+/**
+ * @brief Extracts the contents of a file into a set of airports and the graph of the flight network.
+ * Complexity: O(n), having n as the number of lines in the file.
+ * @param fname - Name of the file to be extracted.
+ * @return True if the operation was successful.
+ */
 bool Manager::extractAirports(std::string fname) {
     ifstream input(fname);
     std::string line;
@@ -38,6 +43,12 @@ bool Manager::extractAirports(std::string fname) {
     return true;
 }
 
+/**
+ * @brief Extracts the contents of a file into a set of Airlines.
+ * Complexity: O(n), having n as the number of lines in the file.
+ * @param fname - Name of the file to be extracted.
+ * @return True if the operation was successful.
+ */
 bool Manager::extractAirlines(std::string fname) {
     ifstream input(fname);
     std::string line;
@@ -63,6 +74,12 @@ bool Manager::extractAirlines(std::string fname) {
     return true;
 }
 
+/**
+ * @brief Extracts the contents of a file into the edges of the flight network graph.
+ * Complexity: O(n), having n as the number of lines in the file.
+ * @param fname - Name of the file to be extracted.
+ * @return True if the operation was successful.
+ */
 bool Manager::extractFlights(std::string fname) {
     ifstream input(fname);
     std::string line;
@@ -86,22 +103,61 @@ bool Manager::extractFlights(std::string fname) {
     } while (getline(input, line));
     return true;
 }
+
+/**
+ * @brief Verifies if there is an airport for a given code.
+ * Complexity: O(1).
+ * @param code - Code to be assessed.
+ * @return True if there exists an airport with the given code.
+ */
 bool Manager::validateAirport(const std::string &code) {
     return airports.find(Airport(code)) != airports.end();
 }
+
+/**
+ * @brief Verifies if there is an airline for a given code.
+ * Complexity: O(1).
+ * @param airline - Code to be assessed.
+ * @return True if there exists an airline with the given code.
+ */
 bool Manager::validateAirline(const std::string &airline) {
     return airlines.find(Airline(airline)) != airlines.end();
 }
+
+/**
+ * @brief Verifies if there is an airport for a given name.
+ * Complexity: O(1).
+ * @param name - Name to be assessed.
+ * @return True if there exists an airport with the given name.
+ */
 bool Manager::validateAirportName(const std::string &name) {
     return airportNameToCode.count(name) != 0;
 }
+
+/**
+ * @brief Verifies if there is a country for a given name.
+ * Complexity: O(1).
+ * @param country - Name to be assessed.
+ * @return True if there exists a country with the given name.
+ */
 bool Manager::validateCountry(const std::string &country) {
     return countries.find(country) != countries.end();
 }
+
+/**
+ * @brief Verifies if there is a city for a given name.
+ * Complexity: O(1).
+ * @param city - Name to be assessed.
+ * @return True if there exists a city with the given name.
+ */
 bool Manager::validateCity(const std::string &city, const std::string &country) {
     return countryCityToAirportCount.find({country, city}) != countryCityToAirportCount.end();
 }
 
+/**
+ * @brief Lists all existent airlines.
+ * Complexity: O(n), having n as the number of airlines.
+ */
 void Manager::listAllAirlines() {
     printAirlineHeader();
     for (Airline airline : airlines) {
@@ -111,10 +167,19 @@ void Manager::listAllAirlines() {
     printCount(airlines.size(), "Total Number of Airlines: ");
 }
 
+/**
+ * @brief Prints the number of existent airlines.
+ * Complexity: O(1).
+ */
 void Manager::numberAirlines() {
     printCount(airlines.size(), "Total Number of Airlines: ");
 }
 
+/**
+ * @brief Lists the airlines available at a given airport.
+ * Complexity: O(n), having n as the number of airports.
+ * @param airport - Code of the airport to be analyzed.
+ */
 void Manager::listAirlinesAirport(string airport) {
     Vertex<Airport> *v = airportCodeToVertex[airport];
     unordered_set<string> availableAirlines;
@@ -130,6 +195,11 @@ void Manager::listAirlinesAirport(string airport) {
     printCount(availableAirlines.size(), "Number of Airlines: ");
 }
 
+/**
+ * @brief Lists the available airlines for a given country.
+ * Complexity: O(n), having n as the number of airlines.
+ * @param country - Country to be analyzed.
+ */
 void Manager::listAirlinesCountry(string country) {
     printAirlineHeader();
     int count = 0;
@@ -143,12 +213,21 @@ void Manager::listAirlinesCountry(string country) {
     printCount(count, "Number of Airlines: ");
 }
 
+/**
+ * @brief Prints the information for a given airline.
+ * Complexity:  O(1).
+ * @param airline - Code of the airline to be analyzed.
+ */
 void Manager::airlineInfo(string airline) {
     printAirlineHeader();
     printAirline(*airlines.find(Airline(airline)));
     printAirlineFooter();
 }
 
+/**
+ * @brief Lists all existent airports.
+ * Complexity: O(n), having n as the number of airports.
+ */
 void Manager::listAllAirports() {
     printAirportHeader();
     for (const Airport& airport : airports){
@@ -157,9 +236,21 @@ void Manager::listAllAirports() {
     printAirportFooter();
     printCount(airports.size(), "Total Number of Airports:");
 }
+
+/**
+ * @brief Prints the number of existent airports.
+ * Complexity: O(1).
+ */
 void Manager::numberAirports() {
     printCount(airports.size(), "Total Number of Airports:");
 }
+
+/**
+ * @brief Lists the airports in a given city, in a given country.
+ * Complexity: O(n), having n as the number of airports.
+ * @param country - Name of the country to be analyzed.
+ * @param city - Name of the city to be analyzed.
+ */
 void Manager::listAirportsCountryCity(std::string country, std::string city) {
     bool cityExists = cities.find(city) != cities.end();
     printAirportHeader();
@@ -179,23 +270,34 @@ void Manager::listAirportsCountryCity(std::string country, std::string city) {
     printCount(count, "Number of Airports:");
 }
 
+/**
+ * @brief Lists the first n airports with the most airlines.
+ * Complexity: O(n * m), having n as the number of airports and m the number of flights in an airport.
+ * @param n - number to be analyzed.
+ */
 void Manager::listAirportsMostAirlines(int n) {
     priority_queue<pair<int, string>> airportAirlineCount;
-    for (auto a : flightNet.getVertexSet()){
+    for (auto a: flightNet.getVertexSet()) {
         unordered_set<string> airportAirlines;
-        for (const Edge<Airport> &e : a->getAdj()){
+        for (const Edge<Airport> &e: a->getAdj()) {
             airportAirlines.insert(e.getInfo());
         }
         airportAirlineCount.push({airportAirlines.size(), a->getInfo().getCode()});
     }
 
     printListHeader("Airports with most Airlines:");
-    for (int pos = 1; pos <= min(n, int(airports.size())); pos++){
+    for (int pos = 1; pos <= min(n, int(airports.size())); pos++) {
         pair<int, string> current = airportAirlineCount.top();
         printOrderedValueAirport(pos, current.first, current.second, airports.find(Airport(current.second))->getName());
         airportAirlineCount.pop();
     }
 }
+
+/**
+ * @brief Lists the first n airports with the most flights.
+ * Complexity: O(n), having n as the number of airports.
+ * @param n - number to be analyzed.
+ */
 void Manager::listAirportsMostFlights(int n){
     priority_queue<pair<int, string>> airportFlightCount;
     for (auto a : flightNet.getVertexSet()){

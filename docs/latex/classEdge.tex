@@ -1,0 +1,61 @@
+\doxysection{Edge\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classEdge}{}\label{classEdge}\index{Edge$<$ T $>$@{Edge$<$ T $>$}}
+
+
+Class that defines an \doxylink{classEdge}{Edge} of the \doxylink{classGraph}{Graph}. Each edge contains a pointer to its destination and a weight. In this project, the weight is an \doxylink{classAirline}{Airline}, as each edge represents a flight.  
+
+
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEdge_a8c1c59f94129feb7a247d7816972b400}\label{classEdge_a8c1c59f94129feb7a247d7816972b400} 
+{\bfseries Edge} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}d, double w, string code)
+\begin{DoxyCompactList}\small\item\em All parameter constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classEdge_a9a2de066dff8513dd788d553fc1d0c81}\label{classEdge_a9a2de066dff8513dd788d553fc1d0c81} 
+\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} {\bfseries get\+Dest} () const
+\item 
+\Hypertarget{classEdge_a163ee9f75e35701e6a04ea1c987e4094}\label{classEdge_a163ee9f75e35701e6a04ea1c987e4094} 
+void {\bfseries set\+Dest} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}dest)
+\item 
+\Hypertarget{classEdge_a3df378e283d6c8be5be4170ac8d7f4e8}\label{classEdge_a3df378e283d6c8be5be4170ac8d7f4e8} 
+double {\bfseries get\+Weight} () const
+\item 
+\Hypertarget{classEdge_aff600b093dd6917feeeb35bb7947bdd4}\label{classEdge_aff600b093dd6917feeeb35bb7947bdd4} 
+void {\bfseries set\+Weight} (double weight)
+\item 
+\Hypertarget{classEdge_ab50447d6255e2ba9d2b1fd5ddf021d4e}\label{classEdge_ab50447d6255e2ba9d2b1fd5ddf021d4e} 
+string {\bfseries get\+Info} () const
+\item 
+\Hypertarget{classEdge_a7538acfe2b9c452b6bdfb231c9bd9a2f}\label{classEdge_a7538acfe2b9c452b6bdfb231c9bd9a2f} 
+void {\bfseries set\+Info} (string code)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEdge_aefa9b76cd57411c5354e5620dc2d84dd}\label{classEdge_aefa9b76cd57411c5354e5620dc2d84dd} 
+class {\bfseries Graph$<$ T $>$}
+\item 
+\Hypertarget{classEdge_a2e120a12dec663fa334633b4f26cbed8}\label{classEdge_a2e120a12dec663fa334633b4f26cbed8} 
+class {\bfseries Vertex$<$ T $>$}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Edge$<$ T $>$}
+Class that defines an \doxylink{classEdge}{Edge} of the \doxylink{classGraph}{Graph}. Each edge contains a pointer to its destination and a weight. In this project, the weight is an \doxylink{classAirline}{Airline}, as each edge represents a flight. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & -\/ Type of data to be stored in the graph. \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/Graph.\+h\end{DoxyCompactItemize}

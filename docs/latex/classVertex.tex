@@ -1,0 +1,91 @@
+\doxysection{Vertex\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classVertex}{}\label{classVertex}\index{Vertex$<$ T $>$@{Vertex$<$ T $>$}}
+
+
+Class that defines a \doxylink{classVertex}{Vertex} of a \doxylink{classGraph}{Graph}. Each vertex has contents, a list of outgoing edges, and auxiliary fields to calculate DFS and BFS.  
+
+
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVertex_afcbdd4d4198b672356559cb8fa088408}\label{classVertex_afcbdd4d4198b672356559cb8fa088408} 
+{\bfseries Vertex} (T in)
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classVertex_a48eae2f7af2362634adab02b7b2dbec6}\label{classVertex_a48eae2f7af2362634adab02b7b2dbec6} 
+T {\bfseries get\+Info} () const
+\item 
+\Hypertarget{classVertex_a68c9c8792b2752b7540e2f8c14f686a4}\label{classVertex_a68c9c8792b2752b7540e2f8c14f686a4} 
+void {\bfseries set\+Info} (T in)
+\item 
+\Hypertarget{classVertex_aa2bb17f6ebd98a67f8da1f689b22fadc}\label{classVertex_aa2bb17f6ebd98a67f8da1f689b22fadc} 
+bool {\bfseries is\+Visited} () const
+\item 
+\Hypertarget{classVertex_aa1a1921cded8cb209382407b5a9433f3}\label{classVertex_aa1a1921cded8cb209382407b5a9433f3} 
+void {\bfseries set\+Visited} (bool v)
+\item 
+\Hypertarget{classVertex_aaa41dfa4ce1a19b4e529cc6cdc23b764}\label{classVertex_aaa41dfa4ce1a19b4e529cc6cdc23b764} 
+bool {\bfseries is\+Processing} () const
+\item 
+\Hypertarget{classVertex_ac7b2e53890abfbcd4d7ce3b7d34ee932}\label{classVertex_ac7b2e53890abfbcd4d7ce3b7d34ee932} 
+void {\bfseries set\+Processing} (bool p)
+\item 
+\Hypertarget{classVertex_a221e9275c875785c5e424834b7c0d5c7}\label{classVertex_a221e9275c875785c5e424834b7c0d5c7} 
+int {\bfseries get\+Lowest} () const
+\item 
+\Hypertarget{classVertex_ab718b85453d4c0fe1c970d6fb41a8658}\label{classVertex_ab718b85453d4c0fe1c970d6fb41a8658} 
+void {\bfseries set\+Lowest} (int low)
+\item 
+\Hypertarget{classVertex_a689b4714d7003168b09e472f0292bf89}\label{classVertex_a689b4714d7003168b09e472f0292bf89} 
+int {\bfseries get\+Visit\+Index} () const
+\item 
+\Hypertarget{classVertex_a2aecc2bb6a744426c2e4481babddfc89}\label{classVertex_a2aecc2bb6a744426c2e4481babddfc89} 
+void {\bfseries set\+Visit\+Index} (int vis\+Idx)
+\item 
+\Hypertarget{classVertex_a773da6dd210588d2ccf6d6d5eb0a1c39}\label{classVertex_a773da6dd210588d2ccf6d6d5eb0a1c39} 
+int {\bfseries get\+Auxiliar} () const
+\item 
+\Hypertarget{classVertex_a96d674e24e660e771705d3bb3bae0fa5}\label{classVertex_a96d674e24e660e771705d3bb3bae0fa5} 
+void {\bfseries set\+Auxiliar} (int aux)
+\item 
+\Hypertarget{classVertex_a23491e86779a2d2de8fa012710fef170}\label{classVertex_a23491e86779a2d2de8fa012710fef170} 
+vector$<$ \mbox{\hyperlink{classEdge}{Edge}}$<$ T $>$ $>$ \& {\bfseries get\+Adj} ()
+\item 
+\Hypertarget{classVertex_a0b0341340972782503ff5065f46673fe}\label{classVertex_a0b0341340972782503ff5065f46673fe} 
+const vector$<$ \mbox{\hyperlink{classEdge}{Edge}}$<$ T $>$ $>$ \& {\bfseries get\+Adj} () const
+\item 
+\Hypertarget{classVertex_aacc5763deca4f0f308756b69f9598584}\label{classVertex_aacc5763deca4f0f308756b69f9598584} 
+void {\bfseries set\+Adj} (const vector$<$ \mbox{\hyperlink{classEdge}{Edge}}$<$ T $>$ $>$ \&adj)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVertex_ac68fe20a0608b2be845b4e4d31005cfa}\label{classVertex_ac68fe20a0608b2be845b4e4d31005cfa} 
+unordered\+\_\+set$<$ string $>$ {\bfseries parents}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVertex_aefa9b76cd57411c5354e5620dc2d84dd}\label{classVertex_aefa9b76cd57411c5354e5620dc2d84dd} 
+class {\bfseries Graph$<$ T $>$}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Vertex$<$ T $>$}
+Class that defines a \doxylink{classVertex}{Vertex} of a \doxylink{classGraph}{Graph}. Each vertex has contents, a list of outgoing edges, and auxiliary fields to calculate DFS and BFS. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & -\/ Type of data to be stored in the graph vertex. \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/Graph.\+h\end{DoxyCompactItemize}

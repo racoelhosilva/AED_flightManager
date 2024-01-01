@@ -1,0 +1,170 @@
+\doxysection{Graph\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classGraph}{}\label{classGraph}\index{Graph$<$ T $>$@{Graph$<$ T $>$}}
+
+
+Class that defines a \doxylink{classGraph}{Graph}. Each graph has a vector of pointers to vertices.  
+
+
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classGraph_a8b7b7465fbfd562e2a469f90a437ab75}\label{classGraph_a8b7b7465fbfd562e2a469f90a437ab75} 
+\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} {\bfseries find\+Vertex} (const T \&in) const
+\begin{DoxyCompactList}\small\item\em Auxiliary function to find a vertex with a given content. \end{DoxyCompactList}\item 
+\Hypertarget{classGraph_a0853eac15cdf0f06d63f4b8a7820ec71}\label{classGraph_a0853eac15cdf0f06d63f4b8a7820ec71} 
+int {\bfseries get\+Num\+Vertex} () const
+\item 
+\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classGraph_a7b433b744ed64e178b9f7649775a740c}{add\+Vertex}} (const T \&in)
+\begin{DoxyCompactList}\small\item\em Adds a vertex with a given content or info (in) to a graph (this). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraph_af9c903104ad69a7782979fa9caedf163}{remove\+Vertex}} (const T \&in)
+\begin{DoxyCompactList}\small\item\em Removes a vertex with a given content (in) from a graph (this), and all outgoing and incoming edges. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraph_a373e137250e5f148b33fbe7e1d8d4e22}{add\+Edge}} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}sourc, \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}dest, double w, string code)
+\begin{DoxyCompactList}\small\item\em Adds an edge to a graph (this), given the contents of the source and destination vertices and the edge weight (w). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraph_a1106092a37366486cf55576f9ec01692}{remove\+Edge}} (const T \&sourc, const T \&dest)
+\begin{DoxyCompactList}\small\item\em Removes an edge from a graph (this). The edge is identified by the source (sourc) and destination (dest) contents. \end{DoxyCompactList}\item 
+\Hypertarget{classGraph_a923b43995f81ad9319bbc81a1e433e64}\label{classGraph_a923b43995f81ad9319bbc81a1e433e64} 
+vector$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} $>$ {\bfseries get\+Vertex\+Set} () const
+\item 
+vector$<$ T $>$ \mbox{\hyperlink{classGraph_a911798b1a89f8c4ae90ba3eee849cff8}{dfs}} () const
+\begin{DoxyCompactList}\small\item\em Conducts a depth-\/first search of the graph. \end{DoxyCompactList}\item 
+vector$<$ T $>$ \mbox{\hyperlink{classGraph_a510522c8221b321a82e687fe2f2cb484}{dfs}} (const T \&source) const
+\begin{DoxyCompactList}\small\item\em Conducts a depth-\/first search of the graph from a source vertex. \end{DoxyCompactList}\item 
+vector$<$ T $>$ \mbox{\hyperlink{classGraph_aa47a4130165550e208e7a063fce6983a}{bfs}} (const T \&source) const
+\begin{DoxyCompactList}\small\item\em Conducts a breadth-\/first search of the graph from a source vertex. \end{DoxyCompactList}\item 
+\Hypertarget{classGraph_a960a9fe88b32bdf7da895decabc76c60}\label{classGraph_a960a9fe88b32bdf7da895decabc76c60} 
+int {\bfseries diameter} ()
+\item 
+\Hypertarget{classGraph_a8c9e0f3f43659b4141994c26af406e96}\label{classGraph_a8c9e0f3f43659b4141994c26af406e96} 
+vector$<$ pair$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}, vector$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} $>$ $>$ $>$ {\bfseries longest\+Paths} (int \&diameter)
+\item 
+\Hypertarget{classGraph_a21163663a9910cde3d9fb99230433aa2}\label{classGraph_a21163663a9910cde3d9fb99230433aa2} 
+int {\bfseries bfs\+\_\+diameter} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}v)
+\item 
+\Hypertarget{classGraph_a298540bc9c5798bc83b3bd32ed79ddf9}\label{classGraph_a298540bc9c5798bc83b3bd32ed79ddf9} 
+vector$<$ T $>$ {\bfseries articulation\+Points} ()
+\item 
+\Hypertarget{classGraph_ade5170615527043882739d60a8cea356}\label{classGraph_ade5170615527043882739d60a8cea356} 
+void {\bfseries dfs\+\_\+art} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}v, stack$<$ T $>$ \&s, vector$<$ T $>$ \&l, int \&i)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Graph$<$ T $>$}
+Class that defines a \doxylink{classGraph}{Graph}. Each graph has a vector of pointers to vertices. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & -\/ Type of data stored in the \doxylink{classGraph}{Graph}. For this project, T is \doxylink{classAirport}{Airport}. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classGraph_a373e137250e5f148b33fbe7e1d8d4e22}\label{classGraph_a373e137250e5f148b33fbe7e1d8d4e22} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+bool \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::add\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{sourc,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}}]{dest,  }\item[{double}]{w,  }\item[{string}]{code }\end{DoxyParamCaption})}
+
+
+
+Adds an edge to a graph (this), given the contents of the source and destination vertices and the edge weight (w). 
+
+\begin{DoxyReturn}{Returns}
+Returns true if successful, and false if the source or destination vertex does not exist. 
+\end{DoxyReturn}
+\Hypertarget{classGraph_a7b433b744ed64e178b9f7649775a740c}\label{classGraph_a7b433b744ed64e178b9f7649775a740c} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!addVertex@{addVertex}}
+\index{addVertex@{addVertex}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{addVertex()}{addVertex()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::add\+Vertex (\begin{DoxyParamCaption}\item[{const T \&}]{in }\end{DoxyParamCaption})}
+
+
+
+Adds a vertex with a given content or info (in) to a graph (this). 
+
+\begin{DoxyReturn}{Returns}
+Returns true if successful, and false if a vertex with that content already exists. 
+\end{DoxyReturn}
+\Hypertarget{classGraph_aa47a4130165550e208e7a063fce6983a}\label{classGraph_aa47a4130165550e208e7a063fce6983a} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!bfs@{bfs}}
+\index{bfs@{bfs}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{bfs()}{bfs()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+vector$<$ T $>$ \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::bfs (\begin{DoxyParamCaption}\item[{const T \&}]{source }\end{DoxyParamCaption}) const}
+
+
+
+Conducts a breadth-\/first search of the graph from a source vertex. 
+
+\begin{DoxyReturn}{Returns}
+Vector of the contents of the vertices of the graph traversed by the BFS. 
+\end{DoxyReturn}
+\Hypertarget{classGraph_a911798b1a89f8c4ae90ba3eee849cff8}\label{classGraph_a911798b1a89f8c4ae90ba3eee849cff8} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!dfs@{dfs}}
+\index{dfs@{dfs}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{dfs()}{dfs()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+vector$<$ T $>$ \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::dfs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Conducts a depth-\/first search of the graph. 
+
+\begin{DoxyReturn}{Returns}
+Vector of the contents of the vertices of the graph traversed by the DFS. 
+\end{DoxyReturn}
+\Hypertarget{classGraph_a510522c8221b321a82e687fe2f2cb484}\label{classGraph_a510522c8221b321a82e687fe2f2cb484} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!dfs@{dfs}}
+\index{dfs@{dfs}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{dfs()}{dfs()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+vector$<$ T $>$ \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::dfs (\begin{DoxyParamCaption}\item[{const T \&}]{source }\end{DoxyParamCaption}) const}
+
+
+
+Conducts a depth-\/first search of the graph from a source vertex. 
+
+\begin{DoxyReturn}{Returns}
+Vector of the contents of the vertices of the graph traversed by the DFS. 
+\end{DoxyReturn}
+\Hypertarget{classGraph_a1106092a37366486cf55576f9ec01692}\label{classGraph_a1106092a37366486cf55576f9ec01692} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!removeEdge@{removeEdge}}
+\index{removeEdge@{removeEdge}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{removeEdge()}{removeEdge()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+bool \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::remove\+Edge (\begin{DoxyParamCaption}\item[{const T \&}]{sourc,  }\item[{const T \&}]{dest }\end{DoxyParamCaption})}
+
+
+
+Removes an edge from a graph (this). The edge is identified by the source (sourc) and destination (dest) contents. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if successful, and false if such edge does not exist. 
+\end{DoxyReturn}
+\Hypertarget{classGraph_af9c903104ad69a7782979fa9caedf163}\label{classGraph_af9c903104ad69a7782979fa9caedf163} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!removeVertex@{removeVertex}}
+\index{removeVertex@{removeVertex}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{removeVertex()}{removeVertex()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+bool \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::remove\+Vertex (\begin{DoxyParamCaption}\item[{const T \&}]{in }\end{DoxyParamCaption})}
+
+
+
+Removes a vertex with a given content (in) from a graph (this), and all outgoing and incoming edges. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if successful, and false if such vertex does not exist. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/Graph.\+h\end{DoxyCompactItemize}

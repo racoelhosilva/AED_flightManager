@@ -1,0 +1,69 @@
+\doxysection{Interface.\+h}
+\hypertarget{Interface_8h_source}{}\label{Interface_8h_source}\index{src/Interface.h@{src/Interface.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ rodrigo\ on\ 12/27/23.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ AED2324\_PRJ2\_G15\_INTERFACE\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ AED2324\_PRJ2\_G15\_INTERFACE\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Manager.h"{}}}
+\DoxyCodeLine{00009\ }
+
+
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classInterface}{Interface}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{classManager}{Manager}}\ manager;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_a1e6958f5941b3237990746d50efee50e}{header}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_a44c67dcf9b8763d4da30499f2ff788e1}{footer}}();}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_a87d3550f0bbed28adaabbbcf6fd3eb1b}{clear}}();}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_ac1a1129cd78bf2c5f2b58438a1cbb5fd}{outputWait}}();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_a4cae6ec8b7fd4a857f80cea5adb4ff35}{init}}();}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_a1796714b9aff059595df108bb0d952f0}{exitMenu}}();}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classInterface_abd7e1bd5e9639af2da21193076e8349f}{loadData}}();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_acfe2749eec1f305e167b49a74982bb88}{printOptions}}(\textcolor{keyword}{const}\ std::vector<std::string>\ \&options);}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classInterface_a92ad63bc04107fa96378fcbec019871e}{validOption}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ size,\ \textcolor{keyword}{const}\ std::string\ \&choice);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classInterface_a483b3b38be1f2334e681c79990003430}{readOption}}(\textcolor{keywordtype}{int}\ i);}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_a6c47f459c7075dcc511d5f11efc15ae3}{printSelected}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&s);}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ printFilters();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ std::string\ \mbox{\hyperlink{classInterface_a56f8e08a9fc72800396b2ae04cd47c81}{readAirline}}();}
+\DoxyCodeLine{00034\ \ \ \ \ std::string\ \mbox{\hyperlink{classInterface_aab084eda68fb7cf2b085f2fab3c5b924}{readAirportCode}}();}
+\DoxyCodeLine{00035\ \ \ \ \ std::string\ \mbox{\hyperlink{classInterface_a52c4d61a169e3ffccf011874ded92e8d}{readAirportName}}();}
+\DoxyCodeLine{00036\ \ \ \ \ std::string\ \mbox{\hyperlink{classInterface_a81d8417000c6557d99cc6710e8c2d616}{readCity}}(\textcolor{keywordtype}{string}\ country);}
+\DoxyCodeLine{00037\ \ \ \ \ std::string\ \mbox{\hyperlink{classInterface_a53370cd03320486a39d0980c715c1b67}{readCityOptional}}();}
+\DoxyCodeLine{00038\ \ \ \ \ std::string\ \mbox{\hyperlink{classInterface_a4119be7e701677fd11e0e7dbfb5dd3a8}{readCountry}}();}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classCoordinate}{Coordinate}}\ \mbox{\hyperlink{classInterface_a55fd9920d16f540de21d383b20fd0eae}{readCoordinates}}();}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classInterface_a3ed481e4e61d4328d3bc34084fc1b8fc}{readNumber}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_ae3c5680ac1fe3077ae7caffa54c737d3}{mainMenu}}();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_a879b4f946f8e6ac0a1d4215910343fc8}{statisticsMenu}}();}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_afe69ef4effd777265d202b921dbd868e}{airlineStatisticsMenu}}();}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_a04c4a49fb74f5ef9ad37687456ce613e}{airportStatisticsMenu}}();}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_a2087de2e1388167fef0cd80659e820fe}{airportInformationMenu}}();}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_a65f5bdcba7c6ae1824c4d2ca38a4842e}{flightStatisticsMenu}}();}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_add9fcf6d605aac170e10cf4159a7511d}{locationStatisticsMenu}}();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_af9e12eb1cafc0cfe77a4bce0229cec93}{flightSourceMenu}}();}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_a016eaf1cec6267911a2230a6126d7d6f}{flightDestinationMenu}}();}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInterface_a283db646c6e44d3b4f5fd9f0f11464a7}{flightFilterMenu}}();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \ \ \ \ vector<string>\ \mbox{\hyperlink{classInterface_ac0181df0c575dc0ffaecdc86c517327c}{sourceCodes}};}
+\DoxyCodeLine{00058\ \ \ \ \ vector<string>\ \mbox{\hyperlink{classInterface_a5912b3fb7ee3265099aed537501c25a1}{destinationCodes}};}
+\DoxyCodeLine{00060\ \ \ \ \ vector<string>\ \mbox{\hyperlink{classInterface_a9bda15aeec861dcbedad29fdbfba0594}{airlinePreferences}};}
+\DoxyCodeLine{00062\ \ \ \ \ vector<string>\ \mbox{\hyperlink{classInterface_a56857ea983bc7131931f18f6d1cf18ed}{airlineRestrictions}};}
+\DoxyCodeLine{00064\ \ \ \ \ vector<string>\ \mbox{\hyperlink{classInterface_abd486695e503b810792dffe01c823746}{airportRestrictions}};}
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keywordtype}{bool}\ stringIsNumeric(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&s);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//AED2324\_PRJ2\_G15\_INTERFACE\_H}}
+
+\end{DoxyCode}

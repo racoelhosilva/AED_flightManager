@@ -1,0 +1,67 @@
+\doxysection{Coordinate Class Reference}
+\hypertarget{classCoordinate}{}\label{classCoordinate}\index{Coordinate@{Coordinate}}
+
+
+Class that defines a geographical \doxylink{classCoordinate}{Coordinate}. Each coordinate has a latitude and a longitude.  
+
+
+
+
+{\ttfamily \#include $<$Coordinate.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCoordinate_aac6f323a685fc1e88fbea9c86f1e600d}\label{classCoordinate_aac6f323a685fc1e88fbea9c86f1e600d} 
+{\bfseries Coordinate} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Sets latitude and longitude to 0. \end{DoxyCompactList}\item 
+\Hypertarget{classCoordinate_aecff97f601cf2ffa294f6b6cd44f80ad}\label{classCoordinate_aecff97f601cf2ffa294f6b6cd44f80ad} 
+{\bfseries Coordinate} (double lat, double lon)
+\begin{DoxyCompactList}\small\item\em All parameter constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classCoordinate_a864e4dc23d8f0e2cdf8510557bdd946d}\label{classCoordinate_a864e4dc23d8f0e2cdf8510557bdd946d} 
+double {\bfseries get\+Latitude} () const
+\item 
+\Hypertarget{classCoordinate_a29c5cf3fdae70c048b8a918847ea4e12}\label{classCoordinate_a29c5cf3fdae70c048b8a918847ea4e12} 
+void {\bfseries set\+Latitude} (double lat)
+\item 
+\Hypertarget{classCoordinate_ac49dfc528b35bb76e376ea696213e8a4}\label{classCoordinate_ac49dfc528b35bb76e376ea696213e8a4} 
+double {\bfseries get\+Longitude} () const
+\item 
+\Hypertarget{classCoordinate_a04cf11fc229f14c1e5d4880bd6849b6e}\label{classCoordinate_a04cf11fc229f14c1e5d4880bd6849b6e} 
+void {\bfseries set\+Longitude} (double lon)
+\item 
+double \mbox{\hyperlink{classCoordinate_a64a8d7d2fee7818797f45912cd4754eb}{distance}} (const \mbox{\hyperlink{classCoordinate}{Coordinate}} \&c2)
+\begin{DoxyCompactList}\small\item\em Uses the Haversine Function to calculate the distance between two geographical locations. \end{DoxyCompactList}\item 
+\Hypertarget{classCoordinate_a803c20b0c173a04886ace0c4f6b14361}\label{classCoordinate_a803c20b0c173a04886ace0c4f6b14361} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classCoordinate}{Coordinate}} \&other) const
+\begin{DoxyCompactList}\small\item\em Equality operator. Returns true if both latitude and longitude are equal in both coordinates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that defines a geographical \doxylink{classCoordinate}{Coordinate}. Each coordinate has a latitude and a longitude. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCoordinate_a64a8d7d2fee7818797f45912cd4754eb}\label{classCoordinate_a64a8d7d2fee7818797f45912cd4754eb} 
+\index{Coordinate@{Coordinate}!distance@{distance}}
+\index{distance@{distance}!Coordinate@{Coordinate}}
+\doxysubsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily double Coordinate\+::distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classCoordinate}{Coordinate}} \&}]{c2 }\end{DoxyParamCaption})}
+
+
+
+Uses the Haversine Function to calculate the distance between two geographical locations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c2} & -\/ Geographical coordinate to where the distance will be calculated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Distance in km between the two coordinates. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Coordinate.\+h\item 
+src/Coordinate.\+cpp\end{DoxyCompactItemize}
