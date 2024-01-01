@@ -272,7 +272,7 @@ void Manager::listAirportsCountryCity(std::string country, std::string city) {
 
 /**
  * @brief Lists the first n airports with the most airlines.
- * Complexity: O(log(n * m)), having n as the number of airports and m the number of flights in an airport.
+ * Complexity: O(n * m * log(n * m)), having n as the number of airports and m the number of flights in an airport.
  * @param n - number to be analyzed.
  */
 void Manager::listAirportsMostAirlines(int n) {
@@ -295,7 +295,7 @@ void Manager::listAirportsMostAirlines(int n) {
 
 /**
  * @brief Lists the first n airports with the most flights.
- * Complexity: O(log(n)), having n as the number of airports.
+ * Complexity: O(n * log(n)), having n as the number of airports.
  * @param n - number to be analyzed.
  */
 void Manager::listAirportsMostFlights(int n){
@@ -658,7 +658,7 @@ void Manager::numberDeparturesCountryCity(std::string country, std::string city)
 
 /**
  * @brief Lists the countries, sorted in descending order of number of airlines.
- * Complexity: O(log(n)), n being the number of countries.
+ * Complexity: O(n * log(n)), n being the number of countries.
  * @param n - number of countries to be listed.
  */
 void Manager::listCountriesMostAirlines(int n){
@@ -676,7 +676,7 @@ void Manager::listCountriesMostAirlines(int n){
 
 /**
  * @brief Lists the countries, sorted in descending order of number of airports.
- * Complexity: O(log(n)), n being the number of countries.
+ * Complexity: O(n * log(n)), n being the number of countries.
  * @param n - number of countries to be listed.
  */
 void Manager::listCountriesMostAirports(int n){
@@ -694,7 +694,7 @@ void Manager::listCountriesMostAirports(int n){
 
 /**
  * @brief Lists the cities, sorted in descending order of number of airports.
- * Complexity: O(log(n * m)), n being the number of countries and m the number of cities.
+ * Complexity: O(n * m * log(n * m)), n being the number of countries and m the number of cities.
  * @param n - number of countries to be listed.
  */
 void Manager::listCitiesMostAirports(int n){
@@ -718,17 +718,25 @@ void Manager::listCitiesMostAirports(int n){
  * Complexity: O(n), n being the number of articulation points.
  */
 void Manager::articulationPoints(){
-    auto articulationPoints = flightNet.articulationPoints();
-    unordered_set<Airport, AirportHash, AirportHash> s;
-    for (const Airport &v : articulationPoints){
-        s.insert(v);
+    Graph<Airport> aux;
+    unordered_map<string, Vertex<Airport> *> auxNameToVertex;
+    for (const Vertex<Airport> *x : flightNet.getVertexSet()){
+        auxNameToVertex[x->getInfo().getCode()] = aux.addVertex(x->getInfo());
     }
+    for (auto *x : flightNet.getVertexSet()){
+        for (const auto &y : x->getAdj()){
+            aux.addEdge(auxNameToVertex[x->getInfo().getCode()], auxNameToVertex[y.getDest()->getInfo().getCode()], y.getWeight(), y.getInfo());
+            aux.addEdge(auxNameToVertex[y.getDest()->getInfo().getCode()], auxNameToVertex[x->getInfo().getCode()], y.getWeight(), y.getInfo());
+        }
+    }
+    auto articulationPoints = aux.articulationPoints();
+
     printAirportHeader();
-    for (const Airport &ap : s){
-        printAirport(ap);
+    for (const auto *ap : articulationPoints){
+        printAirport(ap->getInfo());
     }
     printAirportFooter();
-    printCount(s.size(), "Number of Articulation Points:");
+    printCount(articulationPoints.size(), "Number of Articulation Points:");
 }
 
 /**

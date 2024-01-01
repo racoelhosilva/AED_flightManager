@@ -17,11 +17,6 @@ template <class T> class Edge;
 template <class T> class Graph;
 template <class T> class Vertex;
 
-// Auxiliar function declaration (used in the articulation points algorithm)
-template <typename T>
-bool stackSearch(stack<T> s, T i);
-
-
 /****************** Provided structures  ********************/
 
 /**
@@ -112,8 +107,8 @@ public:
     vector<pair<Vertex<T>*, vector<Vertex<T> *>>> longestPaths(int &diameter);
     int bfs_diameter(Vertex<T> *v);
 
-    vector<T> articulationPoints();
-    void dfs_art(Vertex<T> *v, stack<T> &s, vector<T> &l, int &i);
+    unordered_set<Vertex<T> *> articulationPoints();
+    void dfs_art(Vertex<T> *v, unordered_set<Vertex<T> *> &l, int &i);
 
 
 };
@@ -505,28 +500,28 @@ vector<pair<Vertex<T>*, vector<Vertex<T> *>>> Graph<T>::longestPaths(int &diamet
  * @return A Vector of all articulation points in the graph.
  */
 template <class T>
-vector<T> Graph<T>::articulationPoints() {
-    vector<T> res;
+unordered_set<Vertex<T> *> Graph<T>::articulationPoints() {
+    unordered_set<Vertex<T> *> res;
 
     for (auto vx : this->getVertexSet()){
         vx->setLowest(0);
         vx->setVisitIndex(0);
         vx->setVisited(false);
+        vx->setProcessing(false);
     }
 
-    stack<T> s;
     int idx = 1;
     for (auto v : this->getVertexSet()){
         if (!v->isVisited()){
-            this->dfs_art(v, s, res, idx);
+            this->dfs_art(v, res, idx);
         }
     }
 
-    if (this->getVertexSet().front()->getAuxiliar() > 2){
-        res.push_back(this->getVertexSet().front()->getInfo());
+    if (this->getVertexSet().front()->getAuxiliar() > 1){
+        res.insert(this->getVertexSet().front());
     }
     else {
-        res.pop_back();
+        res.erase(this->getVertexSet().front());
     }
 
     return res;
@@ -536,34 +531,33 @@ vector<T> Graph<T>::articulationPoints() {
  * @brief Conducts a depth-first search of the graph in order to find articulation points in the graph.
  * Complexity: O(|V| + |E|), |V| and |E| being the number of vertices and edges in the graph respectively.
  * @param v - Vertex of origin.
- * @param s - Stack of analyzed vertices.
  * @param l - List of articulated components found in the graph.
  * @param i - Index of search.
  */
 template <class T>
-void Graph<T>::dfs_art(Vertex<T> *v, stack<T> &s, vector<T> &l, int &i){
+void Graph<T>::dfs_art(Vertex<T> *v, unordered_set<Vertex<T> *> &l, int &i){
     v->setLowest(i);
     v->setVisitIndex(i);
     v->setAuxiliar(0);
     v->setVisited(true);
-    s.push(v->getInfo());
+    v->setProcessing(true);
     i++;
 
     for (auto e : v->getAdj()){
         Vertex<T> *w = e.getDest();
         if (!w->isVisited()){
             v->setAuxiliar(v->getAuxiliar()+1);
-            dfs_art(w, s, l, i);
+            dfs_art(w, l, i);
             v->setLowest(min(v->getLowest(), w->getLowest()));
             if (w->getLowest() >= v->getVisitIndex()){
-                l.push_back(v->getInfo());
+                l.insert(v);
             }
         }
-        else if (stackSearch(s, w->getInfo())){
+        else if (w->isProcessing()){
             v->setLowest(min(v->getLowest(), w->getVisitIndex()));
         }
     }
-    s.pop();
+    v->setProcessing(false);
 }
 
 #endif /* GRAPH_H_ */
