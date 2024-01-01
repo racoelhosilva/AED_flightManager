@@ -56,8 +56,6 @@
 \DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ LEFT\ \ \ \ \ \ \ \ "{}\(\backslash\)033[D"{}}}
 \DoxyCodeLine{00053\ }
 \DoxyCodeLine{00054\ }
-
-
 \DoxyCodeLine{00058\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAirlineHash}{AirlineHash}}\ \{}
 \DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{int}\ operator()\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classAirline}{Airline}}\ \&airline)\textcolor{keyword}{\ const\ }\{}
 \DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::hash<std::string>()(airline.getCode());}
@@ -68,8 +66,6 @@
 \DoxyCodeLine{00065\ \ \ \ \ \}}
 \DoxyCodeLine{00066\ \};}
 \DoxyCodeLine{00067\ }
-
-
 \DoxyCodeLine{00071\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAirportHash}{AirportHash}}\ \{}
 \DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{int}\ operator()\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classAirport}{Airport}}\ \&airport)\textcolor{keyword}{\ const\ }\{}
 \DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::hash<std::string>()(airport.getCode());}
@@ -92,9 +88,6 @@
 \DoxyCodeLine{00090\ \};}
 \DoxyCodeLine{00091\ }
 \DoxyCodeLine{00092\ }
-
-
-
 \DoxyCodeLine{00097\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classManager}{Manager}}\ \{}
 \DoxyCodeLine{00098\ \textcolor{keyword}{private}:}
 \DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{classGraph}{Graph<Airport>}}\ flightNet;}

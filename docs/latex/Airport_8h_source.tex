@@ -8,8 +8,6 @@
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
 \DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Coordinate.h"{}}}
 \DoxyCodeLine{00006\ }
-
-
 \DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classAirport}{Airport}}\ \{}
 \DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{private}:}
 \DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ std::string\ code;}
@@ -33,7 +31,7 @@
 \DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ getLatitiude()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ coordinates.getLatitude();\}}
 \DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ getLongitude()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ coordinates.getLongitude();\}}
 \DoxyCodeLine{00035\ }
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAirport_a2d93e2cadbdb3ed9114aff48aa0bac5c}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAirport}{Airport}}\&\ other)\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ code\ ==\ other.code\ \&\&\ name\ ==\ other.name\ \&\&\ city\ ==\ other.city\ \&\&\ country\ ==\ other.country\ \&\&\ latitude\ ==\ other.latitude\ \&\&\ longitude\ ==\ other.longitude;\}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classAirport_a2d93e2cadbdb3ed9114aff48aa0bac5c}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAirport}{Airport}}\&\ other)\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00038\ \};}
 \DoxyCodeLine{00039\ }
 \DoxyCodeLine{00040\ }
