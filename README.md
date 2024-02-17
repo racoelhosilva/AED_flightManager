@@ -1,7 +1,8 @@
 <h1 align="center">AED - Flight Manager</h1>
 
 ><p align="center">
-> CLI graph-based system to display statistics and calculate best (filtered) flight routes based on a large dataset.
+> CLI graph-based system to display statistics and calculate   
+> best (filtered) flight routes based on a large dataset.
 ></p>
 
 ## Goal of the Project
